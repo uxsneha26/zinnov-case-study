@@ -250,7 +250,7 @@ export default function Home() {
   );
   const Card = ({ title, children, color }: any) => (
     <div
-      className="relative rounded-xl p-5 w-[160px] shadow-sm"
+      className="relative rounded-xl px-4 py-4 w-[160px] shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
       style={{ backgroundColor: color }}
     >
       <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
@@ -259,7 +259,9 @@ export default function Home() {
   );
   
   const Arrow = () => (
-    <div className="text-gray-400 text-xl mx-2">→</div>
+    <div className="flex items-center justify-center text-gray-400 text-xl">
+      →
+    </div>
   );
   
   const PainWrapper = ({ children, note }: any) => (
@@ -528,7 +530,7 @@ export default function Home() {
           className="flex justify-center"
         >
           <div className="w-full flex justify-center">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-4">
 
     {/* Entry Point */}
     {view === "pain" ? (
