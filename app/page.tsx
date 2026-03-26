@@ -104,6 +104,514 @@ const painPointNotes: Record<string, string> = {
   loop: "No clear continuity of insights over time",
 };
 
+const personaData = {
+  name: "Asha R.",
+  role: "Strategy Lead, Global Capability Centre",
+  description:
+    "Needs a trusted way to turn interview signals into decisions, without losing time to manual interpretation.",
+  quote:
+    "“The insights are there, but I need them arranged into decisions I can actually act on.”",
+  expectations: [
+    "See the “why” behind each insight quickly",
+    "Priorities that balance value and effort",
+    "A clear next step, not another search loop",
+  ],
+  painPoints: [
+    "Too many overlapping recommendations",
+    "Hard to validate insights in time",
+    "Decision-making feels fragmented and slow",
+  ],
+  avatarSrc: "/persona-placeholder.svg",
+};
+
+type MatrixQuadrant = "HH" | "HL" | "LH" | "LL";
+type MatrixIdea = {
+  title: string;
+  detail?: string;
+  quadrant: MatrixQuadrant;
+};
+
+// Source of truth for both the post-its and the 2x2 matrix.
+// Quadrants: HH (high impact/high feasibility), HL (high impact/low feasibility),
+// LH (low impact/high feasibility), LL (low impact/low feasibility).
+const ideas: MatrixIdea[] = [
+  {
+    title: "Simplify onboarding flow",
+    detail: "Reduce friction so users reach meaningful insights faster.",
+    quadrant: "HH",
+  },
+  {
+    title: "Guided workflows",
+    detail: "Step-by-step decision support aligned to the user’s context.",
+    quadrant: "HH",
+  },
+  {
+    title: "Reduce decision steps",
+    detail: "Minimize hand-offs between search, validation, and synthesis.",
+    quadrant: "HH",
+  },
+  {
+    title: "AI summary layer",
+    detail: "Condense long reports into key insights and actions.",
+    quadrant: "HL",
+  },
+  {
+    title: "Insight validation layer",
+    detail: "Cross-check insights across sources to lower verification burden.",
+    quadrant: "HL",
+  },
+  {
+    title: "Improve search relevance",
+    detail: "Better ranking using engagement + query intent.",
+    quadrant: "HL",
+  },
+  {
+    title: "Compare insights visually",
+    detail: "Side-by-side comparison of reports, assumptions, and findings.",
+    quadrant: "HL",
+  },
+  {
+    title: "Contextual recommendations",
+    detail: "Surface relevant reports based on user context and goals.",
+    quadrant: "HL",
+  },
+  {
+    title: "Smart filters",
+    detail: "Dynamic filtering based on use-case, not just tags.",
+    quadrant: "LH",
+  },
+  {
+    title: "Structured report formats",
+    detail: "Standardized templates for readability and faster scanning.",
+    quadrant: "LH",
+  },
+  {
+    title: "Bookmark & save flows",
+    detail: "Quick access to relevant insights across sessions and teams.",
+    quadrant: "LH",
+  },
+  {
+    title: "Search by intent",
+    detail: "Natural-language query support for non-technical stakeholders.",
+    quadrant: "LH",
+  },
+  {
+    title: "Personalized dashboards",
+    detail: "User-specific tracking of insights and decision progress.",
+    quadrant: "LL",
+  },
+  {
+    title: "Minor UI improvements",
+    detail: "Small reductions in friction across common screens.",
+    quadrant: "LL",
+  },
+];
+
+type PersonaCardProps = {
+  name: string;
+  role: string;
+  description: string;
+  quote: string;
+  expectations: string[];
+  painPoints: string[];
+  avatarSrc: string;
+};
+
+function PersonaCard({
+  name,
+  role,
+  description,
+  quote,
+  expectations,
+  painPoints,
+  avatarSrc,
+}: PersonaCardProps) {
+  const appsUsed = [
+    "Inshorts",
+    "McKinsey",
+    "HBR",
+    "Google",
+    "Internal dashboards",
+  ];
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/70 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+      <div
+        className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(199,242,240,0.45), rgba(240,211,211,0.18) 55%, rgba(255,251,230,0) 72%)",
+        }}
+      />
+      <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 p-6 md:p-8">
+        <div className="space-y-4 md:pr-4 md: flex flex-col items-center md:items-start text-center md:text-left">
+          <img
+            src={avatarSrc}
+            alt={`${name} avatar`}
+            className="h-32 w-32 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
+          />
+          <h3
+            className={`${headingFont.className} text-xl font-semibold text-gray-900 mt-1`}
+          >
+            {name}
+          </h3>
+          <div className="text-sm text-gray-500 leading-snug space-y-1">
+            <p>{role}</p>
+            
+          </div>
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Apps used
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {appsUsed.map((app) => (
+                <span
+                  key={app}
+                  className="text-xs px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-gray-700"
+                >
+                  {app}
+                </span>
+              ))}
+            </div>
+          </div>
+    
+        </div>
+        
+
+        <div className="space-y-5 md:px-2">
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Type of work
+            </p>
+            <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-relaxed`}>
+              {description}
+            </p>
+          </div>
+
+          <p
+            className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
+          >
+            “The insights are there, but I need faster ways to{" "}
+            <Highlight color="#F0D3D3">validate insights</Highlight> and move
+            toward{" "}
+            <Highlight color="#E6F0AA">decision-ready direction</Highlight>.”
+          </p>
+
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Apps used
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {appsUsed.map((app) => (
+                <span
+                  key={app}
+                  className="text-xs px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-gray-700"
+                >
+                  {app}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4 md:pl-4 md:">
+          <div className="rounded-xl p-4 bg-[#FDECEC] border border-[#F5B5B5]">
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+            >
+              Pain points
+            </p>
+            <ul className="space-y-2">
+              {painPoints.map((item) => (
+                <li
+                  key={item}
+                  className={`${bodyFont.className} text-sm text-[#7F2A2A] leading-snug`}
+                >
+                  - <Highlight color="#FDECEC">{item}</Highlight>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-xl p-4 bg-[#EAF4EC] border border-[#cfe2d2]">
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+            >
+              Expectations
+            </p>
+            <ul className="space-y-2">
+              {expectations.map((item) => (
+                <li
+                  key={item}
+                  className={`${bodyFont.className} text-sm text-gray-700 leading-snug`}
+                >
+                  - <Highlight color="#EAF4EC">{item}</Highlight>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type StickyNotesProps = {
+  ideas: Array<{ title: string; detail?: string }>;
+};
+
+function StickyNotes({ ideas }: StickyNotesProps) {
+  const pastelNotes = [
+    { bgClass: "bg-[#FDF1F1]", textClass: "text-[#6B2A2A]" },
+    { bgClass: "bg-[#FFFBE6]", textClass: "text-[#5A4A12]" },
+    { bgClass: "bg-[#EAF7EC]", textClass: "text-[#1F4D3A]" },
+    { bgClass: "bg-[#EAF7F6]", textClass: "text-[#1E4A5A]" },
+    { bgClass: "bg-[#E6F0AA]", textClass: "text-[#3B4A12]" },
+    { bgClass: "bg-[#F7F0FF]", textClass: "text-[#4A2C6B]" },
+  ];
+
+  const noteData = ideas.map((idea, index) => {
+    const rot = Math.round(Math.sin((index + 1) * 9.73) * 3 * 10) / 10; // stable "random" rotation
+    const palette = pastelNotes[index % pastelNotes.length];
+    return { title: idea.title, detail: idea.detail, rotation: rot, ...palette };
+  });
+
+  return (
+    <div className="rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/60 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+      <div className="px-6 md:px-8 pt-8 pb-6">
+        <p
+          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3 text-center`}
+        >
+          User interviews
+        </p>
+        <h3
+          className={`${headingFont.className} text-2xl md:text-3xl font-semibold text-gray-900 text-center`}
+        >
+          Ideas surfaced from real conversations
+        </h3>
+        <p className="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+          We translated verbatim interview signals into actionable feature directions, then prioritized them visually.
+        </p>
+      </div>
+
+      <div className="relative mt-2 px-4 md:px-6 pb-8">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.045)_1px,transparent_1px)] bg-[size:34px_34px] opacity-40 pointer-events-none" />
+
+        <motion.div
+          className="relative z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+            },
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center gap-3 md:gap-4 px-2">
+            {noteData.map((note) => (
+              <motion.div
+                key={note.title}
+                custom={note.rotation}
+                variants={{
+                  hidden: (rotation: number) => ({
+                    opacity: 0,
+                    scale: 0.9,
+                    y: 20,
+                    rotate: rotation,
+                  }),
+                  visible: (rotation: number) => ({
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    rotate: rotation,
+                    transition: {
+                      duration: 0.45,
+                      ease: [0.2, 0.8, 0.2, 1],
+                    },
+                  }),
+                }}
+                style={{ transformOrigin: "50% 50%" }}
+                className={[
+                  "relative w-full max-w-[220px] rounded-lg",
+                  note.bgClass,
+                  "border border-neutral-200/70 shadow-[0_10px_26px_rgba(0,0,0,0.10)]",
+                ].join(" ")}
+              >
+                <div className="px-3 py-2">
+                  <p
+                    className={`${bodyFont.className} text-sm font-medium leading-snug ${note.textClass}`}
+                  >
+                    {note.title}
+                  </p>
+                  {note.detail ? (
+                    <p className="mt-1 text-xs text-gray-600 leading-snug">
+                      {note.detail}
+                    </p>
+                  ) : null}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+type ImpactMatrixProps = {
+  ideas: MatrixIdea[];
+};
+
+function ImpactMatrix({ ideas }: ImpactMatrixProps) {
+  const quadrants: Array<{
+    id: MatrixQuadrant;
+    label: string;
+    accentBg: string;
+    ideas: MatrixIdea[];
+  }> = [
+    {
+      id: "HL",
+      label: "High Impact / Low Feasibility",
+      accentBg: "bg-white/35",
+      ideas: ideas.filter((it) => it.quadrant === "HL"),
+    },
+    {
+      id: "HH",
+      label: "High Impact / High Feasibility",
+      accentBg: "bg-[#EAF7EC]/85",
+      ideas: ideas.filter((it) => it.quadrant === "HH"),
+    },
+    {
+      id: "LL",
+      label: "Low Impact / Low Feasibility",
+      accentBg: "bg-white/30",
+      ideas: ideas.filter((it) => it.quadrant === "LL"),
+    },
+    {
+      id: "LH",
+      label: "Low Impact / High Feasibility",
+      accentBg: "bg-white/30",
+      ideas: ideas.filter((it) => it.quadrant === "LH"),
+    },
+  ];
+
+  return (
+    <div className="rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/55 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+      <div className="px-6 md:px-8 pt-8 pb-6">
+        <p
+          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3 text-center`}
+        >
+          Prioritization model
+        </p>
+        <h3
+          className={`${headingFont.className} text-2xl md:text-3xl font-semibold text-gray-900 text-center`}
+        >
+          Impact vs feasibility
+        </h3>
+        <p className="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+          We placed each idea across a 2x2 model to surface what’s most actionable first.
+        </p>
+      </div>
+
+      <div className="relative px-4 md:px-6 pb-8">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.045)_1px,transparent_1px)] bg-[size:34px_34px] opacity-35 pointer-events-none" />
+
+        <div className="relative z-10">
+          <div className="flex items-end justify-between px-2 mb-3">
+            <div className="text-[11px] text-gray-500 leading-tight">
+              <p className="font-medium text-gray-600">Feasibility</p>
+              <p>Low</p>
+            </div>
+            <div className="text-[11px] text-gray-500 leading-tight text-right">
+              <p className="font-medium text-gray-600">Feasibility</p>
+              <p>High</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3 md:gap-4 px-2">
+            <div className="relative w-8 md:w-10">
+              <span className="absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] md:text-xs text-gray-500">
+                High
+              </span>
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 translate-y-1/2 text-[10px] md:text-xs text-gray-500">
+                Low
+              </span>
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 text-[10px] md:text-xs text-gray-500 whitespace-nowrap">
+                Impact
+              </span>
+            </div>
+
+            <div className="flex-1">
+              <div className="grid grid-cols-2 grid-rows-2 divide-x divide-y divide-[#dfe6d5]/80">
+                {quadrants.map((q, qIndex) => (
+                  <motion.div
+                    key={q.id}
+                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{ duration: 0.45, delay: qIndex * 0.06 }}
+                    className={[
+                      "relative p-4 md:p-5 min-h-[170px]",
+                      q.accentBg,
+                      "border border-transparent",
+                    ].join(" ")}
+                  >
+                    <div className="space-y-3">
+                      <p className="text-[11px] md:text-xs font-medium text-gray-700">
+                        {q.id === "HH" ? "Priority" : q.label}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {q.ideas.length === 0 ? (
+                          <span className="text-xs text-gray-400">—</span>
+                        ) : (
+                          q.ideas.map((idea, ideaIndex) => (
+                            <motion.span
+                              key={idea.title}
+                              initial={{ opacity: 0, scale: 0.92, y: 6 }}
+                              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{
+                                duration: 0.35,
+                                delay: qIndex * 0.12 + ideaIndex * 0.05,
+                              }}
+                              className={[
+                                "rounded-lg px-3 py-2 text-left max-w-[180px]",
+                                "border border-neutral-200 bg-white/60",
+                                q.id === "HH" ? "bg-[#EAF7EC]/70" : "",
+                              ].join(" ")}
+                            >
+                              <span className="block text-sm font-medium text-gray-900 leading-snug">
+                                {idea.title}
+                              </span>
+                              {idea.detail ? (
+                                <span className="block text-xs text-gray-600 leading-snug mt-1 max-h-[18px] overflow-hidden">
+                                  {idea.detail}
+                                </span>
+                              ) : null}
+                            </motion.span>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
   const renderServiceFlow = (withPainPoints: boolean) => (
@@ -637,6 +1145,43 @@ export default function Home() {
   </div>
 
 </motion.section>
+
+      {/* USER RESEARCH & FEATURE PRIORITIZATION */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full py-16 md:py-20 px-6 md:px-10"
+      >
+        <div className="max-w-3xl mx-auto text-center">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            User Research & Feature Prioritization
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            From interviews to prioritized features
+          </h2>
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            We captured verbatim signals, modeled priorities, and surfaced what should ship first.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto mt-12">
+          <PersonaCard {...personaData} />
+        </div>
+
+        <div className="max-w-6xl mx-auto mt-16">
+          <StickyNotes ideas={ideas} />
+        </div>
+
+        <div className="max-w-6xl mx-auto mt-16">
+          <ImpactMatrix ideas={ideas} />
+        </div>
+      </motion.section>
 
 
     </main>

@@ -8,30 +8,24 @@ interface GradualSpacingProps {
 }
 
 export function GradualSpacing({ text, className }: GradualSpacingProps) {
+  const words = text.split(" ");
+
   return (
-    <div className="text-center leading-tight">
-
-      {text.split(" ").map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-block mr-3">
-
-          {word.split("").map((char, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.4,
-                delay: (wordIndex * 0.1) + (i * 0.02),
-              }}
-              className={className}
-            >
-              {char}
-            </motion.span>
-          ))}
-
-        </span>
+    <div className={`flex flex-wrap justify-center text-center ${className}`}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{
+            duration: 0.5,
+            delay: i * 0.12,
+          }}
+          className="mr-2 inline-block"
+        >
+          {word}
+        </motion.span>
       ))}
-
     </div>
   );
 }
