@@ -287,7 +287,7 @@ function PersonaCard({
             >
               Type of work
             </p>
-            <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-relaxed`}>
+            <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-snug`}>
               {description}
             </p>
           </div>
@@ -301,23 +301,7 @@ function PersonaCard({
             <Highlight color="#E6F0AA">decision-ready direction</Highlight>.”
           </p>
 
-          <div>
-            <p
-              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
-            >
-              Apps used
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {appsUsed.map((app) => (
-                <span
-                  key={app}
-                  className="text-xs px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-gray-700"
-                >
-                  {app}
-                </span>
-              ))}
-            </div>
-          </div>
+          
         </div>
 
         <div className="space-y-4 md:pl-4 md:">
@@ -471,6 +455,47 @@ type ImpactMatrixProps = {
 };
 
 function ImpactMatrix({ ideas }: ImpactMatrixProps) {
+  const highlightPhrases = [
+    "Reduce friction",
+    "decision support",
+    "natural language query",
+    "validate insights",
+    "key insights",
+    "query intent",
+    "cross-check",
+  ];
+
+  const renderWithHighlights = (text: string, color: string) => {
+    let parts: Array<string | { phrase: string }> = [text];
+
+    for (const phrase of highlightPhrases) {
+      parts = parts.flatMap((p) => {
+        if (typeof p !== "string") return [p];
+        const idx = p.toLowerCase().indexOf(phrase.toLowerCase());
+        if (idx === -1) return [p];
+        return [
+          p.slice(0, idx),
+          { phrase: p.slice(idx, idx + phrase.length) },
+          p.slice(idx + phrase.length),
+        ].filter((x) => (typeof x === "string" ? x.length > 0 : true));
+      });
+    }
+
+    return (
+      <>
+        {parts.map((p, i) =>
+          typeof p === "string" ? (
+            <span key={i}>{p}</span>
+          ) : (
+            <Highlight key={i} color={color}>
+              {p.phrase}
+            </Highlight>
+          )
+        )}
+      </>
+    );
+  };
+
   const quadrants: Array<{
     id: MatrixQuadrant;
     label: string;
@@ -486,19 +511,19 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
     {
       id: "HH",
       label: "High Impact / High Feasibility",
-      accentBg: "bg-[#EAF7EC]/85",
+      accentBg: "bg-[#EAF4EC]/65",
       ideas: ideas.filter((it) => it.quadrant === "HH"),
     },
     {
       id: "LL",
       label: "Low Impact / Low Feasibility",
-      accentBg: "bg-white/30",
+      accentBg: "bg-white/25",
       ideas: ideas.filter((it) => it.quadrant === "LL"),
     },
     {
       id: "LH",
       label: "Low Impact / High Feasibility",
-      accentBg: "bg-white/30",
+      accentBg: "bg-[#EAF0FF]/55",
       ideas: ideas.filter((it) => it.quadrant === "LH"),
     },
   ];
@@ -522,35 +547,44 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
       </div>
 
       <div className="relative px-4 md:px-6 pb-8">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.045)_1px,transparent_1px)] bg-[size:34px_34px] opacity-35 pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] [background-size:22px_22px]" />
 
         <div className="relative z-10">
-          <div className="flex items-end justify-between px-2 mb-3">
-            <div className="text-[11px] text-gray-500 leading-tight">
-              <p className="font-medium text-gray-600">Feasibility</p>
-              <p>Low</p>
+          <div className="relative px-2">
+            {/* Axis labels (outside the grid) */}
+            <div className="pointer-events-none absolute -left-2 top-0 bottom-0 flex flex-col justify-between py-2 text-[11px] md:text-xs text-gray-700">
+              <span>High Impact</span>
+              <span>Low Impact</span>
             </div>
-            <div className="text-[11px] text-gray-500 leading-tight text-right">
-              <p className="font-medium text-gray-600">Feasibility</p>
-              <p>High</p>
-            </div>
-          </div>
-
-          <div className="flex gap-3 md:gap-4 px-2">
-            <div className="relative w-8 md:w-10">
-              <span className="absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] md:text-xs text-gray-500">
-                High
-              </span>
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 translate-y-1/2 text-[10px] md:text-xs text-gray-500">
-                Low
-              </span>
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 text-[10px] md:text-xs text-gray-500 whitespace-nowrap">
-                Impact
-              </span>
+            <div className="pointer-events-none absolute left-0 right-0 -bottom-6 flex items-center justify-between px-2 text-[11px] md:text-xs text-gray-700">
+              <span>Low Feasibility</span>
+              <span>High Feasibility</span>
             </div>
 
-            <div className="flex-1">
-              <div className="grid grid-cols-2 grid-rows-2 divide-x divide-y divide-[#dfe6d5]/80">
+            {/* Unified graph surface */}
+            <div className="relative rounded-2xl border border-[#dfe6d5] bg-white/35 shadow-[0_18px_44px_rgba(0,0,0,0.06)] overflow-hidden">
+              {/* soft quadrant overlays (no hard boundaries) */}
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute left-0 top-0 h-1/2 w-1/2 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.04),transparent_60%)]" />
+                <div className="absolute right-0 top-0 h-1/2 w-1/2 bg-[radial-gradient(circle_at_70%_30%,rgba(234,244,236,0.55),transparent_62%)] opacity-[0.08]" />
+                <div className="absolute left-0 bottom-0 h-1/2 w-1/2 bg-[radial-gradient(circle_at_30%_70%,rgba(255,255,255,0.35),transparent_62%)] opacity-[0.06]" />
+                <div className="absolute right-0 bottom-0 h-1/2 w-1/2 bg-[radial-gradient(circle_at_70%_70%,rgba(234,240,255,0.65),transparent_62%)] opacity-[0.08]" />
+              </div>
+
+              {/* Axis lines + arrows */}
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute left-1/2 top-[7%] bottom-[7%] w-px bg-[#dfe6d5]" />
+                <div className="absolute top-1/2 left-[7%] right-[7%] h-px bg-[#dfe6d5]" />
+                <div className="absolute right-[6%] top-1/2 -translate-y-1/2 text-xs text-gray-700">
+                  →
+                </div>
+                <div className="absolute left-1/2 top-[6%] -translate-x-1/2 text-xs text-gray-700">
+                  ↑
+                </div>
+              </div>
+
+              {/* Quadrants */}
+              <div className="grid grid-cols-2 grid-rows-2 gap-0">
                 {quadrants.map((q, qIndex) => (
                   <motion.div
                     key={q.id}
@@ -559,45 +593,100 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
                     viewport={{ once: true, amount: 0.35 }}
                     transition={{ duration: 0.45, delay: qIndex * 0.06 }}
                     className={[
-                      "relative p-4 md:p-5 min-h-[170px]",
-                      q.accentBg,
-                      "border border-transparent",
+                      "relative p-4 md:p-5 min-h-[220px]",
+                      "bg-transparent",
                     ].join(" ")}
                   >
-                    <div className="space-y-3">
-                      <p className="text-[11px] md:text-xs font-medium text-gray-700">
-                        {q.id === "HH" ? "Priority" : q.label}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-col gap-3 h-full">
+                      {/* Quadrant heading chip */}
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={[
+                            "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs",
+                            "border border-[#dfe6d5] text-gray-800",
+                            q.id === "HH"
+                              ? "bg-[#EAF4EC]/55"
+                              : q.id === "LH"
+                                ? "bg-[#EAF0FF]/45"
+                                : q.id === "HL"
+                                  ? "bg-white/55"
+                                  : "bg-white/45",
+                          ].join(" ")}
+                        >
+                          {q.id === "HH" ? (
+                            <>
+                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/70" />
+                              Priority
+                            </>
+                          ) : (
+                            q.label
+                          )}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3 md:gap-4 pt-1">
                         {q.ideas.length === 0 ? (
                           <span className="text-xs text-gray-400">—</span>
                         ) : (
-                          q.ideas.map((idea, ideaIndex) => (
-                            <motion.span
-                              key={idea.title}
-                              initial={{ opacity: 0, scale: 0.92, y: 6 }}
-                              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                              viewport={{ once: true }}
-                              transition={{
-                                duration: 0.35,
-                                delay: qIndex * 0.12 + ideaIndex * 0.05,
-                              }}
-                              className={[
-                                "rounded-lg px-3 py-2 text-left max-w-[180px]",
-                                "border border-neutral-200 bg-white/60",
-                                q.id === "HH" ? "bg-[#EAF7EC]/70" : "",
-                              ].join(" ")}
-                            >
-                              <span className="block text-sm font-medium text-gray-900 leading-snug">
-                                {idea.title}
-                              </span>
-                              {idea.detail ? (
-                                <span className="block text-xs text-gray-600 leading-snug mt-1 max-h-[18px] overflow-hidden">
-                                  {idea.detail}
-                                </span>
-                              ) : null}
-                            </motion.span>
-                          ))
+                          q.ideas.map((idea, ideaIndex) => {
+                            const maxWClass =
+                              ideaIndex % 3 === 0
+                                ? "max-w-[190px]"
+                                : ideaIndex % 3 === 1
+                                  ? "max-w-[220px]"
+                                  : "max-w-[175px]";
+                            const offsets = [
+                              { x: 0, y: 6 },
+                              { x: 8, y: 0 },
+                              { x: -6, y: -4 },
+                              { x: 4, y: 10 },
+                              { x: -10, y: 4 },
+                              { x: 10, y: -6 },
+                            ];
+                            const o = offsets[ideaIndex % offsets.length];
+                            const highlightColor =
+                              q.id === "HH"
+                                ? "#E6F0AA"
+                                : q.id === "LH"
+                                  ? "#C7F2F0"
+                                  : q.id === "HL"
+                                    ? "#FFFAB8"
+                                    : "#F0D3D3";
+
+                            return (
+                              <motion.span
+                                key={idea.title}
+                                initial={{ opacity: 0, scale: 0.92, y: 6 }}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                  duration: 0.35,
+                                  delay: qIndex * 0.12 + ideaIndex * 0.05,
+                                }}
+                                className="inline-block w-fit"
+                              >
+                                <div
+                                  style={{ top: o.y, left: o.x }}
+                                  className={[
+                                    "relative rounded-lg p-4 border border-gray-200 bg-white/60",
+                                    "text-left",
+                                    q.id === "HH" ? "bg-[#EAF4EC]/55" : "",
+                                    "hover:shadow-md hover:-translate-y-1 transition",
+                                    maxWClass,
+                                  ].join(" ")}
+                                >
+                                  <span className="block text-sm font-semibold text-gray-900 leading-snug">
+                                    {renderWithHighlights(idea.title, highlightColor)}
+                                  </span>
+                                  {idea.detail ? (
+                                    <span className="block text-xs text-gray-600 leading-snug mt-1 break-words">
+                                      {renderWithHighlights(idea.detail, highlightColor)}
+                                    </span>
+                                  ) : null}
+                                </div>
+                              </motion.span>
+                            );
+                          })
                         )}
                       </div>
                     </div>
