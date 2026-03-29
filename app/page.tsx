@@ -1259,7 +1259,7 @@ export default function Home() {
         viewport={{ once: true }}
         className="w-full py-16 md:py-20 px-6 md:px-10"
       >
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-left">
           <p
             className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
           >
@@ -1296,7 +1296,7 @@ export default function Home() {
         viewport={{ once: true }}
         className="w-full py-16 md:py-20"
       >
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-6 text-left">
           <p
             className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
           >
