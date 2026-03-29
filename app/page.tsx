@@ -878,7 +878,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="absolute -top-6 left-6 rotate-[-6deg] bg-[#EAF7EF] border border-[#BFE3C8] text-[#1F7A4D] text-xs px-3 py-1 rounded-md shadow-sm whitespace-nowrap"
+        className="absolute -top-6 left-6 min-w-[180px] rotate-[-6deg] bg-[#EAF7EF] border border-[#BFE3C8] text-[#1F7A4D] text-xs px-3 py-1 rounded-md shadow-sm whitespace-normal break-words text-center leading-tight"
       >
         {note}
       </motion.div>
@@ -1259,7 +1259,7 @@ export default function Home() {
         viewport={{ once: true }}
         className="w-full py-16 md:py-20 px-6 md:px-10"
       >
-        <div className="max-w-3xl mx-auto text-left">
+        <div className="max-w-3xl mx-auto text-">
           <p
             className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
           >
