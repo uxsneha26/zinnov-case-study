@@ -458,10 +458,17 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
   const highlightPhrases = [
     "Reduce friction",
     "decision support",
-    "natural language query",
-    "validate insights",
+    "Minimize hand-offs",
+    "tracking of insights",
+    "reductions in friction",
+    "natural-language query",
+    "relevant insights",
+    "dynamic filtering",
+    "Standardized templates",
     "key insights",
     "query intent",
+    "comparison",
+    "user context",
     "cross-check",
   ];
 
@@ -505,7 +512,7 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
     {
       id: "HL",
       label: "High Impact / Low Feasibility",
-      accentBg: "bg-white/35",
+      accentBg: "bg-[#FFFFEA]",
       ideas: ideas.filter((it) => it.quadrant === "HL"),
     },
     {
@@ -517,7 +524,7 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
     {
       id: "LL",
       label: "Low Impact / Low Feasibility",
-      accentBg: "bg-white/25",
+      accentBg: "bg-[#FDECEC]",
       ideas: ideas.filter((it) => it.quadrant === "LL"),
     },
     {
@@ -552,14 +559,7 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
         <div className="relative z-10">
           <div className="relative px-2">
             {/* Axis labels (outside the grid) */}
-            <div className="pointer-events-none absolute -left-2 top-0 bottom-0 flex flex-col justify-between py-2 text-[11px] md:text-xs text-gray-700">
-              <span>High Impact</span>
-              <span>Low Impact</span>
-            </div>
-            <div className="pointer-events-none absolute left-0 right-0 -bottom-6 flex items-center justify-between px-2 text-[11px] md:text-xs text-gray-700">
-              <span>Low Feasibility</span>
-              <span>High Feasibility</span>
-            </div>
+            
 
             {/* Unified graph surface */}
             <div className="relative rounded-2xl border border-[#dfe6d5] bg-white/35 shadow-[0_18px_44px_rgba(0,0,0,0.06)] overflow-hidden">
@@ -609,14 +609,14 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
                               : q.id === "LH"
                                 ? "bg-[#EAF0FF]/45"
                                 : q.id === "HL"
-                                  ? "bg-white/55"
-                                  : "bg-white/45",
+                                  ? "bg-[#FFFFEA]"
+                                  : "bg-[#FAF1F1]",
                           ].join(" ")}
                         >
                           {q.id === "HH" ? (
                             <>
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/70" />
-                              Priority
+                              High Impact / High Feasibility
                             </>
                           ) : (
                             q.label
@@ -703,6 +703,7 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
 
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
+  const [updatedFlowView, setUpdatedFlowView] = useState<"flow" | "intervention">("flow");
   const renderServiceFlow = (withPainPoints: boolean) => (
     <div className="mt-8 rounded-2xl border border-[#dfe6d5] p-4 md:p-6 bg-[#f8faf4]">
       <div className="flex flex-col items-center gap-12">
@@ -868,6 +869,19 @@ export default function Home() {
       <div className="absolute -top-6 left-6 rotate-[-6deg] bg-[#FDECEC] border border-[#F5B5B5] text-[#B23A3A] text-xs px-3 py-1 rounded-md shadow-sm whitespace-nowrap">
         {note}
       </div>
+    </div>
+  );
+  const ImprovementWrapper = ({ children, note }: any) => (
+    <div className="relative">
+      {children}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="absolute -top-6 left-6 rotate-[-6deg] bg-[#EAF7EF] border border-[#BFE3C8] text-[#1F7A4D] text-xs px-3 py-1 rounded-md shadow-sm whitespace-nowrap"
+      >
+        {note}
+      </motion.div>
     </div>
   );
   return (
@@ -1235,6 +1249,8 @@ export default function Home() {
 
 </motion.section>
 
+      
+
       {/* USER RESEARCH & FEATURE PRIORITIZATION */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
@@ -1269,6 +1285,162 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto mt-16">
           <ImpactMatrix ideas={ideas} />
+        </div>
+      </motion.section>
+      {/* UPDATED SERVICE FLOW */}
+      <motion.section
+        id="updated-flow"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full py-16 md:py-20"
+      >
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            UPDATED EXPERIENCE
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            From fragmented exploration to guided decision-making
+          </h2>
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            We redesigned the service flow to introduce clarity, reduce manual effort, and enable faster, more confident decisions.
+          </p>
+          <p
+            className={`${bodyFont.className} mt-4 text-base md:text-lg text-gray-700 leading-relaxed`}
+          >
+            The updated experience introduces structured entry points, contextual discovery, and tiered pathways (L1, L2, L3), ensuring users can move from exploration to action with minimal friction.
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 mt-12">
+          <div className="flex justify-center mb-10">
+            <div className="bg-white/60 backdrop-blur rounded-full p-1 flex gap-1 shadow-sm">
+              <button
+                onClick={() => setUpdatedFlowView("flow")}
+                className={`px-4 py-2 rounded-full text-sm transition ${
+                  updatedFlowView === "flow" ? "bg-black text-white" : "text-gray-600"
+                }`}
+              >
+                New Flow
+              </button>
+              <button
+                onClick={() => setUpdatedFlowView("intervention")}
+                className={`px-4 py-2 rounded-full text-sm transition ${
+                  updatedFlowView === "intervention"
+                    ? "bg-black text-white"
+                    : "text-gray-600"
+                }`}
+              >
+                Design Interventions
+              </button>
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={updatedFlowView}
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 40 }}
+              transition={{ duration: 0.4 }}
+              className="flex justify-center"
+            >
+              <div className="w-full flex justify-center">
+                <div className="flex items-center justify-center gap-4">
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Guided and personalized entry">
+                      <Card color="#F6F1DE" title="Entry Point">
+                        Personalized entry with contextual recommendations based on role, industry, and past interactions
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#F6F1DE" title="Entry Point">
+                      Personalized entry with contextual recommendations based on role, industry, and past interactions
+                    </Card>
+                  )}
+
+                  <Arrow />
+
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Improved discoverability + contextual recommendations">
+                      <Card color="#EAF4EC" title="Exploration Layer">
+                        Users explore curated insights, summaries, and relevant reports tailored to their context
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#EAF4EC" title="Exploration Layer">
+                      Users explore curated insights, summaries, and relevant reports tailored to their context
+                    </Card>
+                  )}
+
+                  <Arrow />
+
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Structured pathways for L1, L2, L3 queries">
+                      <Card color="#EAF0F6" title="Decision Split">
+                        Level 1 → Instant answers via AI summaries (quick insights) <br />
+                        Level 2 → Deeper analysis with comparisons and validation tools <br />
+                        Level 3 → Custom engagement with analysts for complex needs
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#EAF0F6" title="Decision Split">
+                      Level 1 → Instant answers via AI summaries (quick insights) <br />
+                      Level 2 → Deeper analysis with comparisons and validation tools <br />
+                      Level 3 → Custom engagement with analysts for complex needs
+                    </Card>
+                  )}
+
+                  <Arrow />
+
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Minimized manual dependency">
+                      <Card color="#F6F1DE" title="Internal Intervention">
+                        Reduced dependency on analysts through structured workflows and assisted analysis
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#F6F1DE" title="Internal Intervention">
+                      Reduced dependency on analysts through structured workflows and assisted analysis
+                    </Card>
+                  )}
+
+                  <Arrow />
+
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Faster validation and decision clarity">
+                      <Card color="#EAF4EC" title="Consumption">
+                        Users validate insights through comparisons, summaries, and decision-ready outputs
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#EAF4EC" title="Consumption">
+                      Users validate insights through comparisons, summaries, and decision-ready outputs
+                    </Card>
+                  )}
+
+                  <Arrow />
+
+                  {updatedFlowView === "intervention" ? (
+                    <ImprovementWrapper note="Closed feedback loop">
+                      <Card color="#F6F1DE" title="Loop Back">
+                        Continuous feedback loop improves recommendations and personalization
+                      </Card>
+                    </ImprovementWrapper>
+                  ) : (
+                    <Card color="#F6F1DE" title="Loop Back">
+                      Continuous feedback loop improves recommendations and personalization
+                    </Card>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </motion.section>
 
