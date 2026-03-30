@@ -776,7 +776,7 @@ function DesignDirectionBlock({
 }: DesignDirectionBlockProps) {
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-left">
         <p
           className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
         >
@@ -1514,7 +1514,7 @@ export default function Home() {
         </motion.div>
       )}
 
-      {/* PAIN FLOW */}
+    
       
 
     </AnimatePresence>
@@ -1728,7 +1728,7 @@ export default function Home() {
         viewport={{ once: true }}
         className="w-full py-16 md:py-24 px-6 md:px-10 border-t border-[#dfe6d5]/60"
       >
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-left">
           <p
             className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
           >
