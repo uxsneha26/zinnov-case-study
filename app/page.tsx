@@ -457,11 +457,11 @@ type ImpactMatrixProps = {
 function ImpactMatrix({ ideas }: ImpactMatrixProps) {
   const highlightPhrases = [
     "Reduce friction",
-    "decision support",
     "Minimize hand-offs",
+    "Step-by-step decision support",
     "tracking of insights",
     "reductions in friction",
-    "natural-language query",
+    "Natural-language",
     "relevant insights",
     "dynamic filtering",
     "Standardized templates",
@@ -554,7 +554,7 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
       </div>
 
       <div className="relative px-4 md:px-6 pb-8">
-        <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle,rgba(0,0,0,0.12)_1px,transparent_1px)] [background-size:22px_22px]" />
 
         <div className="relative z-10">
           <div className="relative px-2">
@@ -700,6 +700,280 @@ function ImpactMatrix({ ideas }: ImpactMatrixProps) {
     </div>
   );
 }
+
+type DesignAnnotationData = {
+  n: number;
+  title: string;
+  body: string;
+  desktopClass: string;
+  rotation: string;
+};
+
+type DesignDirectionBlockProps = {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  annotations: DesignAnnotationData[];
+};
+
+function DesignAnnotationNote({
+  n,
+  title,
+  body,
+  rotation,
+  className,
+  delay,
+}: {
+  n: number;
+  title: string;
+  body: string;
+  rotation: string;
+  className?: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14, x: -8 }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, delay, ease: [0.2, 0.8, 0.2, 1] }}
+      className={[
+        "pointer-events-auto z-10 bg-[#F6E8B1] rounded-md shadow-sm border border-[#e8d99a]/90 p-3 max-w-[min(220px,42vw)] sm:max-w-[220px]",
+        rotation,
+        className ?? "",
+      ].join(" ")}
+    >
+      <div className="flex gap-2.5">
+        <span
+          className={`${headingFont.className} flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#2a2920]/12 text-xs font-semibold text-gray-900`}
+        >
+          {n}
+        </span>
+        <div className="min-w-0">
+          <p
+            className={`${headingFont.className} text-sm font-semibold text-gray-900 leading-snug`}
+          >
+            {title}
+          </p>
+          <p
+            className={`${quoteFont.className} text-sm text-gray-700 leading-snug mt-1`}
+          >
+            {body}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function DesignDirectionBlock({
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  annotations,
+}: DesignDirectionBlockProps) {
+  return (
+    <div className="max-w-5xl mx-auto">
+      <div className="max-w-3xl mx-auto text-center">
+        <p
+          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+        >
+          Design direction
+        </p>
+        <h3
+          className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
+        >
+          {title}
+        </h3>
+        <p
+          className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+        >
+          {description}
+        </p>
+      </div>
+
+      <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
+        <div className="relative mx-auto max-w-4xl">
+          <div className="relative">
+            <div className="overflow-hidden rounded-xl border border-[#dfe6d5]/90 bg-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                className="block w-full h-auto object-cover"
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-0 hidden lg:block">
+              {annotations.map((a, index) => (
+                <div
+                  key={a.n}
+                  className={`absolute ${a.desktopClass}`}
+                >
+                  <DesignAnnotationNote
+                    n={a.n}
+                    title={a.title}
+                    body={a.body}
+                    rotation={a.rotation}
+                    delay={index * 0.14}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 lg:hidden">
+            {annotations.map((a, index) => (
+              <DesignAnnotationNote
+                key={a.n}
+                n={a.n}
+                title={a.title}
+                body={a.body}
+                rotation={index % 2 === 0 ? "-rotate-1" : "rotate-1"}
+                delay={index * 0.12}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const designDirectionSections: DesignDirectionBlockProps[] = [
+  {
+    title: "Reimagining the Home Experience",
+    description:
+      "The home surface sets the tone for how leaders encounter research: it must surface what matters first, adapt to role and context, and cut interpretive work. By replacing dense catalogs with guided entry, prioritized signals, and clear next steps, we reduce cognitive overload, improve discoverability, and shorten the path from login to decision.",
+    imageSrc: "/design/home.png",
+    imageAlt: "Home experience design direction",
+    annotations: [
+      {
+        n: 1,
+        title: "Guided entry based on user context",
+        body: "Personalized onboarding based on role, industry, and past behavior.",
+        desktopClass: "left-[3%] top-[6%]",
+        rotation: "-rotate-2",
+      },
+      {
+        n: 2,
+        title: "Reduced cognitive overload",
+        body: "Key insights surfaced first instead of long report lists.",
+        desktopClass: "right-[3%] top-[8%]",
+        rotation: "rotate-[2deg]",
+      },
+      {
+        n: 3,
+        title: "Contextual recommendations",
+        body: "Relevant reports shown based on intent and usage patterns.",
+        desktopClass: "left-[2%] top-[38%]",
+        rotation: "-rotate-1",
+      },
+      {
+        n: 4,
+        title: "Quick insight summaries",
+        body: "AI-generated summaries for faster understanding.",
+        desktopClass: "left-[4%] bottom-[10%]",
+        rotation: "rotate-[1.5deg]",
+      },
+      {
+        n: 5,
+        title: "Action-oriented navigation",
+        body: "Clear next steps instead of passive browsing.",
+        desktopClass: "right-[4%] bottom-[12%]",
+        rotation: "-rotate-[1.5deg]",
+      },
+    ],
+  },
+  {
+    title: "Building a Community Layer for GCC Leaders",
+    description:
+      "Leaders learn as much from peers as from documents—but only when trust, structure, and continuity are explicit. This layer makes peer learning scannable: themes over threads, credibility signals over noise, and events wired into a feedback loop so shared knowledge compounds instead of dissipating.",
+    imageSrc: "/design/community.png",
+    imageAlt: "Community experience design direction",
+    annotations: [
+      {
+        n: 1,
+        title: "Peer learning layer",
+        body: "Users learn from similar GCC leaders and case studies.",
+        desktopClass: "left-[4%] top-[10%]",
+        rotation: "-rotate-2",
+      },
+      {
+        n: 2,
+        title: "Structured discussions",
+        body: "Conversations organized by themes, not random threads.",
+        desktopClass: "right-[4%] top-[14%]",
+        rotation: "rotate-2",
+      },
+      {
+        n: 3,
+        title: "Credibility signals",
+        body: "Verified experts and contributors highlighted.",
+        desktopClass: "left-[3%] top-[42%]",
+        rotation: "rotate-[1deg]",
+      },
+      {
+        n: 4,
+        title: "Knowledge sharing loops",
+        body: "Users contribute insights back into the ecosystem.",
+        desktopClass: "right-[4%] top-[44%]",
+        rotation: "-rotate-[1.5deg]",
+      },
+      {
+        n: 5,
+        title: "Event-driven engagement",
+        body: "Webinars, discussions, and expert sessions integrated.",
+        desktopClass: "left-1/2 bottom-[8%] -translate-x-1/2",
+        rotation: "-rotate-1",
+      },
+    ],
+  },
+  {
+    title: "Making Reports Actionable, Not Overwhelming",
+    description:
+      "Reports fail when they read like archives. This direction treats every document as a decision interface: scannable structure, tools to compare and validate, and filters aligned to intent—so leaders spend less time decoding and more time committing, with less reliance on manual synthesis.",
+    imageSrc: "/design/reports.png",
+    imageAlt: "Reports experience design direction",
+    annotations: [
+      {
+        n: 1,
+        title: "Scannable report structure",
+        body: "Content broken into digestible sections.",
+        desktopClass: "left-[4%] top-[8%]",
+        rotation: "rotate-[1.5deg]",
+      },
+      {
+        n: 2,
+        title: "Visual comparison tools",
+        body: "Side-by-side comparison of insights.",
+        desktopClass: "right-[4%] top-[10%]",
+        rotation: "-rotate-2",
+      },
+      {
+        n: 3,
+        title: "Insight validation layer",
+        body: "Cross-referencing across sources.",
+        desktopClass: "left-[3%] bottom-[18%]",
+        rotation: "-rotate-1",
+      },
+      {
+        n: 4,
+        title: "Dynamic filtering",
+        body: "Filter by intent, industry, and use-case.",
+        desktopClass: "right-[3%] top-[40%]",
+        rotation: "rotate-2",
+      },
+      {
+        n: 5,
+        title: "Decision-ready outputs",
+        body: "Summaries and recommendations instead of raw data.",
+        desktopClass: "left-1/2 bottom-[10%] -translate-x-1/2",
+        rotation: "-rotate-[1.5deg]",
+      },
+    ],
+  },
+];
 
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
@@ -1287,6 +1561,9 @@ export default function Home() {
           <ImpactMatrix ideas={ideas} />
         </div>
       </motion.section>
+
+      
+
       {/* UPDATED SERVICE FLOW */}
       <motion.section
         id="updated-flow"
@@ -1443,6 +1720,37 @@ export default function Home() {
           </AnimatePresence>
         </div>
       </motion.section>
+      {/* DESIGN DIRECTIONS */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full py-16 md:py-24 px-6 md:px-10 border-t border-[#dfe6d5]/60"
+      >
+        <div className="max-w-3xl mx-auto text-center">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            Product synthesis
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            Design Directions
+          </h2>
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            Research insights and prioritized ideas converge into three concrete surfaces—calmer entry, credible peer learning, and reports built for decisions—not generic UX polish, but product behavior aligned to how GCC leaders actually work.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto mt-14 md:mt-20 space-y-20 md:space-y-28">
+          {designDirectionSections.map((section) => (
+            <DesignDirectionBlock key={section.title} {...section} />
+          ))}
+        </div>
+      </motion.section>
+
 
 
     </main>
