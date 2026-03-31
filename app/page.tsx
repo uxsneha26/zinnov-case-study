@@ -750,12 +750,12 @@ function DesignDirectionBlock({
       </div>
 
       <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-12 items-start">
           <div className="min-w-0 w-full rounded-2xl overflow-hidden border border-[#e7e5df] shadow-md bg-[#f8f7f4]">
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
 
