@@ -705,8 +705,6 @@ type DesignAnnotationData = {
   n: number;
   title: string;
   body: string;
-  desktopClass: string;
-  rotation: string;
 };
 
 type DesignDirectionBlockProps = {
@@ -717,55 +715,12 @@ type DesignDirectionBlockProps = {
   annotations: DesignAnnotationData[];
 };
 
-function DesignAnnotationNote({
-  n,
-  title,
-  body,
-  rotation,
-  className,
-  delay,
-}: {
-  n: number;
-  title: string;
-  body: string;
-  rotation: string;
-  className?: string;
-  delay: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14, x: -8 }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, delay, ease: [0.2, 0.8, 0.2, 1] }}
-      className={[
-        "pointer-events-auto z-10 bg-[#F6E8B1] rounded-md shadow-sm border border-[#e8d99a]/90 p-3 max-w-[min(220px,42vw)] sm:max-w-[220px]",
-        rotation,
-        className ?? "",
-      ].join(" ")}
-    >
-      <div className="flex gap-2.5">
-        <span
-          className={`${headingFont.className} flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#2a2920]/12 text-xs font-semibold text-gray-900`}
-        >
-          {n}
-        </span>
-        <div className="min-w-0">
-          <p
-            className={`${headingFont.className} text-sm font-semibold text-gray-900 leading-snug`}
-          >
-            {title}
-          </p>
-          <p
-            className={`${quoteFont.className} text-sm text-gray-700 leading-snug mt-1`}
-          >
-            {body}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const structuredAnnotationPalette = [
+  { bg: "bg-[#F6E8B1]/40", circle: "bg-[#EEDB9A]/70" },
+  { bg: "bg-[#EAF7EF]/50", circle: "bg-[#c8e9d8]/70" },
+  { bg: "bg-[#EAF0FF]/50", circle: "bg-[#d4dcfa]/70" },
+  { bg: "bg-[#FDECEC]/50", circle: "bg-[#f5c8c8]/70" },
+];
 
 function DesignDirectionBlock({
   title,
@@ -795,44 +750,46 @@ function DesignDirectionBlock({
       </div>
 
       <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
-        <div className="relative mx-auto max-w-4xl">
-          <div className="relative">
-            <div className="overflow-hidden rounded-xl border border-[#dfe6d5]/90 bg-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
-              <img
-                src={imageSrc}
-                alt={imageAlt}
-                className="block w-full h-auto object-cover"
-              />
-            </div>
-            <div className="pointer-events-none absolute inset-0 hidden lg:block">
-              {annotations.map((a, index) => (
-                <div
-                  key={a.n}
-                  className={`absolute ${a.desktopClass}`}
-                >
-                  <DesignAnnotationNote
-                    n={a.n}
-                    title={a.title}
-                    body={a.body}
-                    rotation={a.rotation}
-                    delay={index * 0.14}
-                  />
-                </div>
-              ))}
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-12 items-start">
+          <div className="min-w-0 w-full rounded-2xl overflow-hidden border border-[#e7e5df] shadow-md bg-[#f8f7f4]">
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className="w-full h-auto object-contain"
+            />
           </div>
 
-          <div className="mt-8 flex flex-col gap-4 lg:hidden">
-            {annotations.map((a, index) => (
-              <DesignAnnotationNote
-                key={a.n}
-                n={a.n}
-                title={a.title}
-                body={a.body}
-                rotation={index % 2 === 0 ? "-rotate-1" : "rotate-1"}
-                delay={index * 0.12}
-              />
-            ))}
+          <div className="flex flex-col gap-6 items-start">
+            {annotations.map((a, index) => {
+              const palette =
+                structuredAnnotationPalette[
+                  index % structuredAnnotationPalette.length
+                ];
+              return (
+                <div
+                  key={a.n}
+                  className={[
+                    palette.bg,
+                    "w-[260px] shrink-0 border border-[#dfe6d5] rounded-md shadow-sm p-3 flex gap-2 items-start",
+                    "hover:scale-[1.02] transition-transform duration-200 ease-out",
+                  ].join(" ")}
+                >
+                  <div
+                    className={`h-5 w-5 shrink-0 rounded-full ${palette.circle} flex items-center justify-center text-[10px] font-medium text-gray-900`}
+                  >
+                    {a.n}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-sm text-gray-900">
+                      {a.title}
+                    </p>
+                    <p className="text-xs text-gray-600 mt-1 leading-snug">
+                      {a.body}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -852,36 +809,26 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
         n: 1,
         title: "Guided entry based on user context",
         body: "Personalized onboarding based on role, industry, and past behavior.",
-        desktopClass: "left-[3%] top-[6%]",
-        rotation: "-rotate-2",
       },
       {
         n: 2,
         title: "Reduced cognitive overload",
         body: "Key insights surfaced first instead of long report lists.",
-        desktopClass: "right-[3%] top-[8%]",
-        rotation: "rotate-[2deg]",
       },
       {
         n: 3,
         title: "Contextual recommendations",
         body: "Relevant reports shown based on intent and usage patterns.",
-        desktopClass: "left-[2%] top-[38%]",
-        rotation: "-rotate-1",
       },
       {
         n: 4,
         title: "Quick insight summaries",
         body: "AI-generated summaries for faster understanding.",
-        desktopClass: "left-[4%] bottom-[10%]",
-        rotation: "rotate-[1.5deg]",
       },
       {
         n: 5,
         title: "Action-oriented navigation",
         body: "Clear next steps instead of passive browsing.",
-        desktopClass: "right-[4%] bottom-[12%]",
-        rotation: "-rotate-[1.5deg]",
       },
     ],
   },
@@ -896,36 +843,26 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
         n: 1,
         title: "Peer learning layer",
         body: "Users learn from similar GCC leaders and case studies.",
-        desktopClass: "left-[4%] top-[10%]",
-        rotation: "-rotate-2",
       },
       {
         n: 2,
         title: "Structured discussions",
         body: "Conversations organized by themes, not random threads.",
-        desktopClass: "right-[4%] top-[14%]",
-        rotation: "rotate-2",
       },
       {
         n: 3,
         title: "Credibility signals",
         body: "Verified experts and contributors highlighted.",
-        desktopClass: "left-[3%] top-[42%]",
-        rotation: "rotate-[1deg]",
       },
       {
         n: 4,
         title: "Knowledge sharing loops",
         body: "Users contribute insights back into the ecosystem.",
-        desktopClass: "right-[4%] top-[44%]",
-        rotation: "-rotate-[1.5deg]",
       },
       {
         n: 5,
         title: "Event-driven engagement",
         body: "Webinars, discussions, and expert sessions integrated.",
-        desktopClass: "left-1/2 bottom-[8%] -translate-x-1/2",
-        rotation: "-rotate-1",
       },
     ],
   },
@@ -940,36 +877,26 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
         n: 1,
         title: "Scannable report structure",
         body: "Content broken into digestible sections.",
-        desktopClass: "left-[4%] top-[8%]",
-        rotation: "rotate-[1.5deg]",
       },
       {
         n: 2,
         title: "Visual comparison tools",
         body: "Side-by-side comparison of insights.",
-        desktopClass: "right-[4%] top-[10%]",
-        rotation: "-rotate-2",
       },
       {
         n: 3,
         title: "Insight validation layer",
         body: "Cross-referencing across sources.",
-        desktopClass: "left-[3%] bottom-[18%]",
-        rotation: "-rotate-1",
       },
       {
         n: 4,
         title: "Dynamic filtering",
         body: "Filter by intent, industry, and use-case.",
-        desktopClass: "right-[3%] top-[40%]",
-        rotation: "rotate-2",
       },
       {
         n: 5,
         title: "Decision-ready outputs",
         body: "Summaries and recommendations instead of raw data.",
-        desktopClass: "left-1/2 bottom-[10%] -translate-x-1/2",
-        rotation: "-rotate-[1.5deg]",
       },
     ],
   },
@@ -1750,8 +1677,6 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
-
-
 
     </main>
   );
