@@ -1335,6 +1335,308 @@ function DesignDirectionsBentoSection() {
   );
 }
 
+const finalUiGlassContainerClass =
+  "rounded-2xl border border-white/40 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),rgba(245,240,220,0.35),rgba(234,240,255,0.35))] backdrop-blur-md p-6 md:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.06)]";
+
+const finalUiAnnotationBgCycle = [
+  "bg-[#F6EDEB]/80",
+  "bg-[#EAF4EC]/80",
+  "bg-[#EAF0FF]/80",
+  "bg-[#F5F0DC]/80",
+] as const;
+
+type FinalUIScreenSectionProps = {
+  heading: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  annotations: DesignAnnotationData[];
+};
+
+function FinalUIScreenSection({
+  heading,
+  description,
+  imageSrc,
+  imageAlt,
+  annotations,
+}: FinalUIScreenSectionProps) {
+  return (
+    <div className="max-w-5xl mx-auto w-full">
+      <div className="max-w-3xl mx-auto text-left">
+        <p
+          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+        >
+          FINAL UI
+        </p>
+        <h3
+          className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
+        >
+          {heading}
+        </h3>
+        <p
+          className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+        >
+          {description}
+        </p>
+      </div>
+
+      <div className={`mt-10 md:mt-12 ${finalUiGlassContainerClass}`}>
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10 md:gap-12 items-start">
+          <div className="min-w-0 w-full">
+            <div className="w-full rounded-2xl border border-[#e7e5df] bg-white/40 p-3">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                className="w-full h-auto rounded-xl object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4 items-start w-full min-w-0">
+            {annotations.map((a, index) => {
+              const bg =
+                finalUiAnnotationBgCycle[
+                  index % finalUiAnnotationBgCycle.length
+                ];
+              return (
+                <div
+                  key={a.n}
+                  className={[
+                    "w-full max-w-full shrink-0 rounded-md border border-white/50 shadow-md backdrop-blur-sm p-3 flex gap-2 items-start",
+                    bg,
+                    "hover:scale-[1.02] transition-transform duration-200 ease-out",
+                  ].join(" ")}
+                >
+                  <div
+                    className={`h-5 w-5 shrink-0 rounded-full border border-white/60 bg-white/50 flex items-center justify-center text-[10px] font-medium text-gray-900 ${headingFont.className}`}
+                  >
+                    {a.n}
+                  </div>
+                  <div className="min-w-0">
+                  <p className="font-semibold text-sm text-gray-900">
+                      {a.title}
+                    </p>
+                    <p
+                      className={`${bodyFont.className} text-xs text-gray-600 mt-1 leading-snug`}
+                    >
+                      {a.body}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const finalExperienceScreens: FinalUIScreenSectionProps[] = [
+  {
+    heading: "Reimagining the Home Experience",
+    description:
+      "The home experience was redesigned to act as a personalized entry point, reducing dependency on search and guiding users toward relevant insights based on their context.",
+    imageSrc: "/final/home.png",
+    imageAlt: "Final home experience UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Guided entry based on user role and behavior",
+        body: "Surfaces paths and modules aligned to role, industry, and recent activity.",
+      },
+      {
+        n: 2,
+        title: "Reduced cognitive overload through prioritization",
+        body: "Surfaces the most relevant signals first instead of long, undifferentiated lists.",
+      },
+      {
+        n: 3,
+        title: "Contextual recommendations based on intent",
+        body: "Suggests what to read next from stated goals and observed behavior.",
+      },
+      {
+        n: 4,
+        title: "Quick insight summaries for faster understanding",
+        body: "Short previews that support scanning before committing to full reports.",
+      },
+      {
+        n: 5,
+        title: "Action-oriented navigation",
+        body: "Keeps next steps visible so discovery turns into progress.",
+      },
+    ],
+  },
+  {
+    heading: "Making Reports Scannable and Actionable",
+    description:
+      "Reports were restructured to reduce effort in validation and interpretation, enabling users to quickly assess relevance and move toward decision-making.",
+    imageSrc: "/final/reports.png",
+    imageAlt: "Final reports experience UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Scannable report structure",
+        body: "Headings, highlights, and hierarchy tuned for fast comprehension.",
+      },
+      {
+        n: 2,
+        title: "AI-generated summaries",
+        body: "Condenses length into takeaways teams can align on quickly.",
+      },
+      {
+        n: 3,
+        title: "Insight validation layer",
+        body: "Cross-checks and cues that reduce one-off manual verification.",
+      },
+      {
+        n: 4,
+        title: "Dynamic filtering",
+        body: "Narrows content by intent, industry, and urgency.",
+      },
+      {
+        n: 5,
+        title: "Decision-ready outputs",
+        body: "Frames conclusions so leaders can act without re-synthesis.",
+      },
+    ],
+  },
+  {
+    heading: "Surfacing Real-Time Market Signals",
+    description:
+      "GCC Pulse was designed to provide timely and relevant updates, helping users stay aligned with evolving market trends without manual tracking.",
+    imageSrc: "/final/gcc-pulse.png",
+    imageAlt: "Final GCC Pulse UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Live trend visibility",
+        body: "Shows what is moving now versus static archives alone.",
+      },
+      {
+        n: 2,
+        title: "Contextual signals",
+        body: "Filters noise so relevance stays tied to your domain.",
+      },
+      {
+        n: 3,
+        title: "Highlighted key updates",
+        body: "Pulls forward changes that warrant executive attention.",
+      },
+      {
+        n: 4,
+        title: "Reduced dependency on manual tracking",
+        body: "Less spreadsheet and inbox work to stay current.",
+      },
+    ],
+  },
+  {
+    heading: "Highlighting High-Value Insights",
+    description:
+      "The featured section was redesigned to curate and prioritize high-impact content, improving engagement and enabling faster discovery of valuable insights.",
+    imageSrc: "/final/featured.png",
+    imageAlt: "Final featured insights UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Curated high-impact insights",
+        body: "Editorially chosen work that earns the spotlight.",
+      },
+      {
+        n: 2,
+        title: "Clear visual hierarchy",
+        body: "Emphasis and rhythm that match editorial intent.",
+      },
+      {
+        n: 3,
+        title: "Easy scanning patterns",
+        body: "Chunked layout that supports quick orientation.",
+      },
+      {
+        n: 4,
+        title: "Encourages deeper engagement",
+        body: "Invites reading without adding friction to get started.",
+      },
+    ],
+  },
+  {
+    heading: "Guiding Exploration Through Trends",
+    description:
+      "Trending queries were enhanced to act as discovery triggers, helping users explore relevant topics and better understand emerging areas of interest.",
+    imageSrc: "/final/trending.png",
+    imageAlt: "Final trending queries UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Strong visual cues for trends",
+        body: "Makes momentum visible so teams notice what is heating up.",
+      },
+      {
+        n: 2,
+        title: "Discovery-driven interaction",
+        body: "Invites exploration without losing the thread of intent.",
+      },
+      {
+        n: 3,
+        title: "Intent-based surfacing",
+        body: "Connects questions people ask to content that answers them.",
+      },
+      {
+        n: 4,
+        title: "Improved feature visibility",
+        body: "Surfaces capabilities that might otherwise stay hidden.",
+      },
+    ],
+  },
+];
+
+function FinalExperienceSection() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full px-6 md:px-10 pb-16 md:pb-24 border-t border-[#dfe6d5]/60"
+    >
+      <div className="max-w-6xl mx-auto pt-16 md:pt-24">
+        <div className="max-w-3xl mx-auto text-left mb-12 md:mb-16">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            FINAL EXPERIENCE
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            Designing a Cohesive, Decision-Ready Experience
+          </h2>
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            The final interface brings together personalization, structured
+            insights, and guided workflows into a unified system. Each touchpoint
+            is intentionally redesigned to reduce friction, improve
+            discoverability, and enable faster, more confident decision-making
+            across the user journey.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto space-y-0">
+          {finalExperienceScreens.map((screen, index) => (
+            <div
+              key={screen.heading}
+              className={index > 0 ? "mt-16 md:mt-24" : ""}
+            >
+              <FinalUIScreenSection {...screen} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
   const [updatedFlowView, setUpdatedFlowView] = useState<"flow" | "intervention">("flow");
@@ -2116,6 +2418,8 @@ export default function Home() {
       <UsabilityTestingSection />
 
       <DesignDirectionsBentoSection />
+
+      <FinalExperienceSection />
 
     </main>
   );
