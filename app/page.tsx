@@ -121,7 +121,7 @@ const personaData = {
     "Hard to validate insights in time",
     "Decision-making feels fragmented and slow",
   ],
-  avatarSrc: "/persona-placeholder.svg",
+  avatarSrc: "/persona-placeholder.png",
 };
 
 type MatrixQuadrant = "HH" | "HL" | "LH" | "LL";
@@ -248,7 +248,7 @@ function PersonaCard({
           <img
             src={avatarSrc}
             alt={`${name} avatar`}
-            className="h-32 w-32 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
+            className="h-64 w-64 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
           />
           <h3
             className={`${headingFont.className} text-xl font-semibold text-gray-900 mt-1`}
@@ -259,6 +259,32 @@ function PersonaCard({
             <p>{role}</p>
             
           </div>
+    
+        </div>
+        
+        
+
+        <div className="space-y-5 md:px-2">
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Type of work
+            </p>
+            <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-snug`}>
+              {description}
+            </p>
+          </div>
+          
+
+          <p
+            className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
+          >
+            “The insights are there, but I need faster ways to{" "}
+            <Highlight color="#F0D3D3">validate insights</Highlight> and move
+            toward{" "}
+            <Highlight color="#E6F0AA">decision-ready direction</Highlight>.”
+          </p>
           <div>
             <p
               className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
@@ -276,30 +302,8 @@ function PersonaCard({
               ))}
             </div>
           </div>
-    
-        </div>
-        
-
-        <div className="space-y-5 md:px-2">
-          <div>
-            <p
-              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
-            >
-              Type of work
-            </p>
-            <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-snug`}>
-              {description}
-            </p>
-          </div>
-
-          <p
-            className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
-          >
-            “The insights are there, but I need faster ways to{" "}
-            <Highlight color="#F0D3D3">validate insights</Highlight> and move
-            toward{" "}
-            <Highlight color="#E6F0AA">decision-ready direction</Highlight>.”
-          </p>
+          
+          
 
           
         </div>
