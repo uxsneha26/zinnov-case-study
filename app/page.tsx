@@ -1011,6 +1011,220 @@ function DecisionMakingToolsSection() {
   );
 }
 
+const usabilityTestingContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const usabilityTestingNoteVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    rotate: -2,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+type UsabilityStickyNote = {
+  quote: string;
+  footnote: string;
+  bg: string;
+  rotate: string;
+  positionClass: string;
+};
+
+const usabilityStickyNotes: UsabilityStickyNote[] = [
+  {
+    quote:
+      "I expect the platform to already know what's relevant to my role and industry.",
+    footnote: "— Business Ops Leader (Micron)",
+    bg: "bg-[#F6E7E7]",
+    rotate: "rotate-[-2deg]",
+    positionClass: "top-[3%] left-[2%] md:left-[3%]",
+  },
+  {
+    quote:
+      "Right now I still have to search a lot… it doesn't feel curated.",
+    footnote: "— Sr. Manager (BMC)",
+    bg: "bg-[#F3EDE4]",
+    rotate: "rotate-[1deg]",
+    positionClass: "top-[5%] right-[2%] md:right-[4%] left-auto",
+  },
+  {
+    quote:
+      "If personalization was stronger, I wouldn't need to rely on search this much.",
+    footnote: "— Chief of Staff (Lloyds)",
+    bg: "bg-[#E8EFE9]",
+    rotate: "rotate-[2deg]",
+    positionClass: "top-[20%] left-[32%] md:left-[38%]",
+  },
+  {
+    quote:
+      "I don't know if a report is useful until I actually open it.",
+    footnote: "— Strategy Lead (Amadeus)",
+    bg: "bg-[#EFE7F6]",
+    rotate: "rotate-[-1deg]",
+    positionClass: "top-[14%] left-[2%] md:left-[4%]",
+  },
+  {
+    quote:
+      "It takes too much effort to find the exact insight I'm looking for.",
+    footnote: "— Director, India Strategy (Booking Holdings)",
+    bg: "bg-[#F5EBDD]",
+    rotate: "rotate-[2deg]",
+    positionClass: "top-[28%] right-[2%] md:right-[5%] left-auto",
+  },
+  {
+    quote:
+      "If I could just get a quick summary first, it would save a lot of time.",
+    footnote: "— VP Talent (Sony)",
+    bg: "bg-[#F6E7E7]",
+    rotate: "rotate-[-2deg]",
+    positionClass: "top-[38%] left-[8%] md:left-[12%]",
+  },
+  {
+    quote:
+      "I look at what peers are doing… but I still validate if it's relevant for me.",
+    footnote: "— Senior Data Analyst (Walmart)",
+    bg: "bg-[#F3EDE4]",
+    rotate: "rotate-[1deg]",
+    positionClass: "top-[48%] right-[3%] md:right-[6%] left-auto",
+  },
+  {
+    quote:
+      "Discussions are useful only if I can quickly find something specific.",
+    footnote: "— Business Ops Manager (Evolent)",
+    bg: "bg-[#E8EFE9]",
+    rotate: "rotate-[-1deg]",
+    positionClass: "top-[58%] left-[4%] md:left-[6%]",
+  },
+  {
+    quote:
+      "I'd want alerts for events relevant to my role… otherwise I miss them.",
+    footnote: "— Site Head (LAM Research)",
+    bg: "bg-[#EFE7F6]",
+    rotate: "rotate-[2deg]",
+    positionClass: "top-[66%] right-[4%] md:right-[8%] left-auto",
+  },
+  {
+    quote:
+      "If events were more personalized, I'd actually engage more.",
+    footnote: "— Communications Lead (Sony)",
+    bg: "bg-[#F5EBDD]",
+    rotate: "rotate-[-2deg]",
+    positionClass: "top-[72%] left-[28%] md:left-[34%]",
+  },
+  {
+    quote:
+      "I didn't fully understand what 'Ask Zinnov' could actually help me with.",
+    footnote: "— CEO (Confidential Client)",
+    bg: "bg-[#F6E7E7]",
+    rotate: "rotate-[1deg]",
+    positionClass: "top-[82%] left-[2%] md:left-[4%]",
+  },
+  {
+    quote:
+      "Trending topics should stand out more… right now they're easy to miss.",
+    footnote: "— Chief of Staff (Zinnov Client)",
+    bg: "bg-[#F3EDE4]",
+    rotate: "rotate-[-1deg]",
+    positionClass: "top-[86%] right-[2%] md:right-[5%] left-auto",
+  },
+];
+
+function UsabilityTestingSection() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full py-16 md:py-24 px-6 md:px-10 border-t border-[#dfe6d5]/60"
+    >
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto text-left mb-10 md:mb-14">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-5 leading-tight text-gray-900`}
+          >
+            Usability Testing & Key Insights
+          </h2>
+          <p
+            className={`${headingFont.className} text-lg md:text-xl text-gray-800 font-medium mb-6 leading-snug`}
+          >
+            Understanding user behavior, expectations, and friction points
+            across the platform.
+          </p>
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            We conducted usability testing with GCC leaders, business
+            operators, and strategy teams to understand how they interact with
+            the platform across core workflows. The insights revealed critical
+            gaps in personalization, discoverability, and decision-making
+            support, directly informing the final design directions.
+          </p>
+        </div>
+
+        <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+          <img
+            src="/design/usability-testing.png"
+            alt="Usability testing wireframe canvas"
+            className="w-full min-h-[650px] object-cover opacity-90 rounded-2xl"
+          />
+          <motion.div
+            variants={usabilityTestingContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="absolute inset-0 p-3 md:p-6 lg:p-8"
+          >
+            {usabilityStickyNotes.map((note, index) => (
+              <motion.div
+                key={index}
+                variants={usabilityTestingNoteVariants}
+                className={[
+                  "absolute w-[220px] z-[1] pointer-events-none",
+                  note.positionClass,
+                ].join(" ")}
+              >
+                <div
+                  className={[
+                    "pointer-events-auto p-4 rounded-md shadow-md",
+                    note.bg,
+                    note.rotate,
+                    "hover:scale-[1.03] transition-transform duration-200",
+                  ].join(" ")}
+                >
+                  <p className="text-sm italic text-gray-800 leading-snug">
+                    &ldquo;{note.quote}&rdquo;
+                  </p>
+                  <p className="text-xs text-gray-500 mt-2 leading-snug">
+                    {note.footnote}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
   const [updatedFlowView, setUpdatedFlowView] = useState<"flow" | "intervention">("flow");
@@ -1788,6 +2002,8 @@ export default function Home() {
       </motion.section>
 
       <DecisionMakingToolsSection />
+
+      <UsabilityTestingSection />
 
     </main>
   );
