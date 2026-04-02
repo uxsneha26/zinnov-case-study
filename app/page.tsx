@@ -1242,6 +1242,99 @@ function UsabilityTestingSection() {
   );
 }
 
+const designDirectionsBentoCards = [
+  {
+    title: "Contextual & Personalized Discovery",
+    description:
+      "Surface insights based on user role, industry, and behavior to reduce search dependency and improve relevance.",
+    bg: "bg-[rgba(244,222,229,0.45)]",
+    imageSrc: "/design/contextual-personalized-discovery.png",
+  },
+  {
+    title: "Scannable & Decision-Ready Insights",
+    description:
+      "Transform long-form reports into structured summaries with key takeaways, enabling faster understanding and action.",
+    bg: "bg-[rgba(234,244,236,0.45)]",
+    imageSrc: "/design/scannable-decision-ready-insights.png",
+  },
+  {
+    title: "Integrated Validation & Comparison",
+    description:
+      "Enable cross-referencing, side-by-side comparisons, and validation tools to reduce manual verification effort.",
+    bg: "bg-[rgba(234,240,255,0.45)]",
+    imageSrc: "/design/integrated-validation-comparison.png",
+  },
+  {
+    title: "Guided Workflows & Clear Next Steps",
+    description:
+      "Support users with structured pathways from discovery to action, minimizing friction in decision-making.",
+    bg: "bg-[rgba(245,240,220,0.45)]",
+    imageSrc: "/design/guided-workflows-clear-next-steps.png",
+  },
+];
+
+function DesignDirectionsBentoSection() {
+  const cardBase =
+    "rounded-xl p-5 md:p-6 backdrop-blur-sm border border-white/40 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:scale-[1.02] transition-transform duration-300 ease-out";
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full mt-16 md:mt-24 px-6 md:px-10 pb-16 md:pb-24"
+    >
+      <div className="max-w-6xl mx-auto">
+      <div className="max-w-3xl mx-auto text-left mb-10 md:mb-14">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-5 leading-tight text-gray-900`}
+          >
+            Design Redirection
+          </h2>
+          <p
+            className={`${bodyFont.className} text-lg text-gray-700 leading-relaxed`}
+          >
+            Insights from usability testing translated into actionable design
+            directions. Each direction focuses on reducing cognitive load,
+            improving discoverability, and enabling faster decision-making.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {designDirectionsBentoCards.map((card) => (
+            <article
+              key={card.title}
+              className={`${cardBase} ${card.bg}`}
+            >
+              <div className="relative w-full h-[140px] rounded-lg bg-white/40 border border-[#dfded5] overflow-hidden flex items-center justify-center text-xs text-gray-400 shrink-0">
+                {/* Replace inner content with <img src="..." alt="" className="w-full h-full object-cover" /> */}
+                <img
+  src={card.imageSrc}
+  alt={card.title}
+  className="w-full h-full object-cover"
+/>
+              </div>
+              <div className="mt-5">
+                <h3
+                  className={`${bodyFont.className} text-lg md:text-xl font-semibold text-gray-900`}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className={`${headingFont.className} mt-3 text-sm text-gray-600 leading-relaxed`}
+                >
+                  {card.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
   const [updatedFlowView, setUpdatedFlowView] = useState<"flow" | "intervention">("flow");
@@ -2021,6 +2114,8 @@ export default function Home() {
       <DecisionMakingToolsSection />
 
       <UsabilityTestingSection />
+
+      <DesignDirectionsBentoSection />
 
     </main>
   );
