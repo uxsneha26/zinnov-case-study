@@ -906,6 +906,111 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
   },
 ];
 
+const decisionMakingToolsAnnotations: DesignAnnotationData[] = [
+  {
+    n: 1,
+    title: "Cost benchmarking tool",
+    body: "Compare operational costs across regions, vendors, and industry standards using internal and external data.",
+  },
+  {
+    n: 2,
+    title: "Site scorecards",
+    body: "Evaluate performance of GCC sites across key metrics like cost efficiency, talent, and scalability.",
+  },
+  {
+    n: 3,
+    title: "Auto-generated insights",
+    body: "AI synthesizes inputs into structured summaries and highlights key decision signals.",
+  },
+  {
+    n: 4,
+    title: "Custom input parameters",
+    body: "Users can define variables such as geography, scale, and business priorities for tailored outputs.",
+  },
+];
+
+function DecisionMakingToolsSection() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full py-16 md:py-24 px-6 md:px-10 border-t border-[#dfe6d5]/60"
+    >
+      <div className="max-w-5xl mx-auto">
+        <div className="max-w-3xl mx-auto text-left">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-5 leading-tight text-gray-900`}
+          >
+            Designing for Decision-Making Tools
+          </h2>
+          <p
+            className={`${headingFont.className} text-lg md:text-xl text-gray-800 font-medium mb-6 leading-snug`}
+          >
+            Enabling GCC leaders to generate quick, context-aware reports for
+            faster strategic decisions.
+          </p>
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            Beyond exploration and reports, the platform introduces dedicated
+            tools that help users generate decision-ready outputs such as cost
+            benchmarking and site scorecards. These tools transform internal
+            company data and external insights into structured, comparable, and
+            actionable formats — reducing dependency on manual analysis.
+          </p>
+        </div>
+
+        <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-12 items-start">
+            <div className="min-w-0 w-full rounded-2xl overflow-hidden border border-[#e7e5df] shadow-md bg-[#f8f7f4]">
+              <img
+                src="/design/tools.png"
+                alt="Decision-making tools interface"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col gap-6 items-start">
+              {decisionMakingToolsAnnotations.map((a, index) => {
+                const palette =
+                  structuredAnnotationPalette[
+                    index % structuredAnnotationPalette.length
+                  ];
+                return (
+                  <div
+                    key={a.n}
+                    className={[
+                      palette.bg,
+                      "w-[260px] shrink-0 border border-[#dfe6d5] rounded-md shadow-sm p-3 flex gap-2 items-start",
+                      "hover:scale-[1.02] transition-transform duration-200 ease-out",
+                    ].join(" ")}
+                  >
+                    <div
+                      className={`h-5 w-5 shrink-0 rounded-full ${palette.circle} flex items-center justify-center text-[10px] font-medium text-gray-900`}
+                    >
+                      {a.n}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-sm text-gray-900">
+                        {a.title}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-1 leading-snug">
+                        {a.body}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"flow" | "pain">("flow");
   const [updatedFlowView, setUpdatedFlowView] = useState<"flow" | "intervention">("flow");
@@ -1681,6 +1786,8 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
+      <DecisionMakingToolsSection />
 
     </main>
   );
