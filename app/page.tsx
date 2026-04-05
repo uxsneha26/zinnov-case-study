@@ -2622,7 +2622,7 @@ function AdminPlatformPersonaCardRahul() {
   const goals = [
     "- Quickly access relevant case studies and benchmarks",
     "- Build strong, data-backed proposals",
-    "- Track ongoing client engagements",
+    "- sdTrack ongoing client engagements",
   ];
   const painPoints = [
     "- Information scattered across tools",
@@ -3003,6 +3003,58 @@ function AdminPlatformCaseStudySection() {
         <div className="max-w-6xl mx-auto">
           <AdminPlatformWorkshopStickyNotes ideas={adminPlatformWorkshopIdeas} />
         </div>
+
+        <section className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#F3F6ED] py-20 md:py-28">
+          <div className="max-w-3xl mx-auto text-center px-6 md:px-0 space-y-6 md:space-y-8">
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.2em] uppercase text-gray-500`}
+            >
+              INTERNAL EXPERIENCE
+            </p>
+            <h2
+              className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 leading-tight`}
+            >
+              Designing for Operational Clarity and Speed
+            </h2>
+            <p
+              className={`${bodyFont.className} text-lg md:text-xl leading-relaxed text-gray-700`}
+            >
+              The internal platform reimagines how teams handle workflows —
+              bringing together{" "}
+              <span className={editorialHighlightClass}>visibility</span>,{" "}
+              <span className={editorialHighlightClass}>context</span>, and{" "}
+              <span className={editorialHighlightClass}>execution</span> into a
+              unified system.
+              <br />
+              <br />
+              Instead of navigating fragmented tools and reactive workflows,
+              teams are now equipped with structured pathways that reduce manual
+              effort and enable faster, more confident decision-making.
+            </p>
+
+            <div className="relative max-w-2xl mx-auto pt-2 pb-4">
+              <span
+                aria-hidden
+                className={`${bodyFont.className} absolute -left-2 md:-left-6 -top-2 md:-top-4 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+              >
+                &ldquo;
+              </span>
+              <blockquote
+                className={`${bodyFont.className} relative z-10 mx-auto text-4xl text-[#9CC22A] text-center px-8 md:px-10 leading-snug font-normal`}
+              >
+                Every internal workflow is designed to reduce coordination
+                overhead, surface the right context, and move teams from request
+                to resolution with clarity.
+              </blockquote>
+              <span
+                aria-hidden
+                className={`${bodyFont.className} absolute -right-0 md:-right-8 bottom-0 md:top-40 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+              >
+                &rdquo;
+              </span>
+            </div>
+          </div>
+        </section>
 
         {/* 5. Final UI — FinalUIScreenSection x5 */}
         <div className="space-y-16 md:space-y-24">
