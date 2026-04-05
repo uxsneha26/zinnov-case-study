@@ -2983,15 +2983,27 @@ function AdminPlatformCaseStudySection() {
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-[3/1] bg-white/40 border border-[#dfded5] rounded-lg flex items-center justify-left text-sm text-gray-400"
-              >
-                Admin Scenario Frame
-              </div>
-            ))}
-          </div>
+          {[
+            "/admin-1.png",
+            "/admin-2.png",
+            "/admin-3.png",
+            "/admin-4.png",
+            "/admin-5.png",
+            "/admin-6.png",
+          ].map((src, index) => (
+            <motion.img
+              key={src}
+              src={src}
+              alt={`Scenario panel ${index + 1}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              viewport={{ once: true }}
+              className="w-full rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 ease-out hover:scale-[1.015]"
+            />
+          ))}
+        </div>
+          
         </motion.section>
 
         {/* 3. Persona — Asha R layout */}
