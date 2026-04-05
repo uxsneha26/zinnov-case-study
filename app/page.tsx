@@ -2620,14 +2620,14 @@ function AdminPlatformWorkshopStickyNotes({
 
 function AdminPlatformPersonaCardRahul() {
   const goals = [
-    "Quickly access relevant case studies and benchmarks",
-    "Build strong, data-backed proposals",
-    "Track ongoing client engagements",
+    "- Quickly access relevant case studies and benchmarks",
+    "- Build strong, data-backed proposals",
+    "- Track ongoing client engagements",
   ];
   const painPoints = [
-    "Information scattered across tools",
-    "Time-consuming manual compilation of insights",
-    "Lack of visibility into request status",
+    "- Information scattered across tools",
+    "- Time-consuming manual  compilation of insights",
+    "- Lack of visibility into request status",
   ];
   const appsUsed = ["CRM", "Slack", "Reports", "Email", "Internal dashboards"];
 
@@ -2643,7 +2643,7 @@ function AdminPlatformPersonaCardRahul() {
       <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 p-6 md:p-8">
         <div className="space-y-4 md:pr-4 md: flex flex-col items-center md:items-start text-center md:text-left">
           <img
-            src="/persona-placeholder.png"
+            src="/persona-rahul.png"
             alt="Rahul Mehta avatar"
             className="h-64 w-64 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
           />
@@ -2675,8 +2675,14 @@ function AdminPlatformPersonaCardRahul() {
           <p
             className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
           >
-            “I need one place to see client context, proof points, and where each
-            deal stands — without stitching spreadsheets and threads.”
+            “I need one place to see{" "}
+            <Highlight color="#F0D3D3">client context</Highlight>
+            {", "}
+            <Highlight color="#E6F0AA">proof points</Highlight>
+            {", and "}
+            <Highlight color="#C7F2F0">where each deal stands</Highlight>
+            {" "}
+            — without stitching spreadsheets and threads.”
           </p>
           <div>
             <p
@@ -2710,7 +2716,7 @@ function AdminPlatformPersonaCardRahul() {
                   key={item}
                   className={`${bodyFont.className} text-sm text-[#7F2A2A] leading-snug`}
                 >
-                  - <Highlight color="#FDECEC">{item}</Highlight>
+                   <Highlight color="#FDECEC">{item}</Highlight>
                 </li>
               ))}
             </ul>
@@ -2728,7 +2734,7 @@ function AdminPlatformPersonaCardRahul() {
                   key={item}
                   className={`${bodyFont.className} text-sm text-gray-700 leading-snug`}
                 >
-                  - <Highlight color="#EAF4EC">{item}</Highlight>
+                  <Highlight color="#EAF4EC">{item}</Highlight>
                 </li>
               ))}
             </ul>
