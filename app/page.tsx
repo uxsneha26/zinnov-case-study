@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Jost, Caveat, Crimson_Text } from "next/font/google";
 import { GradualSpacing } from "@/components/ui/gradual-spacing";
 import { Highlight } from "@/components/ui/highlight";
@@ -1590,6 +1590,64 @@ const finalExperienceScreens: FinalUIScreenSectionProps[] = [
   },
 ];
 
+const editorialHighlightClass = "bg-[#E6EDC8] px-1.5 py-0.5 rounded-sm";
+
+type EditorialPageBreakerSectionProps = {
+  label: string;
+  heading: string;
+  body: ReactNode;
+  quote: string;
+};
+
+function EditorialPageBreakerSection({
+  label,
+  heading,
+  body,
+  quote,
+}: EditorialPageBreakerSectionProps) {
+  return (
+    <section className="py-20 md:py-20 bg-[#f6f5ef]">
+      <div className="max-w-3xl mx-auto text-center px-6 md:px-0 space-y-12 md:space-y-20">
+        <p
+          className={`${headingFont.className} text-xs uppercase tracking-[0.2em] text-gray-500`}
+        >
+          
+        </p>
+        <h2
+          className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 leading-tight`}
+        >
+          {heading}
+        </h2>
+        <p
+          className={`${bodyFont.className} text-lg md:text-xl leading-relaxed text-gray-700`}
+        >
+          {body}
+        </p>
+
+        <div className="relative max-w-2xl mx-auto pt-2 pb-10 md:pb-12 px-2">
+          <span
+            aria-hidden
+            className={`${bodyFont.className} absolute top-1 -left-0 md:left-0 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+          >
+            &ldquo;
+          </span>
+          <blockquote
+            className={`${bodyFont.className} relative z-10 mx-auto text-4xl text-[#9CC22A] text-center px-8 md:px-10 leading-snug font-normal`}
+          >
+            {quote}
+          </blockquote>
+          <span
+            aria-hidden
+            className={`${bodyFont.className} absolute top-32 -right-1 md:right-1 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+          >
+            &rdquo;
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalExperienceSection() {
   return (
     <motion.section
@@ -1597,41 +1655,34 @@ function FinalExperienceSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="w-full px-6 md:px-10 pb-16 md:pb-24 border-t border-[#dfe6d5]/60"
+      className="w-full border-t border-[#dfe6d5]/60"
     >
-      <div className="max-w-6xl mx-auto pt-16 md:pt-24">
-        <div className="max-w-3xl mx-auto text-left mb-12 md:mb-16">
-          <p
-            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
-          >
-            FINAL EXPERIENCE
-          </p>
-          <h2
-            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
-          >
-            Designing a Cohesive, Decision-Ready Experience
-          </h2>
-          <p
-            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
-          >
-            The final interface brings together personalization, structured
-            insights, and guided workflows into a unified system. Each touchpoint
-            is intentionally redesigned to reduce friction, improve
-            discoverability, and enable faster, more confident decision-making
-            across the user journey.
-          </p>
-        </div>
+      <EditorialPageBreakerSection
+        label="FINAL EXPERIENCE"
+        heading="Designing a Cohesive, Decision-Ready Experience"
+        body={
+          <>
+            The final interface brings together{" "}
+            <span className={editorialHighlightClass}>personalization</span>,{" "}
+            <span className={editorialHighlightClass}>structured insights</span>,
+            and{" "}
+            <span className={editorialHighlightClass}>guided workflows</span> into
+            a unified system — reducing friction, improving discoverability, and
+            enabling faster, more confident decision-making.
+          </>
+        }
+        quote="Every interaction is designed to reduce effort, surface clarity, and move users closer to confident decisions."
+      />
 
-        <div className="max-w-6xl mx-auto space-y-0">
-          {finalExperienceScreens.map((screen, index) => (
-            <div
-              key={screen.heading}
-              className={index > 0 ? "mt-16 md:mt-24" : ""}
-            >
-              <FinalUIScreenSection {...screen} />
-            </div>
-          ))}
-        </div>
+      <div className="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-8 md:pt-12 space-y-0">
+        {finalExperienceScreens.map((screen, index) => (
+          <div
+            key={screen.heading}
+            className={index > 0 ? "mt-16 md:mt-24" : ""}
+          >
+            <FinalUIScreenSection {...screen} />
+          </div>
+        ))}
       </div>
     </motion.section>
   );
@@ -2388,25 +2439,24 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="w-full py-16 md:py-24 px-6 md:px-10 border-t border-[#dfe6d5]/60"
+        className="w-full border-t border-[#dfe6d5]/60"
       >
-        <div className="max-w-3xl mx-auto text-left">
-          <p
-            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
-          >
-            Product synthesis
-          </p>
-          <h2
-            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
-          >
-            Design Directions
-          </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-            Research insights and prioritized ideas converge into three concrete surfaces—calmer entry, credible peer learning, and reports built for decisions—not generic UX polish, but product behavior aligned to how GCC leaders actually work.
-          </p>
-        </div>
+        <EditorialPageBreakerSection
+          label="PRODUCT SYNTHESIS"
+          heading="Design Directions"
+          body={
+            <>
+              Research insights and prioritized ideas converge into{" "}
+              <span className={editorialHighlightClass}>three concrete surfaces</span>{" "}
+              — calmer entry, credible peer learning, and reports built for
+              decisions — not generic UX polish, but product behavior aligned to
+              how GCC leaders actually work.
+            </>
+          }
+          quote="Design is not about adding features, but about structuring clarity into every interaction."
+        />
 
-        <div className="max-w-6xl mx-auto mt-14 md:mt-20 space-y-20 md:space-y-28">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-8 md:pt-12 space-y-20 md:space-y-28">
           {designDirectionSections.map((section) => (
             <DesignDirectionBlock key={section.title} {...section} />
           ))}
