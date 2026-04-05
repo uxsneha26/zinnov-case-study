@@ -2471,6 +2471,540 @@ export default function Home() {
 
       <FinalExperienceSection />
 
+      <AdminPlatformCaseStudySection />
+
     </main>
+  );
+}
+
+const adminPlatformWorkshopIdeas: Array<{ title: string; detail?: string }> = [
+  {
+    title: "Fragmented workflows",
+    detail: "Work jumps across CRM, reports, and communication tools",
+  },
+  {
+    title: "Repetitive queries",
+    detail: "Same client questions handled repeatedly without reuse",
+  },
+  {
+    title: "Manual report creation",
+    detail: "Time spent compiling instead of analyzing",
+  },
+  {
+    title: "Lack of tracking",
+    detail: "No clear visibility into request status",
+  },
+  {
+    title: "Delayed responses",
+    detail: "Dependency on multiple teams slows turnaround",
+  },
+  {
+    title: "Knowledge gaps",
+    detail: "Insights exist but are not easily accessible",
+  },
+  {
+    title: "Context switching",
+    detail: "Frequent switching between tools reduces efficiency",
+  },
+  {
+    title: "No proactive alerts",
+    detail: "Teams react instead of anticipating needs",
+  },
+];
+
+function AdminPlatformWorkshopStickyNotes({
+  ideas,
+}: {
+  ideas: Array<{ title: string; detail?: string }>;
+}) {
+  const pastelNotes = [
+    { bgClass: "bg-[#FDF1F1]", textClass: "text-[#6B2A2A]" },
+    { bgClass: "bg-[#FFFBE6]", textClass: "text-[#5A4A12]" },
+    { bgClass: "bg-[#EAF7EC]", textClass: "text-[#1F4D3A]" },
+    { bgClass: "bg-[#EAF7F6]", textClass: "text-[#1E4A5A]" },
+    { bgClass: "bg-[#E6F0AA]", textClass: "text-[#3B4A12]" },
+    { bgClass: "bg-[#F7F0FF]", textClass: "text-[#4A2C6B]" },
+  ];
+
+  const noteData = ideas.map((idea, index) => {
+    const rot = Math.round(Math.sin((index + 1) * 9.73) * 3 * 10) / 10;
+    const palette = pastelNotes[index % pastelNotes.length];
+    return { title: idea.title, detail: idea.detail, rotation: rot, ...palette };
+  });
+
+  return (
+    <div className="rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/60 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+      <div className="px-6 md:px-8 pt-8 pb-6">
+        <p
+          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3 text-center`}
+        >
+          WORKSHOP INSIGHTS
+        </p>
+        <h3
+          className={`${headingFont.className} text-2xl md:text-3xl font-semibold text-gray-900 text-center`}
+        >
+          Ideas from Internal Team Workshops
+        </h3>
+        <p className="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+          We conducted a focused workshop with Business Development and Customer
+          Support teams to understand their workflows, uncover pain points, and
+          identify opportunities to streamline internal operations.
+        </p>
+      </div>
+
+      <div className="relative mt-2 px-4 md:px-6 pb-8">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.045)_1px,transparent_1px)] bg-[size:34px_34px] opacity-40 pointer-events-none" />
+
+        <motion.div
+          className="relative z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+            },
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center gap-3 md:gap-4 px-2">
+            {noteData.map((note) => (
+              <motion.div
+                key={note.title}
+                custom={note.rotation}
+                variants={{
+                  hidden: (rotation: number) => ({
+                    opacity: 0,
+                    scale: 0.9,
+                    y: 20,
+                    rotate: rotation,
+                  }),
+                  visible: (rotation: number) => ({
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    rotate: rotation,
+                    transition: {
+                      duration: 0.45,
+                      ease: [0.2, 0.8, 0.2, 1],
+                    },
+                  }),
+                }}
+                style={{ transformOrigin: "50% 50%" }}
+                className={[
+                  "relative w-full max-w-[220px] rounded-lg",
+                  note.bgClass,
+                  "border border-neutral-200/70 shadow-[0_10px_26px_rgba(0,0,0,0.10)]",
+                ].join(" ")}
+              >
+                <div className="px-3 py-2">
+                  <p
+                    className={`${bodyFont.className} text-sm font-medium leading-snug ${note.textClass}`}
+                  >
+                    {note.title}
+                  </p>
+                  {note.detail ? (
+                    <p className="mt-1 text-xs text-gray-600 leading-snug">
+                      {note.detail}
+                    </p>
+                  ) : null}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function AdminPlatformPersonaCardRahul() {
+  const goals = [
+    "Quickly access relevant case studies and benchmarks",
+    "Build strong, data-backed proposals",
+    "Track ongoing client engagements",
+  ];
+  const painPoints = [
+    "Information scattered across tools",
+    "Time-consuming manual compilation of insights",
+    "Lack of visibility into request status",
+  ];
+  const appsUsed = ["CRM", "Slack", "Reports", "Email", "Internal dashboards"];
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/70 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+      <div
+        className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(199,242,240,0.45), rgba(240,211,211,0.18) 55%, rgba(255,251,230,0) 72%)",
+        }}
+      />
+      <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 p-6 md:p-8">
+        <div className="space-y-4 md:pr-4 md: flex flex-col items-center md:items-start text-center md:text-left">
+          <img
+            src="/persona-placeholder.png"
+            alt="Rahul Mehta avatar"
+            className="h-64 w-64 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
+          />
+          <h3
+            className={`${headingFont.className} text-xl font-semibold text-gray-900 mt-1`}
+          >
+            Rahul Mehta
+          </h3>
+          <div className="text-sm text-gray-500 leading-snug space-y-1">
+            <p>Business Development Manager</p>
+          </div>
+        </div>
+
+        <div className="space-y-5 md:px-2">
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Type of work
+            </p>
+            <p
+              className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-snug`}
+            >
+              Rahul is responsible for identifying new opportunities, building
+              proposals, and managing client relationships across regions.
+            </p>
+          </div>
+
+          <p
+            className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
+          >
+            “I need one place to see client context, proof points, and where each
+            deal stands — without stitching spreadsheets and threads.”
+          </p>
+          <div>
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+            >
+              Apps used
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {appsUsed.map((app) => (
+                <span
+                  key={app}
+                  className="text-xs px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-gray-700"
+                >
+                  {app}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4 md:pl-4 md:">
+          <div className="rounded-xl p-4 bg-[#FDECEC] border border-[#F5B5B5]">
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+            >
+              Pain points
+            </p>
+            <ul className="space-y-2">
+              {painPoints.map((item) => (
+                <li
+                  key={item}
+                  className={`${bodyFont.className} text-sm text-[#7F2A2A] leading-snug`}
+                >
+                  - <Highlight color="#FDECEC">{item}</Highlight>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-xl p-4 bg-[#EAF4EC] border border-[#cfe2d2]">
+            <p
+              className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+            >
+              Goals
+            </p>
+            <ul className="space-y-2">
+              {goals.map((item) => (
+                <li
+                  key={item}
+                  className={`${bodyFont.className} text-sm text-gray-700 leading-snug`}
+                >
+                  - <Highlight color="#EAF4EC">{item}</Highlight>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
+  {
+    heading: "Main Dashboard",
+    description:
+      "Overview of tasks, alerts, and key metrics in a personalized workspace for internal teams.",
+    imageSrc: "/design/admin-placeholder.png",
+    imageAlt: "Admin main dashboard UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Unified task surface",
+        body: "See what needs attention across BD and support in one view.",
+      },
+      {
+        n: 2,
+        title: "Alerts and signals",
+        body: "Surface SLAs, escalations, and follow-ups before they slip.",
+      },
+      {
+        n: 3,
+        title: "Key metrics",
+        body: "Track throughput, response time, and pipeline health at a glance.",
+      },
+      {
+        n: 4,
+        title: "Role-aware layout",
+        body: "Priorities adapt to BD vs. support responsibilities.",
+      },
+      {
+        n: 5,
+        title: "Faster orientation",
+        body: "Reduce tab-hopping when the day starts or context switches.",
+      },
+    ],
+  },
+  {
+    heading: "Account Dashboard",
+    description:
+      "Client-specific insights, activity tracking, and engagement history in one place.",
+    imageSrc: "/design/admin-placeholder.png",
+    imageAlt: "Admin account dashboard UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Account snapshot",
+        body: "Contracts, stakeholders, and open threads in one profile.",
+      },
+      {
+        n: 2,
+        title: "Engagement history",
+        body: "Meetings, emails, and platform usage without digging through inboxes.",
+      },
+      {
+        n: 3,
+        title: "Insight attachments",
+        body: "Link relevant reports and benchmarks to the account record.",
+      },
+      {
+        n: 4,
+        title: "Status clarity",
+        body: "Know what is proposed, approved, or waiting on the client.",
+      },
+      {
+        n: 5,
+        title: "Handoff-ready",
+        body: "Support picks up context without a long briefing loop.",
+      },
+    ],
+  },
+  {
+    heading: "Profile Usage",
+    description:
+      "User activity tracking with usage analytics and engagement patterns for internal visibility.",
+    imageSrc: "/design/admin-placeholder.png",
+    imageAlt: "Admin profile usage analytics UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Activity timeline",
+        body: "See recent sessions, searches, and saves for a user or team.",
+      },
+      {
+        n: 2,
+        title: "Engagement patterns",
+        body: "Spot heavy vs. light usage to tailor outreach and training.",
+      },
+      {
+        n: 3,
+        title: "Content affinity",
+        body: "Understand which topics and formats drive follow-through.",
+      },
+      {
+        n: 4,
+        title: "Operational signals",
+        body: "Feed product and support with real behavior, not anecdotes.",
+      },
+      {
+        n: 5,
+        title: "Privacy-aware",
+        body: "Aggregate views that respect internal data policies.",
+      },
+    ],
+  },
+  {
+    heading: "Task Management",
+    description:
+      "Task assignment, ownership, and workflow visibility across internal handoffs.",
+    imageSrc: "/design/admin-placeholder.png",
+    imageAlt: "Admin task management UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Clear ownership",
+        body: "Assignees, reviewers, and watchers on every task.",
+      },
+      {
+        n: 2,
+        title: "Workflow stages",
+        body: "Move work from intake through resolution with shared language.",
+      },
+      {
+        n: 3,
+        title: "Dependencies",
+        body: "Link tasks to clients, queries, or reports for traceability.",
+      },
+      {
+        n: 4,
+        title: "Due dates and SLAs",
+        body: "Make deadlines visible to the whole chain.",
+      },
+      {
+        n: 5,
+        title: "Less coordination overhead",
+        body: "Fewer status meetings when the board tells the truth.",
+      },
+    ],
+  },
+  {
+    heading: "Queries Inner Page",
+    description:
+      "Centralized query handling with context-rich responses and full history.",
+    imageSrc: "/design/admin-placeholder.png",
+    imageAlt: "Admin queries detail UI",
+    annotations: [
+      {
+        n: 1,
+        title: "Single queue",
+        body: "Inbound questions land in one place with categorization.",
+      },
+      {
+        n: 2,
+        title: "Context-rich threads",
+        body: "Attach account, product area, and prior replies automatically.",
+      },
+      {
+        n: 3,
+        title: "Response templates",
+        body: "Reuse vetted answers while still personalizing.",
+      },
+      {
+        n: 4,
+        title: "History that sticks",
+        body: "Anyone can see what was promised and delivered.",
+      },
+      {
+        n: 5,
+        title: "Faster resolution",
+        body: "Less back-and-forth when the full story is on the page.",
+      },
+    ],
+  },
+];
+
+function AdminPlatformCaseStudySection() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full"
+    >
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 space-y-16 md:space-y-24">
+        {/* 1. Header — Who is Zinnov style */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto px-6 py-8 md:py-12 text-center"
+        >
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            ADMIN PLATFORM
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            Designing the Operational Backbone for Internal Teams
+          </h2>
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            While the customer-facing platform enables discovery and
+            decision-making, the internal platform powers the teams that keep the
+            system running.
+            <br />
+            <br />
+            From business development to customer support and backend operations,
+            this layer ensures that insights are delivered, queries are resolved,
+            and workflows are executed efficiently at scale.
+          </p>
+        </motion.div>
+
+        {/* 2. Scenario — replicate problem scenario structure */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto px-6 py-16 md:py-20 text-left"
+        >
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            Let me explain how internal teams manage operations…
+          </h2>
+
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            Imagine you are part of the business development or customer support
+            team, handling multiple client requests, tracking ongoing engagements,
+            and responding to queries that require quick, contextual insights.
+            <br />
+            <br />
+            You rely on internal dashboards, reports, and communication loops to
+            manage operations and ensure smooth delivery.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                className="aspect-[3/1] bg-white/40 border border-[#dfded5] rounded-lg flex items-center justify-left text-sm text-gray-400"
+              >
+                Admin Scenario Frame
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* 3. Persona — Asha R layout */}
+        <div className="max-w-6xl mx-auto">
+          <AdminPlatformPersonaCardRahul />
+        </div>
+
+        {/* 4. Ideation — StickyNotes structure */}
+        <div className="max-w-6xl mx-auto">
+          <AdminPlatformWorkshopStickyNotes ideas={adminPlatformWorkshopIdeas} />
+        </div>
+
+        {/* 5. Final UI — FinalUIScreenSection x5 */}
+        <div className="space-y-16 md:space-y-24">
+          {adminPlatformFinalScreens.map((screen) => (
+            <FinalUIScreenSection key={screen.heading} {...screen} />
+          ))}
+        </div>
+      </div>
+    </motion.section>
   );
 }
