@@ -2946,16 +2946,34 @@ function AdminPlatformCaseStudySection() {
           >
             Designing the Operational Backbone for Internal Teams
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className="text-left text-lg md:text-xl text-gray-700 leading-relaxed">
             While the customer-facing platform enables discovery and
             decision-making, the internal platform powers the teams that keep the
             system running.
             <br />
             <br />
-            From business development to customer support and backend operations,
-            this layer ensures that insights are delivered, queries are resolved,
-            and workflows are executed efficiently at scale.
-          </p>
+            </p> 
+        
+      <div className="max-w-md mx-auto px-6 py-12 border-l-2 border-[#d6dccb] pl-6">
+        <p
+          className={`${quoteFont.className} text-left text-2xl md:text-xl leading-snug text-gray-800`}
+        >
+          “From business development to customer support and backend operations, this layer ensures that{" "}
+          
+          <Highlight color="#E6F0AA">
+          insights are delivered, queries are resolved 
+          </Highlight>{" "}
+          
+          and {" "}
+          
+          <Highlight color="#C7F2F0">
+          workflows are executed
+          </Highlight>{" "}
+          
+          efficiently at scale.”
+        </p>
+        </div>
+            
         </motion.div>
 
         {/* 2. Scenario — replicate problem scenario structure */}
