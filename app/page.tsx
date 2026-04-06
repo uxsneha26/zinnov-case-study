@@ -2750,7 +2750,7 @@ const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
     heading: "Main Dashboard",
     description:
       "Overview of tasks, alerts, and key metrics in a personalized workspace for internal teams.",
-    imageSrc: "/design/admin-placeholder.png",
+    imageSrc: "/design/dashboard.png",
     imageAlt: "Admin main dashboard UI",
     annotations: [
       {
@@ -2784,7 +2784,7 @@ const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
     heading: "Account Dashboard",
     description:
       "Client-specific insights, activity tracking, and engagement history in one place.",
-    imageSrc: "/design/admin-placeholder.png",
+    imageSrc: "/design/account.png",
     imageAlt: "Admin account dashboard UI",
     annotations: [
       {
@@ -2818,7 +2818,7 @@ const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
     heading: "Profile Usage",
     description:
       "User activity tracking with usage analytics and engagement patterns for internal visibility.",
-    imageSrc: "/design/admin-placeholder.png",
+    imageSrc: "/design/usage.png",
     imageAlt: "Admin profile usage analytics UI",
     annotations: [
       {
@@ -2852,7 +2852,7 @@ const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
     heading: "Task Management",
     description:
       "Task assignment, ownership, and workflow visibility across internal handoffs.",
-    imageSrc: "/design/admin-placeholder.png",
+    imageSrc: "/design/task.png",
     imageAlt: "Admin task management UI",
     annotations: [
       {
@@ -2886,7 +2886,7 @@ const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
     heading: "Queries Inner Page",
     description:
       "Centralized query handling with context-rich responses and full history.",
-    imageSrc: "/design/admin-placeholder.png",
+    imageSrc: "/design/query.png",
     imageAlt: "Admin queries detail UI",
     annotations: [
       {
