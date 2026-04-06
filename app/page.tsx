@@ -3006,6 +3006,35 @@ function AdminPlatformCaseStudySection() {
           
         </motion.section>
 
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto px-6 py-8 md:py-8 text-left"
+        >
+          <p
+            className={`${headingFont.className} text-xs tracking-[0.2em] uppercase text-gray-500 mb-4`}
+          >
+            INTERNAL WORKFLOWS
+          </p>
+
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 leading-tight mb-6`}
+          >
+            Understanding the Teams Behind the Platform
+          </h2>
+
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            While the platform enables strategic decision-making for users, an
+            equally critical layer operates behind the scenes, and it was essential to
+            understand how these teams navigate workflows, access information,
+            and coordinate across tools under time pressure.
+          </p>
+        </motion.section>
+
         {/* 3. Persona — Asha R layout */}
         <div className="max-w-6xl mx-auto">
           <AdminPlatformPersonaCardRahul />
