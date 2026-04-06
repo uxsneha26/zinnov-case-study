@@ -1,6 +1,6 @@
 "use client";
 import { Fragment, useState, type ReactNode } from "react";
-import { Jost, Caveat, Crimson_Text } from "next/font/google";
+import { Jost, Caveat, Crimson_Text, Instrument_Serif} from "next/font/google";
 import { GradualSpacing } from "@/components/ui/gradual-spacing";
 import { Highlight } from "@/components/ui/highlight";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,11 @@ import { motion, AnimatePresence } from "framer-motion";
 const headingFont = Jost({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+});
+
+const headingFonttwo = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const quoteFont = Caveat({
@@ -2202,13 +2207,100 @@ export default function Home() {
 
       </div>
 
+      {/* PROJECT OVERVIEW */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full px-6 py-12 md:py-30"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-2xl border border-[#dfe6d5]/70 bg-[#faf9f5] shadow-[0_8px_32px_rgba(0,0,0,0.05)] p-8 md:p-10 lg:p-12">
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12 lg:gap-16">
+              <div className="space-y-4">
+                <div className="flex gap-3 items-stretch">
+                  <div
+                    className="w-[2px] shrink-0 rounded-full bg-[#9CC22A]"
+                    aria-hidden
+                  />
+                  <h3
+                    className={`${headingFont.className} text-base md:text-lg font-semibold text-gray-900 leading-tight`}
+                  >
+                    Duration
+                  </h3>
+                </div>
+                <p
+                  className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+                >
+                  Oct 2023 - Mar 2024
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex gap-3 items-stretch">
+                  <div
+                    className="w-[3px] shrink-0 rounded-full bg-[#9CC22A]"
+                    aria-hidden
+                  />
+                  <h3
+                    className={`${headingFont.className} text-base md:text-lg font-semibold text-gray-900 leading-tight`}
+                  >
+                    Role
+                  </h3>
+                </div>
+                <p
+                  className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+                >
+                  UX Designer + Strategist
+                </p>
+                <p
+                  className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-relaxed`}
+                >
+                  Led the design of a decision-support ecosystem into structured, usable product experiences.
+
+Worked at the intersection of strategy, research, and product thinking, to move from scattered insights to clear, actionable decisions.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex gap-3 items-stretch">
+                  <div
+                    className="w-[3px] shrink-0 rounded-full bg-[#9CC22A]"
+                    aria-hidden
+                  />
+                  <h3
+                    className={`${headingFont.className} text-base md:text-lg font-semibold text-gray-900 leading-tight`}
+                  >
+                    Product Impact
+                  </h3>
+                </div>
+                <div
+                  className={`${bodyFont.className} text-sm md:text-lg text-gray-700 leading-relaxed`}
+                >
+                  <p>
+                  Reimagined how Zinnov’s knowledge ecosystem spanning benchmarks, 
+                  reports, and peer intelligence is consumed, turning it into a 
+                  decision-ready digital experience for GCC leaders.
+                  </p>
+                  <p>
+                  
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* CONTEXT */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto px-6 py-24 text-left"
+        className="max-w-3xl mx-auto px-6 py-20 text-left"
       >
         
         <GradualSpacing
