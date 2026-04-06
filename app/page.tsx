@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ReactNode } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import { Jost, Caveat, Crimson_Text } from "next/font/google";
 import { GradualSpacing } from "@/components/ui/gradual-spacing";
 import { Highlight } from "@/components/ui/highlight";
@@ -1648,6 +1648,165 @@ function EditorialPageBreakerSection({
   );
 }
 
+const impactCardGlassShellClass =
+  "relative rounded-2xl p-7 bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_12px_40px_rgba(0,0,0,0.10)] overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_18px_60px_rgba(0,0,0,0.15)] hover:-translate-y-1 isolate";
+
+const impactCardTintLayerClasses = [
+  "absolute inset-0 rounded-2xl bg-[rgba(244,222,229,0.25)] pointer-events-none",
+  "absolute inset-0 rounded-2xl bg-[rgba(234,244,236,0.25)] pointer-events-none",
+  "absolute inset-0 rounded-2xl bg-[rgba(234,240,255,0.25)] pointer-events-none",
+] as const;
+
+const impactMetricBaseClass = `${headingFont.className} text-5xl md:text-6xl leading-none tracking-tight`;
+
+const impactMetricToneClasses = [
+  "text-[#9C7A73]",
+  "text-[#5F807A]",
+  "text-[#6E7F99]",
+] as const;
+
+function CustomerImpactSection() {
+  const cards = [
+    {
+      title: "2.5x",
+      text: "faster discovery of relevant insights",
+    },
+    {
+      title: "40%",
+      text: "reduction in time spent validating reports",
+    },
+    {
+      title: "3x",
+      text: "increase in engagement with reports and trends",
+    },
+  ];
+  return (
+    <section className="w-full py-20 md:py-28">
+      <div className="max-w-3xl mx-auto text-left">
+        <div className="max-w-3xl mb-12">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-4`}
+          >
+            Improving Decision Confidence at Scale
+          </h2>
+          <p
+            className={`${bodyFont.className} text-lg text-gray-700 leading-relaxed`}
+          >
+            The redesigned experience enables faster discovery, clearer
+            insights, and more confident decision-making across the user journey.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((card, index) => (
+            <div key={card.title} className={impactCardGlassShellClass}>
+              <div
+                className={
+                  impactCardTintLayerClasses[
+                    index % impactCardTintLayerClasses.length
+                  ]
+                }
+              />
+              <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.35),transparent_60%)] pointer-events-none" />
+              <div className="relative z-10">
+                <h3
+                  className={`${impactMetricBaseClass} ${
+                    impactMetricToneClasses[
+                      index % impactMetricToneClasses.length
+                    ]
+                  }`}
+                  style={{
+                    textShadow:
+                      "0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <div className="w-8 h-[1.5px] bg-black/10 my-3 rounded-full backdrop-blur-sm" />
+                <p
+                  className={`${bodyFont.className} text-base text-gray-800/80 leading-relaxed mt-3 max-w-[85%]`}
+                >
+                  {card.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdminImpactSection() {
+  const cards = [
+    {
+      title: "35%",
+      text: "reduction in manual coordination across tools",
+    },
+    {
+      title: "2x",
+      text: "faster response time to client queries",
+    },
+    {
+      title: "50%",
+      text: "improvement in visibility across workflows and requests",
+    },
+  ];
+  return (
+    <section className="w-full py-20 md:py-28">
+      <div className="max-w-3xl mx-auto text-left">
+        <div className="max-w-3xl mb-12">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-4`}
+          >
+            Strengthening Business and Operational Efficiency
+          </h2>
+          <p
+            className={`${bodyFont.className} text-lg text-gray-700 leading-relaxed`}
+          >
+            The internal platform equips teams with better visibility, reduced
+            coordination overhead, and faster execution across workflows.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((card, index) => (
+            <div key={card.title} className={impactCardGlassShellClass}>
+              <div
+                className={
+                  impactCardTintLayerClasses[
+                    index % impactCardTintLayerClasses.length
+                  ]
+                }
+              />
+              <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.35),transparent_60%)] pointer-events-none" />
+              <div className="relative z-10">
+                <h3
+                  className={`${impactMetricBaseClass} ${
+                    impactMetricToneClasses[
+                      index % impactMetricToneClasses.length
+                    ]
+                  }`}
+                  style={{
+                    textShadow:
+                      "0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <div className="w-8 h-[1.5px] bg-black/10 my-3 rounded-full backdrop-blur-sm" />
+                <p
+                  className={`${bodyFont.className} text-base text-gray-800/80 leading-relaxed mt-3 max-w-[85%]`}
+                >
+                  {card.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalExperienceSection() {
   return (
     <motion.section
@@ -1676,12 +1835,14 @@ function FinalExperienceSection() {
 
       <div className="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-8 md:pt-12 space-y-0">
         {finalExperienceScreens.map((screen, index) => (
-          <div
-            key={screen.heading}
-            className={index > 0 ? "mt-16 md:mt-24" : ""}
-          >
-            <FinalUIScreenSection {...screen} />
-          </div>
+          <Fragment key={screen.heading}>
+            <div className={index > 0 ? "mt-16 md:mt-24" : ""}>
+              <FinalUIScreenSection {...screen} />
+            </div>
+            {screen.heading === "Guiding Exploration Through Trends" ? (
+              <CustomerImpactSection />
+            ) : null}
+          </Fragment>
         ))}
       </div>
     </motion.section>
@@ -2927,7 +3088,7 @@ function AdminPlatformCaseStudySection() {
       viewport={{ once: true }}
       className="w-full"
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 space-y-16 md:space-y-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 space-y-16 md:space-y-12">
         {/* 1. Header — Who is Zinnov style */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -2978,7 +3139,7 @@ function AdminPlatformCaseStudySection() {
 
         {/* 2. Scenario — replicate problem scenario structure */}
         <motion.section
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -3118,7 +3279,12 @@ function AdminPlatformCaseStudySection() {
         {/* 5. Final UI — FinalUIScreenSection x5 */}
         <div className="space-y-16 md:space-y-24">
           {adminPlatformFinalScreens.map((screen) => (
-            <FinalUIScreenSection key={screen.heading} {...screen} />
+            <Fragment key={screen.heading}>
+              <FinalUIScreenSection {...screen} />
+              {screen.heading === "Queries Inner Page" ? (
+                <AdminImpactSection />
+              ) : null}
+            </Fragment>
           ))}
         </div>
       </div>
