@@ -1687,6 +1687,11 @@ function CustomerImpactSection() {
           <h2
             className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-4`}
           >
+            <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] font-normal uppercase text-gray-600 mb-3`}
+          >
+            IMPACT
+          </p>
             Improving Decision Confidence at Scale
           </h2>
           <p
@@ -1758,6 +1763,11 @@ function AdminImpactSection() {
           <h2
             className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-4`}
           >
+            <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] font-normal uppercase text-gray-600 mb-3`}
+          >
+            IMPACT
+          </p>
             Strengthening Business and Operational Efficiency
           </h2>
           <p
@@ -1846,6 +1856,108 @@ function FinalExperienceSection() {
         ))}
       </div>
     </motion.section>
+  );
+}
+
+const caseStudyLessonCards = [
+  {
+    title: "Iteration needs boundaries",
+    text: "I learned that not everything needs to be explored at once. Defining clear boundaries helped focus on what actually moves the needle.",
+  },
+  {
+    title: "Feedback works best when it's intentional",
+    text: "Early, structured feedback loops reduced rework and made decisions feel more grounded, not reactive.",
+  },
+  {
+    title: "Ownership shapes better decisions",
+    text: "Looking at the system end-to-end helped me move beyond screens and think in terms of impact, trade-offs, and long-term value.",
+  },
+  {
+    title: "Systems over screens",
+    text: "The biggest shift was thinking in systems — connecting rules, signals, and workflows instead of designing isolated interfaces.",
+  },
+] as const;
+
+function CaseStudyClosingSection() {
+  return (
+    <section className="w-full mt-24 md:mt-32 pb-20 md:pb-28">
+      <div className="max-w-3xl mx-auto px-6">
+        <h2
+          className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-10 md:mb-12 text-left`}
+        >
+          Lessons from this project
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {caseStudyLessonCards.map((card) => (
+            <div
+              key={card.title}
+              className="relative rounded-2xl p-6 md:p-7 bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden"
+            >
+              <div className="absolute inset-0 rounded-2xl bg-[linear-gradient(135deg,rgba(244,222,229,0.25),rgba(234,244,236,0.25),rgba(234,240,255,0.25))] pointer-events-none" />
+              <div className="relative z-10">
+                <h3
+                  className={`${headingFont.className} text-xl font-semibold text-gray-900 mb-3`}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-relaxed`}
+                >
+                  {card.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="mt-20 md:mt-28 max-w-3xl mx-auto rounded-2xl p-8 md:p-10 bg-white/40 backdrop-blur-md border border-white/50 shadow-[0_10px_30px_rgba(0,0,0,0.06)] text-center"
+        >
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-6 md:mb-8`}
+          >
+            End note
+          </h2>
+          <div
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed space-y-5`}
+          >
+            <p>
+              Working on this project shifted how I think about design, from{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                assembling screens
+              </span>{" "}
+              to{" "}
+              <span className="bg-[#E6F0AA] px-1.5 py-0.5 rounded">
+                shaping systems that support real decisions
+              </span>.
+            </p>
+            <p>
+              It made me more conscious of{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                clarity, structure
+              </span>, and the role of{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                context in reducing effort
+              </span>{" "}
+              for users. More importantly, it reinforced that{" "}
+              <span className="bg-[#F0D3D3] px-1.5 py-0.5 rounded">
+                good design isn&apos;t about adding more
+              </span>, but about{" "}
+              <span className="bg-[rgba(219, 238, 192, 0.8)] px-1.5 py-0.5 rounded">
+                making the right things easier to see, understand, and act on
+              </span>.
+            </p>
+            <p>
+              These are{" "}
+              <span className="bg-[#C7F2F0] px-1.5 py-0.5 rounded">
+                principles I now carry into every problem I approach
+              </span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -2634,6 +2746,8 @@ export default function Home() {
 
       <AdminPlatformCaseStudySection />
 
+      <CaseStudyClosingSection />
+
     </main>
   );
 }
@@ -3103,7 +3217,7 @@ function AdminPlatformCaseStudySection() {
             ADMIN PLATFORM
           </p>
           <h2
-            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+            className={`${headingFont.className} text-3xl md:text-6xl font-semibold mb-6 leading-tight text-gray-900`}
           >
             Designing the Operational Backbone for Internal Teams
           </h2>
