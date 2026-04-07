@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { Caveat, Crimson_Text, Jost, Instrument_Serif } from "next/font/google";
 import { SelectedProjectsSection } from "@/components/selected-projects/SelectedProjectsSection";
+import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 
   const handwrittenFont = Caveat({
     subsets: ["latin"],
@@ -182,6 +183,8 @@ export default function Home() {
       </div>
 
       <SelectedProjectsSection />
+
+      <TestimonialsSection />
     </main>
   );
 }
