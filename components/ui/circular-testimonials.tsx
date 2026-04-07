@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { instrumentSerif } from "@/lib/fonts";
 
 interface Testimonial {
   quote: string;
@@ -21,14 +22,14 @@ interface CircularTestimonialsProps {
 }
 
 const bgColors = [
-  "#EADCD4",
-  "#DCE4D7",
-  "#DCE6E8",
-  "#E4E1D9",
-  "#F0E5D8",
-  "#E3DAD3",
-  "#D9E3DA",
-  "#E6DFD7",
+  "#ECD8CD",
+  "#E0EDC2",
+  "#DAEAED",
+  "#F5ECD0",
+  "#D2E4DB",
+  "#EBE4EB",
+  "#D9E3DA",
+  "#E2E4EE",
 ];
 
 export const CircularTestimonials = ({
@@ -101,7 +102,7 @@ export const CircularTestimonials = ({
       key={t.name}
       style={getStyle(i)}
       className="absolute w-[320px] h-[320px] rounded-2xl p-4 transition-all duration-500 ease-out
-border-[0.5px] border-white/10 shadow-none"
+ shadow-none"
     >
       <div
         className="w-full h-full rounded-xl flex flex-col items-center justify-center text-center p-6"
@@ -142,9 +143,9 @@ border-[0.5px] border-white/10 shadow-none"
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.3 }}
     >
-      <p className="text-[1.1rem] leading-[1.8] text-[#4a443d]">
-        {active.quote}
-      </p>
+      <p className={`${instrumentSerif.className} text-[1.15rem] leading-[1.9] text-[#4a443d]`}>
+  {active.quote}
+</p>
     </motion.div>
   </AnimatePresence>
 
