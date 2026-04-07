@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#e8e4dc"/>
+  <rect x="80" y="120" width="640" height="420" rx="12" fill="#d4cfc4" opacity=".9"/>
+  <circle cx="400" cy="380" r="80" fill="#c4bdb0" opacity=".6"/>
+  <path stroke="#a39e93" stroke-width="2" d="M120 620h560M120 680h400M120 740h520"/>
+  <text x="400" y="880" text-anchor="middle" fill="#8a8478" font-family="system-ui,sans-serif" font-size="22">Zinnov</text>
+</svg>

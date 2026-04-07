@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Caveat, Crimson_Text, Jost, Instrument_Serif } from "next/font/google";
+import { SelectedProjectsSection } from "@/components/selected-projects/SelectedProjectsSection";
 
   const handwrittenFont = Caveat({
     subsets: ["latin"],
@@ -125,8 +126,8 @@ function InteractivePortrait() {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <div className="flex h-28 w-28 scale-75 items-center justify-center rounded-full bg-[#f4c7c3] text-center text-xs text-neutral-800 transition-transform duration-300 ease-out group-hover:scale-100">
-            Glad you&apos;re here
+          <div className="pointer-events-none flex items-center justify-center rounded-full bg-[#f4c7c3] px-4 py-2 text-[16px] tracking-[0.04em] text-center text-xs text-neutral-800 transition-transform duration-300 ease-out group-hover:scale-100">
+            Glad you're here
           </div>
         </div>
       </div>
@@ -136,7 +137,7 @@ function InteractivePortrait() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f2ebe3] bg-[radial-gradient(ellipse_85%_65%_at_15%_10%,rgba(232,223,212,0.55)_0%,transparent_52%),radial-gradient(ellipse_70%_50%_at_90%_85%,rgba(221,212,200,0.35)_0%,transparent_48%)]">
+    <main className="bg-[#f2ebe3] bg-[radial-gradient(ellipse_85%_65%_at_15%_10%,rgba(232,223,212,0.55)_0%,transparent_52%),radial-gradient(ellipse_70%_50%_at_90%_85%,rgba(221,212,200,0.35)_0%,transparent_48%)]">
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center gap-20 px-6 py-24 md:flex-row md:items-start md:justify-center md:py-32">
       <InteractivePortrait />
 
@@ -179,6 +180,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <SelectedProjectsSection />
     </main>
   );
 }

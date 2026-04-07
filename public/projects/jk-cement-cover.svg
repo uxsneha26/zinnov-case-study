@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#ebe6df"/>
+  <rect x="100" y="160" width="600" height="360" rx="8" fill="#ddd5c8"/>
+  <rect x="140" y="580" width="200" height="120" rx="4" fill="#c9c0b2" opacity=".8"/>
+  <rect x="380" y="580" width="280" height="80" rx="4" fill="#bfb6a8" opacity=".7"/>
+  <path stroke="#9a9285" stroke-width="2" d="M100 780h600"/>
+  <text x="400" y="900" text-anchor="middle" fill="#7a7368" font-family="system-ui,sans-serif" font-size="22">JK Cement</text>
+</svg>
