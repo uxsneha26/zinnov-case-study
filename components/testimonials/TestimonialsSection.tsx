@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import CircularTestimonials from "@/components/ui/circular-testimonials";
 import { testimonials } from "@/data/testimonials";
 import { instrumentSerif } from "@/lib/fonts";
 
 export function TestimonialsSection() {
+  const [step, setStep] = useState(0);
+  const [activeIds, setActiveIds] = useState<string[]>([]);
   const items = useMemo(
     () =>
       testimonials.map((t) => ({
@@ -21,22 +23,26 @@ export function TestimonialsSection() {
 
   return (
     <section
-      className="w-full bg-transparent px-6 py-24 md:py-32"
-      aria-label="Testimonials"
-    >
-      <div className="mx-auto flex max-w-6xl flex-col">
-        
-        <h2
-          className={`${instrumentSerif.className} text-center text-5xl md:text-[2.2rem] font-normal tracking-tight text-[#3d3832]`}
-        >
-          Kind words from collaborators
-        </h2>
-  
-        <div className="relative mt-16 md:mt-20">
-          <CircularTestimonials testimonials={items} autoplay={false} />
-        </div>
-  
+ className="relative h-[200vh] w-full bg-transparent"
+  aria-label="Testimonials"
+>
+  <div className="sticky top-0 flex h-screen w-full items-center">
+    
+    <div className="mx-auto flex w-full max-w-6xl flex-col px-6 py-24 md:py-32">
+      
+      <h2
+        className={`${instrumentSerif.className} text-center text-5xl md:text-[2.2rem] font-normal tracking-tight text-[#3d3832]`}
+      >
+        Kind words from collaborators
+      </h2>
+
+      <div className="relative mt-16 md:mt-20">
+        <CircularTestimonials testimonials={items} autoplay={false} />
       </div>
-    </section>
+
+    </div>
+
+  </div>
+</section>
   );
 }
