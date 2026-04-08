@@ -39,7 +39,7 @@ export function ArchitectureLearningSection() {
 
     const newStep = Math.min(
       total - 1,
-      Math.floor(effectiveProgress * total)
+      Math.floor(effectiveProgress * total * 1.5)
     );
   
     
