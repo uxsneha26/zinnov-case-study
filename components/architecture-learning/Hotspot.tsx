@@ -1,6 +1,8 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
 import { Instrument_Serif, Crimson_Text } from "next/font/google";
+import type { HotspotAnchorPair } from "./HotspotConnectorOverlay";
 import type { HotspotData } from "./hotspots";
 
 const instrumentSerif = Instrument_Serif({
@@ -16,10 +18,32 @@ const bodyFont = Crimson_Text({
 type HotspotProps = {
   hotspot: HotspotData;
   isOpen: boolean;
+  onAnchorsChange?: (id: string, pair: HotspotAnchorPair) => void;
 };
 
-export function Hotspot({ hotspot, isOpen }: HotspotProps) {
+export function Hotspot({ hotspot, isOpen, onAnchorsChange }: HotspotProps) {
   const { topPct, leftPct, header, body, offsetX = 0, offsetY = 0 } = hotspot;
+  const dotRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!onAnchorsChange) return;
+    onAnchorsChange(hotspot.id, {
+      dot: dotRef.current,
+      card: cardRef.current,
+    });
+    return () => {
+      onAnchorsChange(hotspot.id, { dot: null, card: null });
+    };
+  }, [
+    hotspot.id,
+    onAnchorsChange,
+    isOpen,
+    header,
+    body,
+    offsetX,
+    offsetY,
+  ]);
 
   return (
     <div
@@ -31,12 +55,16 @@ export function Hotspot({ hotspot, isOpen }: HotspotProps) {
       }}
     >
       {/* DOT */}
-      <div className="relative flex items-center justify-center">
+      <div
+        ref={dotRef}
+        className="relative flex items-center justify-center"
+      >
         <div className="h-2 w-2 rounded-full bg-[#354249] shadow-[0_0_0_8px_rgba(215,204,188,0.6)]" />
       </div>
 
       {/* CARD */}
       <div
+        ref={cardRef}
         className={`
           pointer-events-none absolute left-1/2 bottom-full mb-4
           w-[260px] rounded-xl border border-[#e6ded2]

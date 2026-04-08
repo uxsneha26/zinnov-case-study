@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { caveat, instrumentSerif } from "@/lib/fonts";
+import {
+  HotspotConnectorOverlay,
+  type HotspotAnchorPair,
+} from "./HotspotConnectorOverlay";
 import { Hotspot } from "./Hotspot";
 import { ARCHITECTURE_HOTSPOTS } from "./hotspots";
 
@@ -9,9 +13,28 @@ const IMAGE_PLACEHOLDER = "/architecture-plan.png";
 
 export function ArchitectureLearningSection() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [imageContainer, setImageContainer] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [anchors, setAnchors] = useState<Record<string, HotspotAnchorPair>>({});
 
   const [step, setStep] = useState(-1);
   const [activeIds, setActiveIds] = useState<string[]>([]);
+
+  const onAnchorsChange = useCallback(
+    (id: string, pair: HotspotAnchorPair) => {
+      setAnchors((prev) => {
+        const next = { ...prev };
+        if (!pair.dot && !pair.card) {
+          delete next[id];
+        } else {
+          next[id] = pair;
+        }
+        return next;
+      });
+    },
+    []
+  );
 
   // 🔁 Scroll → step (FIXED even distribution)
   useEffect(() => {
@@ -98,12 +121,20 @@ export function ArchitectureLearningSection() {
             </header>
 
             {/* Image + Hotspots */}
-            <div className="relative mx-auto mt-6 w-full max-w-[900px] flex-1">
+            <div
+              ref={setImageContainer}
+              className="relative mx-auto mt-6 w-full max-w-[900px] flex-1"
+            >
+              <HotspotConnectorOverlay
+                container={imageContainer}
+                anchors={anchors}
+                activeIds={activeIds}
+              />
 
               <img
                 src={IMAGE_PLACEHOLDER}
                 alt=""
-                className="h-auto w-full object-contain"
+                className="relative z-0 h-auto w-full object-contain"
               />
 
               {ARCHITECTURE_HOTSPOTS.map((h) => (
@@ -111,9 +142,9 @@ export function ArchitectureLearningSection() {
                   key={h.id}
                   hotspot={h}
                   isOpen={activeIds.includes(h.id)}
+                  onAnchorsChange={onAnchorsChange}
                 />
               ))}
-
             </div>
 
           </div>
