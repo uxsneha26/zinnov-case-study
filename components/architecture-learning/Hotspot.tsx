@@ -55,12 +55,16 @@ export function Hotspot({ hotspot, isOpen, onAnchorsChange }: HotspotProps) {
       }}
     >
       {/* DOT */}
-      <div
-        ref={dotRef}
-        className="relative flex items-center justify-center"
-      >
-        <div className="h-2 w-2 rounded-full bg-[#354249] shadow-[0_0_0_8px_rgba(215,204,188,0.6)]" />
-      </div>
+<div
+  ref={dotRef}
+  className="relative flex items-center justify-center transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+  style={{
+    opacity: isOpen ? 1 : 0,
+    transform: isOpen ? "scale(1)" : "scale(0.6)",
+  }}
+>
+  <div className="h-2 w-2 rounded-full bg-[#354249] shadow-[0_0_0_8px_rgba(215,204,188,0.6)]" />
+</div>
 
       {/* CARD */}
       <div
