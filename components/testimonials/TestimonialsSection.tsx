@@ -6,8 +6,7 @@ import { testimonials } from "@/data/testimonials";
 import { instrumentSerif } from "@/lib/fonts";
 
 export function TestimonialsSection() {
-  const [step, setStep] = useState(0);
-  const [activeIds, setActiveIds] = useState<string[]>([]);
+  
   const items = useMemo(
     () =>
       testimonials.map((t) => ({

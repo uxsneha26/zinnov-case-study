@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { Caveat, Crimson_Text, Jost, Instrument_Serif } from "next/font/google";
 import { ArchitectureLearningSection } from "@/components/architecture-learning/ArchitectureLearningSection";
+import { PersonalSection } from "@/components/personal/PersonalSection";
 import { SelectedProjectsSection } from "@/components/selected-projects/SelectedProjectsSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 
@@ -188,6 +189,8 @@ export default function Home() {
       <TestimonialsSection />
 
       <ArchitectureLearningSection />
+
+      <PersonalSection />
     </main>
   );
 }
