@@ -61,7 +61,7 @@ export function PoemCard({
   frontImageAlt = "",
   frontImageClassName = `${frontImageWrapBase} h-80 w-40`,
   backTitle,
-  backBackgroundImage = DEFAULT_BACK_BG,
+  backBackgroundImage,
   teaserLines,
   cursorLabel,
   poemText = DEFAULT_POEM,
