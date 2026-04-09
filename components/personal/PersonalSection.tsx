@@ -51,39 +51,40 @@ export function PersonalSection() {
             
 
             {/* Foreground: heading in flow with bento row (shared top baseline) */}
-            <div className="relative z-10 flex h-full w-full flex-col items-start justify-start px-8 pb-10 pt-16 md:px-16 md:pb-14 md:pt-20 lg:px-24">
-              <div className="flex w-full min-w-0 items-start gap-6">
+            <div className="relative z-10 flex h-full w-full flex-col justify-between px-8 pb-10 pt-16 md:px-16 md:pb-14 md:pt-20 lg:px-24">
+            <div className="flex w-full min-w-0 items-stretch gap-12 flex-1">
                 {/* A: intro copy + Card 1 */}
-                <div className="flex min-w-0 flex-[1.2] flex-col gap-6">
-                  <div>
-                    <h2
-                      id="personal-section-heading"
-                      className={`${instrumentSerif.className} max-w-3xl text-balance text-4xl font-normal leading-[1.15] tracking-tight text-[#412F2F] md:text-5xl lg:text-6xl`}
-                    >
-                      Some personal stuff
-                    </h2>
-                    <p
-                      className={`${caveat.className} mt-3 text-2xl text-[#412F2F] md:text-4xl`}
-                    >
-                      that shapes who I am
-                    </p>
-                  </div>
-                  <BentoCard className="h-[260px] border border-red-500">
-                    Card 1
-                  </BentoCard>
-                </div>
+                <div className="flex min-w-0 flex-[1] flex-col gap-6 h-full">
+  <div className="shrink-0">
+    <h2
+      id="personal-section-heading"
+      className={`${instrumentSerif.className} max-w-3xl text-balance text-4xl font-normal leading-[1.15] tracking-tight text-[#412F2F] md:text-5xl lg:text-6xl`}
+    >
+      Some personal stuff
+    </h2>
+    <p
+      className={`${caveat.className} mt-3 text-2xl text-[#412F2F] md:text-4xl`}
+    >
+      that shapes who I am
+    </p>
+  </div>
+
+  <BentoCard className="mt-auto h-[360px]">
+    Card 1
+  </BentoCard>
+</div>
 
                 {/* Center: Card 2 */}
-                <BentoCard className="h-[320px] min-w-0 flex-[1] border border-blue-500">
+                <BentoCard className="mt-auto h-[480px] min-w-0 flex-[1]">
                   Card 2
                 </BentoCard>
 
                 {/* B: Cards 3 & 4 */}
-                <div className="flex min-w-0 flex-[0.8] flex-col gap-6">
-                  <BentoCard className="h-[140px] border border-green-500">
+                <div className="flex min-w-0 flex-[1] flex-col gap-12 h-full">
+                  <BentoCard className="h-[240px]">
                     Card 3
                   </BentoCard>
-                  <BentoCard className="h-[180px] border border-amber-500">
+                  <BentoCard className="h-full">
                     Card 4
                   </BentoCard>
                 </div>
