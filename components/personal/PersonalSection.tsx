@@ -2,7 +2,12 @@ import { instrumentSerif } from "@/lib/fonts";
 import { BentoCard } from "@/components/ui/BentoCard";
 import Image from "next/image";
 import { Caveat } from "next/font/google";
-import { PoemCard } from "@/components/personal/PoemCard";
+import {
+  PoemCard,
+  artCardProps,
+  musingsCardProps,
+  paintingCardProps,
+} from "@/components/personal/PoemCard";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -71,22 +76,44 @@ export function PersonalSection() {
   </div>
 
 
-  <PoemCard className="mt-auto h-[300px] md:h-[320px]" />
+  <PoemCard
+    {...musingsCardProps}
+    className="mt-auto h-[300px] md:h-[320px]"
+  />
 </div>
 
                 {/* Center: Card 2 */}
-                <BentoCard className="mt-auto h-[480px] min-w-0 flex-[1]">
-                  Card 2
-                </BentoCard>
+                <PoemCard
+  className="h-[320px] min-w-0 flex-[1]"
+  frontTitle="painting"
+  frontImage="/images/painting.png"
+  backTitle="Making art"
+  teaserLines={[
+    "Colour spills before thought forms,",
+    "hands move faster than doubt,",
+    "and something honest appears.",
+  ]}
+  cursorLabel="View work"
+/>
 
                 {/* B: Cards 3 & 4 */}
                 <div className="flex min-w-0 flex-[1] flex-col gap-12 h-full">
                   <BentoCard className="h-[240px]">
                     Card 3
                   </BentoCard>
-                  <BentoCard className="h-full">
-                    Card 4
-                  </BentoCard>
+                  
+                  <PoemCard
+  className="h-full"
+  frontTitle="art"
+  frontImage="/images/art.png"
+  backTitle="Creative explorations"
+  teaserLines={[
+    "Fragments of thought,",
+    "assembled into something felt,",
+    "not always understood.",
+  ]}
+  cursorLabel="Explore"
+/>
                 </div>
               </div>
             </div>
