@@ -2,6 +2,7 @@ import { instrumentSerif } from "@/lib/fonts";
 import { BentoCard } from "@/components/ui/BentoCard";
 import Image from "next/image";
 import { Caveat } from "next/font/google";
+import { PoemCard } from "@/components/personal/PoemCard";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -69,9 +70,8 @@ export function PersonalSection() {
     </p>
   </div>
 
-  <BentoCard className="mt-auto h-[360px]">
-    Card 1
-  </BentoCard>
+
+  <PoemCard className="mt-auto h-[300px] md:h-[320px]" />
 </div>
 
                 {/* Center: Card 2 */}
