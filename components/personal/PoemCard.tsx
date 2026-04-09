@@ -4,6 +4,7 @@ import { useState } from "react";
 import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
 
+
 const DEFAULT_TEASER = [
   "Light through the curtain, thin as paper—",
   "I write your name where the dust gathers,",
@@ -45,6 +46,10 @@ export function PoemCard({
 }: PoemCardProps) {
   const [overlayOpen, setOverlayOpen] = useState(false);
 
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+const [hovering, setHovering] = useState(false);
+
+
   return (
     <>
       <div
@@ -70,7 +75,16 @@ export function PoemCard({
   type="button"
   aria-label={`Read full poem: ${title}`}
   onClick={() => setOverlayOpen(true)}
-  className="absolute inset-0 rounded-xl border border-neutral-300/60 shadow-sm cursor-pointer [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden"
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCursorPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  }}
+  onMouseEnter={() => setHovering(true)}
+  onMouseLeave={() => setHovering(false)}
+  className="absolute inset-0 rounded-xl border border-neutral-300/60 shadow-sm cursor-none [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden"
 >
 
   {/* Background image */}
@@ -106,6 +120,21 @@ export function PoemCard({
     </div>
     </div>
   </div>
+  {/* CUSTOM CURSOR */}
+  {hovering && (
+  <div
+    className="pointer-events-none absolute z-[999] transition-transform duration-50 ease-out"
+    style={{
+      left: cursorPos.x,
+      top: cursorPos.y,
+      transform: "translate(-50%, -50%)",
+    }}
+  >
+    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] text-xs font-medium text-[#FFFFFF] bg-[#987D7D]">
+      Read poem
+    </div>
+  </div>
+)}
 </button>
         </div>
       </div>
