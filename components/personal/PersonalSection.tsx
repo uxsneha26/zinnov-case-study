@@ -86,14 +86,19 @@ export function PersonalSection() {
                 <PoemCard
   variant="gallery"
   images={[
-    "/images/painting1.png",
-    "/images/painting2.png",
-    "/images/painting3.png",
+    "/images/gallery/painting-1.png",
+    "/images/gallery/painting-2.png",
+    "/images/gallery/painting-3.png",
+    "/images/gallery/painting-4.png",
+    "/images/gallery/painting-5.png",
+    "/images/gallery/painting-6.png",
   ]}
   className="h-[320px] min-w-0 flex-[1]"
   frontTitle="painting"
   frontImage="/images/painting.png"
   backTitle="Making art"
+  disableOverlayClick={true}
+enableImageOverlay={false}
   teaserLines={[
     "Colour spills before thought forms,",
     "hands move faster than doubt,",
@@ -111,9 +116,9 @@ export function PersonalSection() {
                   <PoemCard
   variant="gallery"
   images={[
-    "/images/art1.png",
-    "/images/art2.png",
-    "/images/art3.png",
+    "/images/gallery/art-1.png",
+    "/images/gallery/art-2.png",
+    "/images/gallery/art-3.png",
   ]}
   className="h-full"
   frontTitle="art"

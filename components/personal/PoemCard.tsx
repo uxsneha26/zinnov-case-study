@@ -51,6 +51,10 @@ export type PoemCardProps = {
   variant?: "poem" | "gallery";
   /** Gallery back carousel image URLs */
   images?: string[];
+  /** Enable image overlay for gallery variant */
+  enableImageOverlay?: boolean;
+  /** Disable overlay click for gallery variant */
+  disableOverlayClick?: boolean;
 };
 
 /**
@@ -69,10 +73,14 @@ export function PoemCard({
   cursorLabel,
   poemText = DEFAULT_POEM,
   overlayTitle,
+  disableOverlayClick = false,
   variant = "poem",
+  
+  enableImageOverlay = false,
   images,
 }: PoemCardProps) {
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [imageOverlayOpen, setImageOverlayOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
@@ -124,11 +132,23 @@ export function PoemCard({
             role="button"
             tabIndex={0}
             aria-label={`${cursorLabel}: ${backTitle}`}
-            onClick={() => setOverlayOpen(true)}
+            onClick={() => {
+              if (enableImageOverlay) {
+                setImageOverlayOpen(true);
+              } else if (!disableOverlayClick) {
+                setOverlayOpen(true);
+              }
+            }}
+
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                setOverlayOpen(true);
+            
+                if (enableImageOverlay) {
+                  setImageOverlayOpen(true);
+                } else if (!disableOverlayClick) {
+                  setOverlayOpen(true);
+                }
               }
             }}
             onMouseMove={(e) => {
@@ -279,13 +299,27 @@ export function PoemCard({
           </div>
         </div>
       
-
+        {!disableOverlayClick && (
       <PoemOverlay
         open={overlayOpen}
         onClose={() => setOverlayOpen(false)}
         title={overlayHeading}
         poemText={poemText}
       />
+      )}
+
+{enableImageOverlay && imageOverlayOpen && (
+  <div
+    className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center"
+    onClick={() => setImageOverlayOpen(false)}
+  >
+    <img
+      src={images?.[currentIndex] || ""}
+      alt=""
+      className="max-h-[90vh] max-w-[90vw] object-contain"
+    />
+  </div>
+)}
     </>
   );
 }
@@ -317,6 +351,8 @@ export const paintingCardProps = {
   frontImageAlt: "Paint palette and brush",
   frontImageClassName: `${frontImageWrapBase} h-96 w-48`,
   backTitle: "Making art",
+  disableOverlayClick: true,
+  enableImageOverlay: false,
   teaserLines: [
     "Layers of color where silence used to sit—",
     "each stroke a small argument with the blank page,",
@@ -352,6 +388,8 @@ export const artCardProps = {
     "nothing finished, everything invited.",
   ],
   cursorLabel: "Explore",
+  enableImageOverlay: true,
+  disableOverlayClick: false,
   poemText: `Creative explorations
 
 Shapes lean toward each other like a quiet conversation,
