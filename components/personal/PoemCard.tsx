@@ -168,7 +168,7 @@ export function PoemCard({
               
                 {showCarousel && (
                   <div
-                    className="relative flex-1 w-full overflow-hidden rounded-lg"
+                    className="relative flex-1 w-full shadow-[inset_0_-40px_60px_rgba(0,0,0,0.12),inset_0_20px_40px_rgba(0,0,0,0.01)] overflow-hidden rounded-lg"
                     onMouseMove={(e) => {
                       const rect = e.currentTarget.getBoundingClientRect();
                       setCursorPos({
@@ -215,13 +215,22 @@ export function PoemCard({
                   </div>
                 )}
 
-                
+<div className="pt-4">
+  {isPoem && (
+    <p className="text-2xl md:text-3xl text-[#2F2323]">
+      {backTitle}
+    </p>
+  )}
+
+  <div className="mt-3 space-y-2">
                 <div
                   className={`${bodySerif.className} mt-4 space-y-1 text-base leading-snug text-[#2F2323]/90 md:text-md`}
                 >
                   {teaserLines.slice(0, 3).map((line, i) => (
                     <p key={i}>{line}</p>
                   ))}
+                </div>
+                </div>
                 </div>
 
                 {/* GALLERY CURSOR (painting + art) */}
@@ -299,9 +308,9 @@ export const musingsCardProps = {
 export const paintingCardProps = {
   variant: "gallery" as const,
   images: [
-    "/images/gallery/painting-1.jpg",
-    "/images/gallery/painting-2.jpg",
-    "/images/gallery/painting-3.jpg",
+    "/images/gallery/painting-1.png",
+    "/images/gallery/painting-2.png",
+    "/images/gallery/painting-3.png",
   ],
   frontTitle: "painting",
   frontImage: "/images/paint-palette.png",
@@ -328,9 +337,9 @@ Replace with your artist statement or gallery notes.`,
 export const artCardProps = {
   variant: "gallery" as const,
   images: [
-    "/images/gallery/art-1.jpg",
-    "/images/gallery/art-2.jpg",
-    "/images/gallery/art-3.jpg",
+    "/images/gallery/art-1.png",
+    "/images/gallery/art-2.png",
+    "/images/gallery/art-3.png",
   ],
   frontTitle: "art",
   frontImage: "/images/art-abstract.png",
