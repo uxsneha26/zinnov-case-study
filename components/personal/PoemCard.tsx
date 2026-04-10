@@ -204,8 +204,10 @@ export function PoemCard({
                       alt=""
                       className="h-full w-full object-cover"
                     />
-
-                    <button
+{/* Previous image button */}
+<button
+  onMouseEnter={() => setHovering(false)}
+  onMouseLeave={() => setHovering(true)}
                       type="button"
                       aria-label="Previous image"
                       onClick={(e) => {
@@ -217,7 +219,10 @@ export function PoemCard({
                       ‹
                     </button>
 
+                    {/* Next image button */}
                     <button
+  onMouseEnter={() => setHovering(false)}
+  onMouseLeave={() => setHovering(true)}
                       type="button"
                       aria-label="Next image"
                       onClick={(e) => {
@@ -263,7 +268,7 @@ export function PoemCard({
           transform: "translate(-50%, -50%)",
         }}
       >
-        <div className="h-3 w-3 rounded-full bg-[#987D7D]/40 shadow-md" />
+        <div className="h-3 w-3 rounded-full bg-[#C49C9C]/80 border-[2px] border-[#E8DFDA] shadow-[0_20px_60px_rgba(152,125,125,0.18)]" />
       </div>
     )}
               
@@ -272,7 +277,7 @@ export function PoemCard({
             {hovering && (
   <>
     {/* POEM CURSOR */}
-    {isPoem && (
+    {(isPoem || (isGallery && enableImageOverlay)) && (
       <div
         className="pointer-events-none absolute z-[999] transition-transform duration-50 ease-out"
         style={{
@@ -281,7 +286,7 @@ export function PoemCard({
           transform: "translate(-50%, -50%)",
         }}
       >
-        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#987D7D] text-white text-xs">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-xs backdrop-blur-md">
           {cursorLabel}
         </div>
       </div>
@@ -291,9 +296,7 @@ export function PoemCard({
   </>
 )}
               
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#987D7D] text-sm font-medium text-[#FFFFFF] shadow-[0_10px_30px_rgba(152,125,125,0.25)]">
-                  {cursorLabel}
-                </div>
+                
               </div>
             
           </div>

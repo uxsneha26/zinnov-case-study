@@ -124,12 +124,13 @@ enableImageOverlay={false}
   frontTitle="art"
   frontImage="/images/art.png"
   backTitle="Creative explorations"
+  enableImageOverlay={true}
   teaserLines={[
     "Fragments of thought,",
     "assembled into something felt,",
     "not always understood.",
   ]}
-  cursorLabel="Explore"
+  cursorLabel="Vier Artwork"
 />
                 </div>
               </div>
