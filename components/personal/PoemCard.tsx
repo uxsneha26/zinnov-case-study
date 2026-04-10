@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
+
 const DEFAULT_TEASER = [
   "Light through the curtain, thin as paper—",
   "I write your name where the dust gathers,",
@@ -39,15 +40,17 @@ export type PoemCardProps = {
   /** Wraps the image; use for size (e.g. painting slightly larger than musings) */
   frontImageClassName?: string;
   backTitle: string;
-  /** Back face background (same layered system as before) */
-  
-  teaserLines: readonly string[];
+  /** Back face background (poem variant only; gallery uses flat bg) */
   backBackgroundImage?: string | null;
+  teaserLines: readonly string[];
   cursorLabel: string;
   /** Full body for the read overlay */
   poemText?: string;
   /** Overlay heading; defaults to backTitle */
   overlayTitle?: string;
+  variant?: "poem" | "gallery";
+  /** Gallery back carousel image URLs */
+  images?: string[];
 };
 
 /**
@@ -66,12 +69,31 @@ export function PoemCard({
   cursorLabel,
   poemText = DEFAULT_POEM,
   overlayTitle,
+  variant = "poem",
+  images,
 }: PoemCardProps) {
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
 
   const overlayHeading = overlayTitle ?? backTitle;
+  const isPoem = variant === "poem";
+  const isGallery = variant === "gallery";
+  const showCarousel =
+    isGallery && images && images.length > 0;
+
+  const next = () => {
+    if (!images?.length) return;
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = () => {
+    if (!images?.length) return;
+    setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+  };
+
+  const bgSrc = backBackgroundImage ?? DEFAULT_BACK_BG;
 
   return (
     <>
@@ -80,7 +102,7 @@ export function PoemCard({
       >
         <div className="relative h-full min-h-[12rem] w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] motion-reduce:transition-none group-hover:[transform:rotateY(180deg)] motion-reduce:group-hover:[transform:rotateY(0deg)]">
           {/* Front */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-12 gap-8 rounded-xl border border-neutral-200/70 bg-[#faf8f6]/70 backdrop-blur-sm p-4 shadow-sm [backface-visibility:hidden]">
+          <div className="absolute inset-0 flex flex-col items-center justify-start gap-8 rounded-xl border border-neutral-200/70 bg-[#faf8f6]/70 p-4 pt-12 shadow-sm backdrop-blur-sm [backface-visibility:hidden]">
             <div>
               <p
                 className={`${caveat.className} mt-6 text-center text-4xl text-[#412F2F]/80`}
@@ -97,68 +119,157 @@ export function PoemCard({
             </div>
           </div>
 
-          {/* Back */}
-          <button
-            type="button"
+          {/* Back — div wrapper so carousel chevrons can be real <button>s (no nesting) */}
+          <div
+            role="button"
+            tabIndex={0}
             aria-label={`${cursorLabel}: ${backTitle}`}
             onClick={() => setOverlayOpen(true)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setOverlayOpen(true);
+              }
+            }}
             onMouseMove={(e) => {
+              if (!isPoem && !isGallery) return;
               const rect = e.currentTarget.getBoundingClientRect();
               setCursorPos({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top,
               });
             }}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            className="absolute inset-0 cursor-none overflow-hidden rounded-xl border border-neutral-300/60 shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)]"
+            onMouseEnter={() => {
+              if (isPoem || isGallery) setHovering(true);
+            }}
+            onMouseLeave={() => {
+              setHovering(false);
+            }}
+            className={`absolute inset-0 overflow-hidden rounded-xl shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)] ${
+              (isPoem || isGallery) ? "cursor-none" : "cursor-default"
+            }`}
           >
+            {isGallery ? (
+              <div className="absolute inset-0 rounded-xl bg-[#faf8f6]" />
+            ) : (
+              <div
+                className="absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url('${bgSrc}')` }}
+              >
+                <div className="absolute inset-0 rounded-xl bg-[#faf8f6]/30" />
+              </div>
+            )}
 
-            {backBackgroundImage ? (
-  <div
-    className="absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: `url(${backBackgroundImage})` }}
-  >
-    <div className="absolute inset-0 rounded-xl bg-[#faf8f6]/30" />
-  </div>
-) : (
-  <div className="absolute inset-0 rounded-xl bg-[#faf8f6]" />
-)}
+            {!isGallery && (
+              <div className="absolute inset-0 bg-[#F8F3E0]/60" />
+            )}
 
-            <div className="relative z-10 flex h-full flex-col justify-between p-5 text-white">
-              <div>
-                <p
-                  className={`${instrumentSerif.className} text-2xl text-[#2F2323] md:text-3xl`}
-                >
-                  {backTitle}
-                </p>
+            <div className="relative z-10 flex h-full flex-col justify-start p-5 text-white">
+              
+                {showCarousel && (
+                  <div
+                    className="relative flex-1 w-full overflow-hidden rounded-lg"
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setCursorPos({
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top,
+                      });
+                    }}
+                    onMouseEnter={() => setHovering(true)}
+                    onMouseLeave={() => setHovering(false)}
+                  >
+                    <img
+                      src={images[currentIndex]}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+
+                    <button
+                      type="button"
+                      aria-label="Previous image"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        prev();
+                      }}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/60 p-2 shadow-sm hover:bg-white"
+                    >
+                      ‹
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-label="Next image"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        next();
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/60 p-2 shadow-sm hover:bg-white"
+                    >
+                      ›
+
+                      
+                    </button>
+
+                    
+                  </div>
+                )}
+
+                
                 <div
-                  className={`${bodySerif.className} mt-4 space-y-2 text-base leading-relaxed text-[#2F2323]/90 md:text-lg`}
+                  className={`${bodySerif.className} mt-4 space-y-1 text-base leading-snug text-[#2F2323]/90 md:text-md`}
                 >
                   {teaserLines.slice(0, 3).map((line, i) => (
                     <p key={i}>{line}</p>
                   ))}
                 </div>
-              </div>
+
+                {/* GALLERY CURSOR (painting + art) */}
+    {isGallery && (
+      <div
+        className="pointer-events-none absolute z-[999] [transform:translateZ(0)]"
+        style={{
+          left: cursorPos.x,
+          top: cursorPos.y,
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <div className="h-3 w-3 rounded-full bg-[#987D7D]/40 shadow-md" />
+      </div>
+    )}
+              
             </div>
 
             {hovering && (
-              <div
-                className="pointer-events-none absolute z-[999] transition-transform duration-50 ease-out"
-                style={{
-                  left: cursorPos.x,
-                  top: cursorPos.y,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
+  <>
+    {/* POEM CURSOR */}
+    {isPoem && (
+      <div
+        className="pointer-events-none absolute z-[999] transition-transform duration-50 ease-out"
+        style={{
+          left: cursorPos.x,
+          top: cursorPos.y,
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#987D7D] text-white text-xs">
+          {cursorLabel}
+        </div>
+      </div>
+    )}
+
+    
+  </>
+)}
+              
                 <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#987D7D] text-sm font-medium text-[#FFFFFF] shadow-[0_10px_30px_rgba(152,125,125,0.25)]">
                   {cursorLabel}
                 </div>
               </div>
-            )}
-          </button>
+            
+          </div>
         </div>
-      </div>
+      
 
       <PoemOverlay
         open={overlayOpen}
@@ -172,12 +283,13 @@ export function PoemCard({
 
 /** Musings / poem — default copy and assets */
 export const musingsCardProps = {
+  variant: "poem" as const,
   frontTitle: "musings",
   frontImage: "/images/musings-icon.png",
   frontImageAlt: "Musings illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-40`,
   backTitle: "Spring, in another time",
-  backBackgroundImage: null,
+  backBackgroundImage: DEFAULT_BACK_BG,
   teaserLines: DEFAULT_TEASER,
   cursorLabel: "Read poem",
   poemText: DEFAULT_POEM,
@@ -185,12 +297,17 @@ export const musingsCardProps = {
 
 /** Painting — slightly larger front illustration */
 export const paintingCardProps = {
+  variant: "gallery" as const,
+  images: [
+    "/images/gallery/painting-1.jpg",
+    "/images/gallery/painting-2.jpg",
+    "/images/gallery/painting-3.jpg",
+  ],
   frontTitle: "painting",
   frontImage: "/images/paint-palette.png",
   frontImageAlt: "Paint palette and brush",
   frontImageClassName: `${frontImageWrapBase} h-96 w-48`,
   backTitle: "Making art",
-  backBackgroundImage: null,
   teaserLines: [
     "Layers of color where silence used to sit—",
     "each stroke a small argument with the blank page,",
@@ -209,12 +326,17 @@ Replace with your artist statement or gallery notes.`,
 
 /** Art / creative explorations */
 export const artCardProps = {
+  variant: "gallery" as const,
+  images: [
+    "/images/gallery/art-1.jpg",
+    "/images/gallery/art-2.jpg",
+    "/images/gallery/art-3.jpg",
+  ],
   frontTitle: "art",
   frontImage: "/images/art-abstract.png",
   frontImageAlt: "Abstract creative illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-44`,
   backTitle: "Creative explorations",
-  backBackgroundImage: null,
   teaserLines: [
     "Shapes lean toward each other like a quiet conversation,",
     "texture as punctuation, negative space as breath—",

@@ -84,6 +84,12 @@ export function PersonalSection() {
 
                 {/* Center: Card 2 */}
                 <PoemCard
+  variant="gallery"
+  images={[
+    "/images/painting1.png",
+    "/images/painting2.png",
+    "/images/painting3.png",
+  ]}
   className="h-[320px] min-w-0 flex-[1]"
   frontTitle="painting"
   frontImage="/images/painting.png"
@@ -101,8 +107,14 @@ export function PersonalSection() {
                   <BentoCard className="h-[240px]">
                     Card 3
                   </BentoCard>
-                  
+
                   <PoemCard
+  variant="gallery"
+  images={[
+    "/images/art1.png",
+    "/images/art2.png",
+    "/images/art3.png",
+  ]}
   className="h-full"
   frontTitle="art"
   frontImage="/images/art.png"
