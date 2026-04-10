@@ -313,14 +313,19 @@ export function PoemCard({
 
 {enableImageOverlay && imageOverlayOpen && (
   <div
-    className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center"
+    className="fixed inset-0 z-[999] flex items-center justify-center bg-[#faf8f6]/30 backdrop-blur-[2px]"
     onClick={() => setImageOverlayOpen(false)}
   >
-    <img
-      src={images?.[currentIndex] || ""}
-      alt=""
-      className="max-h-[90vh] max-w-[90vw] object-contain"
-    />
+    <div
+  className="relative h-[80vh] aspect-square rounded-xl bg-white/10 backdrop-blur-md shadow-2xl p-4 flex items-center justify-center"
+  onClick={(e) => e.stopPropagation()}
+>
+<img
+  src={images?.[currentIndex] || ""}
+  alt=""
+  className="max-h-full max-w-full object-contain rounded-md"
+/>
+</div>
   </div>
 )}
     </>
