@@ -130,7 +130,7 @@ enableImageOverlay={false}
     "assembled into something felt,",
     "not always understood.",
   ]}
-  cursorLabel="Vier Artwork"
+  cursorLabel="View Artwork"
 />
                 </div>
               </div>

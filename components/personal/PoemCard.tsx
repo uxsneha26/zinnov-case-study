@@ -28,6 +28,7 @@ walking back through an ordinary afternoon.`;
 
 const DEFAULT_BACK_BG = "/images/poem-card-bg.png";
 
+
 const frontImageWrapBase =
   "mx-auto mt-6 overflow-hidden rounded-lg";
 
@@ -55,6 +56,8 @@ export type PoemCardProps = {
   enableImageOverlay?: boolean;
   /** Disable overlay click for gallery variant */
   disableOverlayClick?: boolean;
+  /** Images for the image overlay */
+  overlayImages?: string[];
 };
 
 /**
@@ -77,7 +80,8 @@ export function PoemCard({
   variant = "poem",
   
   enableImageOverlay = false,
-  images,
+images,
+overlayImages,
 }: PoemCardProps) {
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [imageOverlayOpen, setImageOverlayOpen] = useState(false);
@@ -102,6 +106,7 @@ export function PoemCard({
   };
 
   const bgSrc = backBackgroundImage ?? DEFAULT_BACK_BG;
+  const overlayImageList = overlayImages ?? (images || []);
 
   return (
     <>
@@ -321,7 +326,7 @@ export function PoemCard({
   onClick={(e) => e.stopPropagation()}
 >
 <img
-  src={images?.[currentIndex] || ""}
+  src={overlayImageList[currentIndex] || ""}
   alt=""
   className="max-h-full max-w-full object-contain rounded-md"
 />
@@ -380,11 +385,19 @@ Replace with your artist statement or gallery notes.`,
 /** Art / creative explorations */
 export const artCardProps = {
   variant: "gallery" as const,
+  /** Images for the carousel */
   images: [
+    "/images/gallery/art-1-zoom.png",
+    "/images/gallery/art-2-zoom.png",
+    "/images/gallery/art-3-zoom.png",
+  ],
+  /** Images for the image overlay */
+  overlayImages: [
     "/images/gallery/art-1.png",
     "/images/gallery/art-2.png",
     "/images/gallery/art-3.png",
   ],
+
   frontTitle: "art",
   frontImage: "/images/art-abstract.png",
   frontImageAlt: "Abstract creative illustration",
