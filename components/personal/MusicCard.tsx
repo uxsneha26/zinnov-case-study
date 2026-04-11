@@ -30,7 +30,7 @@ export function MusicCard({
 }: MusicCardProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const START_TIME = 0;
+  const START_TIME = 10;
   const END_TIME = 60;
   
   const play = () => {
@@ -114,7 +114,9 @@ export function MusicCard({
   }}
   onMouseEnter={() => {
     setHovering(true);
-    play();
+    setTimeout(() => {
+      play();
+    }, 80);
   }}
   onMouseLeave={() => {
     setHovering(false);

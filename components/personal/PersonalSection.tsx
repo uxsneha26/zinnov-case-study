@@ -112,8 +112,8 @@ enableImageOverlay={false}
                 <div className="flex min-w-0 flex-[1] flex-col gap-12 h-full">
                   
                   <MusicCard className="h-[240px]"
-  title="Your Song Title"
-  artist="Artist / Context"
+  title="Brooklyn by The Midnight"
+  artist="You're listening to"
   coverImage="/images/music-cover.png"
   audioSrc="/audio/song.mp3"
   backImage="/images/music-back.png"
