@@ -56,13 +56,11 @@ export function PoemOverlay({
   {/* Background image (you will replace this) */}
   <div
     className="absolute inset-0 bg-cover bg-center"
-    style={{
-      backgroundImage: "url('/images/paper-texture.png')", // 👈 change this
-    }}
+    
   />
 
   {/* Soft overlay for readability */}
-  <div className="absolute inset-0 bg-[#faf8f6]/70 backdrop-blur-[2px]" />
+  <div className="absolute inset-0 bg-[#faf8f6]/100 backdrop-blur-[2px]" />
 
   {/* Content */}
   <div className="relative z-10 px-8 py-10">
@@ -76,12 +74,12 @@ export function PoemOverlay({
     </h2>
 
     {/* SCROLL AREA */}
-    <div className="relative max-h-[60vh] overflow-hidden">
+    <div className="relative max-h-[60vh] overflow-auto">
       
-      <div
-        className={`${bodySerif.className} text-center text-lg leading-[1.9] text-[#412F2F]/90 md:text-xl h-full overflow-y-auto pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
-        style={{ whiteSpace: "pre-line" }}
-      >
+    <div
+  className={`${bodySerif.className} text-center text-lg leading-[1.9] text-[#412F2F]/90 md:text-xl pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+  style={{ whiteSpace: "pre-line" }}
+>
         {poemText}
       </div>
 

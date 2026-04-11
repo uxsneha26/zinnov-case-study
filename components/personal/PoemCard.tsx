@@ -6,28 +6,75 @@ import { PoemOverlay } from "./PoemOverlay";
 
 
 const DEFAULT_TEASER = [
-  "Light through the curtain, thin as paper—",
-  "I write your name where the dust gathers,",
-  "and the room pretends not to watch.",
+  "I wish to see the spring",
+  "of a land in a different time,",
+  "to be woken by the sound",
+  "of the nightingale's rhyme.",
+  
 ] as const;
 
 
 
-const DEFAULT_POEM = `Spring, in another time
+const DEFAULT_POEM = 
 
-Light through the curtain, thin as paper—
-I write your name where the dust gathers,
-and the room pretends not to watch.
+`I wish to see the spring
+of a land in a different time
+to be woken by the sound
+of the nightingale’s rhyme
 
-The kettle hums its small allegiance.
-Somewhere a door forgets to close.
+to feel the warmth of sunrise
+against the chill of winter’s wake
+to work among fields of grains
+my bare hands plough and make
 
-What we called forever
-was only weather, passing through glass.
+a simple life that would be
+with less reasons to withhold
+and nary a worry burdening
+my weary and brittle soul
 
-Still I leave the window cracked—
-not for air, but for the sound of you
-walking back through an ordinary afternoon.`;
+a warm heart I would feel
+a freer mind to wear
+in a body that is healthy
+my blessed soul to share
+
+amidst bustle of new leaves
+rustles of river flows
+the soothe music of the woods
+wafts of wind that blows
+
+I can almost breathe in
+the freshness of new air
+made a wee heavier with dew
+none, a sweet fragrant affair
+listening to sounds of life
+and seeing the wonderful sights
+calls out to my yearning heart
+in for a faithful respite
+
+my heart longs for the feeling
+the home and the love
+a place to call my safe haven
+blessed by the stars above
+
+where I’d sing to the heavens
+mould poetry through art
+and build a merry life
+with resplendent love in my heart
+
+though where may I reach
+to ride the eras against the flow?
+whom shall I pray magic it
+skies above or ground below?
+
+hush now...I must reflect on
+the chance this fairy tale’d last
+‘Is there no way of solace
+for my heart in the past?’
+
+Mayhap the heaven that I want
+lies ensconced in my divine
+for its happenstance seems neigh
+to be in the spring of a different time`;
 
 const DEFAULT_BACK_BG = "/images/poem-card-bg.png";
 
@@ -388,7 +435,7 @@ export const musingsCardProps = {
   frontImage: "/images/musings-icon.png",
   frontImageAlt: "Musings illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-40`,
-  backTitle: "Spring, in another time",
+  backTitle: "The Spring of Time",
   backBackgroundImage: DEFAULT_BACK_BG,
   teaserLines: DEFAULT_TEASER,
   cursorLabel: "Read poem",
