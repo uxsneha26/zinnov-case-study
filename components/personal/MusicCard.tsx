@@ -11,6 +11,7 @@ export type MusicCardProps = {
   coverImage: string;
   coverAlt?: string;
   audioSrc: string;
+  backImage?: string;
   className?: string;
 };
 
@@ -22,6 +23,7 @@ export function MusicCard({
   title,
   artist,
   coverImage,
+  backImage = "",
   coverAlt = "",
   audioSrc,
   className = "",
@@ -83,12 +85,8 @@ const [hovering, setHovering] = useState(false);
 
       <div className="relative z-[1] h-full min-h-[7.5rem] w-full">
         <div className="relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] motion-reduce:transition-none group-hover:[transform:rotateY(180deg)] motion-reduce:group-hover:[transform:rotateY(0deg)]">
-          {/* Front */}
-          {/* Front */}
-<div className="absolute inset-0 flex flex-col items-center justify-start gap-6 rounded-xl border border-neutral-200/70 bg-[#faf8f6]/70 p-4 pt-10 shadow-sm backdrop-blur-sm [backface-visibility:hidden]">
-
-{/* Title (like painting / musings) */}
-
+          
+      {/* Front */}
 <div className="absolute inset-0 flex flex-row items-center gap-5 rounded-xl border border-neutral-200/70 bg-[#faf8f6]/70 p-6 shadow-sm backdrop-blur-sm [backface-visibility:hidden]">
 
 {/* Thumbnail */}
@@ -106,12 +104,15 @@ const [hovering, setHovering] = useState(false);
 </p>
 
 </div>
-
-</div>
-
-          {/* Back */}
+{/* Back */}
           <div className="absolute inset-0 flex flex-row items-center gap-5 rounded-xl border border-neutral-200/70 bg-[#f7f4f0]/92 p-4 shadow-md backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            {thumb}
+          <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+  <img
+    src={backImage || coverImage}
+    alt="music back"
+    className="h-full w-full object-contain"
+  />
+</div>
             <div className="min-w-0 flex-1 text-left">
               <p
                 className={`${labelSans.className} text-[0.65rem] font-medium uppercase tracking-[0.22em] text-neutral-500/90`}

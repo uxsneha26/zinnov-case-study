@@ -116,6 +116,8 @@ enableImageOverlay={false}
   artist="Artist / Context"
   coverImage="/images/music-cover.png"
   audioSrc="/audio/song.mp3"
+  backImage="/images/music-back.png"
+
 />
                   
 
