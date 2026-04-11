@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { caveat, instrumentSerif, labelSans } from "@/lib/fonts";
 
 export type MusicCardProps = {
@@ -30,21 +30,67 @@ export function MusicCard({
 }: MusicCardProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const START_TIME = 0;
+  const END_TIME = 60;
+  
   const play = () => {
     const el = audioRef.current;
     if (!el) return;
-    void el.play().catch(() => {});
+  
+    // ensure correct start
+    el.currentTime = START_TIME;
+  
+    el.volume = 0;
+  
+    el.play().then(() => {
+      // fade in
+      let vol = 0;
+      const fade = setInterval(() => {
+        if (vol >= 0.6) {
+          clearInterval(fade);
+        } else {
+          vol += 0.05;
+          el.volume = vol;
+        }
+      }, 50);
+    }).catch(() => {});
   };
-
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-const [hovering, setHovering] = useState(false);
-
+  
   const stop = () => {
     const el = audioRef.current;
     if (!el) return;
-    el.pause();
-    el.currentTime = 0;
+  
+    let vol = el.volume;
+  
+    const fade = setInterval(() => {
+      if (vol <= 0.05) {
+        clearInterval(fade);
+        el.pause();
+      } else {
+        vol -= 0.05;
+        el.volume = vol;
+      }
+    }, 50);
   };
+  
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+  
+    const handleTimeUpdate = () => {
+      if (el.currentTime >= END_TIME) {
+        el.currentTime = START_TIME;
+      }
+    };
+  
+    el.addEventListener("timeupdate", handleTimeUpdate);
+  
+    return () => {
+      el.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, []);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false);
 
   const thumb = (
     <div className="h-[92px] w-[92px] shrink-0 overflow-hidden rounded-lg bg-neutral-100/90 shadow-inner transition-transform duration-700 ease-out [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] group-hover:rotate-[1.5deg] motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:group-hover:rotate-0">
@@ -66,8 +112,14 @@ const [hovering, setHovering] = useState(false);
       y: e.clientY - rect.top,
     });
   }}
-  onMouseEnter={() => setHovering(true)}
-  onMouseLeave={() => setHovering(false)}
+  onMouseEnter={() => {
+    setHovering(true);
+    play();
+  }}
+  onMouseLeave={() => {
+    setHovering(false);
+    stop();
+  }}
 >
   {/* Audio */}
   <audio ref={audioRef} src={audioSrc} preload="metadata" className="hidden" />
@@ -109,7 +161,7 @@ const [hovering, setHovering] = useState(false);
   <div className="relative z-[1] flex h-full flex-row items-center gap-5 p-4">
     
     {/* Thumbnail */}
-    <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+    <div className="h-30 w-30 shrink-0 overflow-hidden rounded-lg">
       <img
         src={backImage || coverImage}
         alt="music back"
