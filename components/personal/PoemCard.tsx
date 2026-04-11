@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
+
 
 const DEFAULT_TEASER = [
   "Light through the curtain, thin as paper—",
   "I write your name where the dust gathers,",
   "and the room pretends not to watch.",
 ] as const;
+
+
 
 const DEFAULT_POEM = `Spring, in another time
 
@@ -99,6 +102,26 @@ overlayImages,
     if (!images?.length) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
+
+  useEffect(() => {
+    if (!imageOverlayOpen) return;
+  
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        next();
+      } else if (e.key === "ArrowLeft") {
+        prev();
+      } else if (e.key === "Escape") {
+        setImageOverlayOpen(false);
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [imageOverlayOpen, currentIndex]);
 
   const prev = () => {
     if (!images?.length) return;
@@ -219,9 +242,9 @@ overlayImages,
                         e.stopPropagation();
                         prev();
                       }}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/60 p-2 shadow-sm hover:bg-white"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full text-lg text-[#815555] bg-white/60 p-2 shadow-sm hover:bg-white"
                     >
-                      ‹
+                      &lt;
                     </button>
 
                     {/* Next image button */}
@@ -234,9 +257,9 @@ overlayImages,
                         e.stopPropagation();
                         next();
                       }}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/60 p-2 shadow-sm hover:bg-white"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full text-lg text-[#815555] bg-white/60 p-2 shadow-sm hover:bg-white"
                     >
-                      ›
+                      &gt;
 
                       
                     </button>
@@ -330,6 +353,27 @@ overlayImages,
   alt=""
   className="max-h-full max-w-full object-contain rounded-md"
 />
+{/* LEFT CHEVRON */}
+<button
+  onClick={(e) => {
+    e.stopPropagation();
+    prev();
+  }}
+  className="absolute -left-16 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-10 w-10 text-lg text-[#815555] rounded-full bg-white/70 backdrop-blur-sm shadow-md hover:bg-white transition"
+>
+&lt;
+</button>
+
+{/* RIGHT CHEVRON */}
+<button
+  onClick={(e) => {
+    e.stopPropagation();
+    next();
+  }}
+  className="absolute -right-16 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-10 w-10 text-lg text-[#815555] rounded-full bg-white/70 backdrop-blur-sm shadow-md hover:bg-white transition"
+>
+&gt;
+</button>
 </div>
   </div>
 )}
