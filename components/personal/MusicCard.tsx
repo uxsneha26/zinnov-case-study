@@ -58,7 +58,7 @@ const [hovering, setHovering] = useState(false);
 
   return (
     <div
-  className={`group relative ${className}`}
+  className={`group relative cursor-none ${className}`}
   onMouseMove={(e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setCursorPos({
@@ -69,20 +69,8 @@ const [hovering, setHovering] = useState(false);
   onMouseEnter={() => setHovering(true)}
   onMouseLeave={() => setHovering(false)}
 >
-      <audio ref={audioRef} src={audioSrc} preload="metadata" className="hidden" />
-
-      <div
-        className="pointer-events-none absolute -inset-4 z-0 rounded-[1.35rem] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:opacity-0"
-        aria-hidden
-      >
-        <div
-          className="absolute inset-0 rounded-3xl bg-gradient-to-br from-amber-100/45 via-rose-100/35 to-sky-100/30"
-          style={{
-            animation: "music-card-ambient-glow 7.5s ease-in-out infinite",
-          }}
-        />
-      </div>
-
+  {/* Audio */}
+  <audio ref={audioRef} src={audioSrc} preload="metadata" className="hidden" />
       <div className="relative z-[1] h-full min-h-[7.5rem] w-full">
         <div className="relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] motion-reduce:transition-none group-hover:[transform:rotateY(180deg)] motion-reduce:group-hover:[transform:rotateY(0deg)]">
           
@@ -105,43 +93,57 @@ const [hovering, setHovering] = useState(false);
 
 </div>
 {/* Back */}
-          <div className="absolute inset-0 flex flex-row items-center gap-5 rounded-xl border border-neutral-200/70 bg-[#f7f4f0]/92 p-4 shadow-md backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
-  <img
-    src={backImage || coverImage}
-    alt="music back"
-    className="h-full w-full object-contain"
-  />
-</div>
-            <div className="min-w-0 flex-1 text-left">
-              <p
-                className={`${labelSans.className} text-[0.65rem] font-medium uppercase tracking-[0.22em] text-neutral-500/90`}
-              >
-                {artist}
-              </p>
-              <p
-                className={`${instrumentSerif.className} mt-2 text-balance text-lg leading-snug text-neutral-700 md:text-xl`}
-              >
-                {title}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {hovering && (
-  <div
-    className="pointer-events-none absolute z-[999]"
-    style={{
-      left: cursorPos.x,
-      top: cursorPos.y,
-      transform: "translate(-50%, -50%)",
-    }}
-  >
-    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-xs backdrop-blur-md">
-      Play
-    </div>
+<div className="absolute inset-0 rounded-xl border border-neutral-200/70 bg-[#f7f4f0]/80 shadow-md backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+
+  {/* Glow layer (FINAL) */}
+  <div className="pointer-events-none absolute -inset-6 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-95">
+    <div
+      className="absolute -inset-10 rounded-[2rem] bg-gradient-to-br from-[#E5B7E6]/90 via-[#FFFADE]/70 to-[#BEE4EA]/90 blur-xl"
+      style={{
+        animation: "music-card-ambient-glow 6.5s ease-in-out infinite",
+      }}
+    />
   </div>
+
+  {/* Content */}
+  <div className="relative z-[1] flex h-full flex-row items-center gap-5 p-4">
+    
+    {/* Thumbnail */}
+    <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+      <img
+        src={backImage || coverImage}
+        alt="music back"
+        className="h-full w-full object-contain"
+      />
+    </div>
+
+    {/* Text */}
+    <div className="min-w-0 flex-1 text-left">
+      <p className={`${labelSans.className} text-[0.65rem] font-medium uppercase tracking-[0.22em] text-neutral-500/90`}>
+        {artist}
+      </p>
+      <p className={`${instrumentSerif.className} mt-2 text-balance text-lg leading-snug text-neutral-700 md:text-xl`}>
+        {title}
+      </p>
+    </div>
+
+  </div>
+</div>
+      
+    </div>
+    {hovering && (
+  <div
+  className="pointer-events-none absolute z-[999] [transform:translateZ(0)]"
+  style={{
+    left: cursorPos.x,
+    top: cursorPos.y,
+    transform: "translate(-50%, -50%)",
+  }}
+>
+  <div className="h-3 w-3 rounded-full bg-[#C49C9C]/80 border-[2px] border-[#E8DFDA] shadow-[0_20px_60px_rgba(152,125,125,0.18)]" />
+</div>
 )}
+    </div>
     </div>
   );
 }
