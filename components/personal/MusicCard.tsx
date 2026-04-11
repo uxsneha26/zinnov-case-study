@@ -126,7 +126,7 @@ export function MusicCard({
   {/* Audio */}
   <audio ref={audioRef} src={audioSrc} preload="metadata" className="hidden" />
       <div className="relative z-[1] h-full min-h-[7.5rem] w-full">
-        <div className="relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] motion-reduce:transition-none group-hover:[transform:rotateY(180deg)] motion-reduce:group-hover:[transform:rotateY(0deg)]">
+        <div className="relative h-full w-full transition-all duration-300 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-hover:-translate-y-1 group-hover:scale-[1.1]">
           
       {/* Front */}
 <div className="absolute inset-0 flex flex-row items-center gap-5 rounded-xl border border-neutral-200/70 bg-[#faf8f6]/70 p-6 shadow-sm backdrop-blur-sm [backface-visibility:hidden]">
@@ -147,12 +147,12 @@ export function MusicCard({
 
 </div>
 {/* Back */}
-<div className="absolute inset-0 rounded-xl border border-neutral-200/70 bg-[#f7f4f0]/80 shadow-md backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
+<div className="absolute inset-0 rounded-xl border border-neutral-200/70 bg-[#f7f4f0]/80 shadow-[0_8px_30px_rgba(0,0,0,0.08)] group-hover:shadow-[0_20px_60px_rgba(152,125,125,0.28)] backdrop-blur-md [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden">
 
   {/* Glow layer (FINAL) */}
-  <div className="pointer-events-none absolute -inset-6 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-95">
+  <div className="pointer-events-none absolute -inset-6 z-0 opacity-0 transition-opacity duration-5 scale-[1.02] group-hover:scale-[1.05] transition-transform duration-300 group-hover:opacity-95">
     <div
-      className="absolute -inset-10 rounded-[2rem] bg-gradient-to-br from-[#E5B7E6]/90 via-[#FFFADE]/70 to-[#BEE4EA]/90 blur-xl"
+      className="absolute -inset-10 rounded-[2rem] bg-gradient-to-br from-[#E188AA]/90 via-[#FFF2B0]/70 to-[#86B7BF]/90 blur-xl"
       style={{
         animation: "music-card-ambient-glow 6.5s ease-in-out infinite",
       }}
