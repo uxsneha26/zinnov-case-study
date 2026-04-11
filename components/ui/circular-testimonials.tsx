@@ -8,6 +8,7 @@ import React, {
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { instrumentSerif } from "@/lib/fonts";
+import { SimplePaginationDots } from "@/components/ui/simple-pagination-dots";
 
 interface Testimonial {
   quote: string;
@@ -96,7 +97,8 @@ export const CircularTestimonials = ({
     <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-24 items-center">
 
       {/* LEFT: PROFILE CARDS */}
-      <div className="relative h-[320px]" ref={containerRef}>
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative h-[320px]" ref={containerRef}>
   {testimonials.map((t, i) => (
     <div
       key={t.name}
@@ -130,7 +132,13 @@ export const CircularTestimonials = ({
       </div>
     </div>
   ))}
-</div>
+        </div>
+        <SimplePaginationDots
+          total={testimonials.length}
+          activeIndex={activeIndex}
+          onDotClick={setActiveIndex}
+        />
+      </div>
 
       {/* RIGHT: TEXT */}
       <div className="flex flex-col justify-between h-[280px] max-w-[560px]">
