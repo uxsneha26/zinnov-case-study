@@ -8,6 +8,7 @@ import {
   musingsCardProps,
   paintingCardProps,
 } from "@/components/personal/PoemCard";
+import { MusicCard } from "./MusicCard";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -109,9 +110,14 @@ enableImageOverlay={false}
 
                 {/* B: Cards 3 & 4 */}
                 <div className="flex min-w-0 flex-[1] flex-col gap-12 h-full">
-                  <BentoCard className="h-[240px]">
-                    Card 3
-                  </BentoCard>
+                  
+                  <MusicCard className="h-[240px]"
+  title="Your Song Title"
+  artist="Artist / Context"
+  coverImage="/images/music-cover.png"
+  audioSrc="/audio/song.mp3"
+/>
+                  
 
                   <PoemCard
   variant="gallery"

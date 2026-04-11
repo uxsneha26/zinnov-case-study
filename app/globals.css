@@ -44,3 +44,15 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+@keyframes music-card-ambient-glow {
+  0%,
+  100% {
+    transform: translate(-18%, -12%) scale(1);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate(14%, 10%) scale(1.08);
+    opacity: 0.62;
+  }
+}
