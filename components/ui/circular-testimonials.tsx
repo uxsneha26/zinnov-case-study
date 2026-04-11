@@ -97,14 +97,15 @@ export const CircularTestimonials = ({
     <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-24 items-center">
 
       {/* LEFT: PROFILE CARDS */}
-      <div className="flex flex-col items-center gap-4">
-        <div className="relative h-[320px]" ref={containerRef}>
+<div className="relative">
+
+{/* CARD STACK — unchanged */}
+<div className="relative h-[320px]" ref={containerRef}>
   {testimonials.map((t, i) => (
     <div
       key={t.name}
       style={getStyle(i)}
-      className="absolute w-[320px] h-[320px] rounded-2xl p-4 transition-all duration-500 ease-out
- shadow-none"
+      className="absolute w-[320px] h-[320px] rounded-2xl p-4 transition-all duration-500 ease-out shadow-none"
     >
       <div
         className="w-full h-full rounded-xl flex flex-col items-center justify-center text-center p-6"
@@ -121,24 +122,29 @@ export const CircularTestimonials = ({
         />
 
         {/* Name */}
-<span className="text-[1.15rem] leading-[1.5] font-medium text-[#2f2b25]">
-  {t.name}
-</span>
+        <span className="text-[1.15rem] leading-[1.5] font-medium text-[#2f2b25]">
+          {t.name}
+        </span>
 
-{/* Designation */}
-<span className="text-[0.92rem] leading-[1.6] text-[#6f6a62] mt-2">
-  {t.designation}
-</span>
+        {/* Designation */}
+        <span className="text-[0.92rem] leading-[1.6] text-[#6f6a62] mt-2">
+          {t.designation}
+        </span>
       </div>
     </div>
   ))}
-        </div>
-        <SimplePaginationDots
-          total={testimonials.length}
-          activeIndex={activeIndex}
-          onDotClick={setActiveIndex}
-        />
-      </div>
+</div>
+
+{/* DOTS — positioned, not affecting layout */}
+<div className="absolute -bottom-10 left-0 w-[320px] flex justify-center">
+  <SimplePaginationDots
+    total={testimonials.length}
+    activeIndex={activeIndex}
+    onDotClick={setActiveIndex}
+  />
+</div>
+
+</div>
 
       {/* RIGHT: TEXT */}
       <div className="flex flex-col justify-between h-[280px] max-w-[560px]">
