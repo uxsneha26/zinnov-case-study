@@ -44,6 +44,10 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+html, body, * {
+  cursor: none !important;
+}
+
 
 @keyframes music-card-ambient-glow {
   0%,
@@ -55,4 +59,32 @@ body {
     transform: translate(14%, 10%) scale(1.08);
     opacity: 0.62;
   }
+}
+
+/* Minimal soft scrollbar */
+.soft-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* removes white container */
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(152, 125, 125, 0.35); /* muted pink-brown */
+  border-radius: 999px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(152, 125, 125, 0.5);
+}
+
+/* Firefox */
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(152, 125, 125, 0.45);
+  border-radius: 999px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(152, 125, 125, 0.65);
 }

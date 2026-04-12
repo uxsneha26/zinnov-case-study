@@ -141,6 +141,8 @@ function InteractivePortrait() {
 export default function Home() {
   return (
     <main className="bg-[#f2ebe3] bg-[radial-gradient(ellipse_85%_65%_at_15%_10%,rgba(232,223,212,0.55)_0%,transparent_52%),radial-gradient(ellipse_70%_50%_at_90%_85%,rgba(221,212,200,0.35)_0%,transparent_48%)]">
+      data-cursor
+      data-cursor-color="#8C6A6A"
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center gap-20 px-6 py-24 md:flex-row md:items-start md:justify-center md:py-32">
       <InteractivePortrait />
 

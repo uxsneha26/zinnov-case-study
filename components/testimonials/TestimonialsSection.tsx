@@ -24,6 +24,8 @@ export function TestimonialsSection() {
     <section
  className="relative h-[200vh] w-full bg-transparent"
   aria-label="Testimonials"
+  data-cursor
+  data-cursor-color="#FFFFFF"
 >
   <div className="sticky top-0 flex h-screen w-full items-center">
     

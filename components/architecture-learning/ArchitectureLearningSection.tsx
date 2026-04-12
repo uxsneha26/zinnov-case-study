@@ -94,6 +94,8 @@ export function ArchitectureLearningSection() {
       ref={sectionRef}
       id="architecture-learning-section"
       className="relative z-30 -mt-[80vh] md:-mt-[80vh] lg:-mt-[90vh] w-full"
+      data-cursor
+  data-cursor-color="#FFFFFF"
     >
       <div className="relative h-[620vh] w-full">
 

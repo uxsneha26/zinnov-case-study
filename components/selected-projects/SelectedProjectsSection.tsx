@@ -7,6 +7,8 @@ export function SelectedProjectsSection() {
     <section
       className="flex h-[100svh] min-h-0 flex-col justify-center bg-transparent px-6 py-8"
       aria-labelledby="selected-projects-title"
+      data-cursor
+  data-cursor-color="#FFFFFF"
     >
       <div className="mx-auto w-full max-w-6xl">
         <h2

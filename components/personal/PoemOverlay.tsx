@@ -32,6 +32,7 @@ export function PoemOverlay({
 
   return createPortal(
     <div
+      data-cursor="overlay"
       className="fixed inset-0 z-50 flex items-center justify-center px-6"
       onClick={onClose}
       role="presentation"
@@ -74,7 +75,7 @@ export function PoemOverlay({
     </h2>
 
     {/* SCROLL AREA */}
-    <div className="relative max-h-[60vh] overflow-auto">
+    <div className="relative max-h-[60vh] overflow-y-auto soft-scrollbar">
       
     <div
   className={`${bodySerif.className} text-center text-lg leading-[1.9] text-[#412F2F]/90 md:text-xl pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
@@ -82,12 +83,13 @@ export function PoemOverlay({
 >
         {poemText}
       </div>
-
-      {/* subtle fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#faf8f6] to-transparent" />
+      
     </div>
 
-  </div>
+    {/* subtle fade */}
+    <div className="pointer-events-none absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#faf8f6] to-transparent" />
+    <div className="pointer-events-none absolute top-0 left-0 w-full h-10 bg-gradient-to-b from-[#faf8f6] to-transparent" />
+    </div>
 </div>
 </div>
     </div>,

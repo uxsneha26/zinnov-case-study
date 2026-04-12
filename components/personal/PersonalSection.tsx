@@ -26,6 +26,8 @@ export function PersonalSection() {
       id="personal-section"
       className="relative z-40 -mt-[100vh] w-full"
       aria-labelledby="personal-section-heading"
+      data-cursor
+  data-cursor-color="#C49C9C"
     >
       {/*
         Scroll runway: sticky child stays fixed for this distance, so the panel

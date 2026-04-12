@@ -1,22 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
 
-
 const DEFAULT_TEASER = [
-  "I wish to see the spring",
-  "of a land in a different time,",
-  "to be woken by the sound",
-  "of the nightingale's rhyme.",
-  
+  "Light through the curtain, thin as paper—",
+  "I write your name where the dust gathers,",
+  "and the room pretends not to watch.",
 ] as const;
 
-
-
 const DEFAULT_POEM = 
-
 `I wish to see the spring
 of a land in a different time
 to be woken by the sound
@@ -46,6 +40,7 @@ I can almost breathe in
 the freshness of new air
 made a wee heavier with dew
 none, a sweet fragrant affair
+
 listening to sounds of life
 and seeing the wonderful sights
 calls out to my yearning heart
@@ -149,28 +144,7 @@ overlayImages,
     if (!images?.length) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
-
-  useEffect(() => {
-    if (!imageOverlayOpen) return;
-  
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        next();
-      } else if (e.key === "ArrowLeft") {
-        prev();
-      } else if (e.key === "Escape") {
-        setImageOverlayOpen(false);
-      }
-    };
-  
-    window.addEventListener("keydown", handleKeyDown);
-  
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [imageOverlayOpen, currentIndex]);
-
-  const prev = () => {
+const prev = () => {
     if (!images?.length) return;
     setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1));
   };
@@ -240,6 +214,7 @@ overlayImages,
             onMouseLeave={() => {
               setHovering(false);
             }}
+            data-cursor="hidden"
             className={`absolute inset-0 overflow-hidden rounded-xl shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)] ${
               (isPoem || isGallery) ? "cursor-none" : "cursor-default"
             }`}
@@ -435,7 +410,7 @@ export const musingsCardProps = {
   frontImage: "/images/musings-icon.png",
   frontImageAlt: "Musings illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-40`,
-  backTitle: "The Spring of Time",
+  backTitle: "Spring, in another time",
   backBackgroundImage: DEFAULT_BACK_BG,
   teaserLines: DEFAULT_TEASER,
   cursorLabel: "Read poem",

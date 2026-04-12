@@ -1,6 +1,22 @@
 import type { Metadata } from "next";
 import { Jost, Crimson_Text } from "next/font/google";
 import "./globals.css";
+import { GlobalCursor } from "@/components/cursor";
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <GlobalCursor />
+        {children}
+      </body>
+    </html>
+  );
+}
 
 const headingFont = Jost({
   subsets: ["latin"],
@@ -17,16 +33,3 @@ export const metadata: Metadata = {
   description: "Designing Decision Intelligence",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body className={`${bodyFont.className} bg-[#eef2e6] antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
-}
