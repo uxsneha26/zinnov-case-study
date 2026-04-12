@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export function GlobalCursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [color, setColor] = useState("#C49C9C");
-  const [visible, setVisible] = useState(true); // 👈 NEW
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -16,19 +16,27 @@ export function GlobalCursor() {
 
       const el = document.elementFromPoint(x, y);
 
-      // 🔥 1. HIDE inside special cursor zones
-      const hideZone = el?.closest('[data-cursor="hidden"]');
-      if (hideZone) {
-        setVisible(false);
-        return;
-      } else {
-        setVisible(true);
+      // ✅ SAFE hide detection (no flicker)
+      let hideZone = false;
+
+      if (el) {
+        const path = (e.composedPath?.() || []) as HTMLElement[];
+
+        hideZone = path.some(
+          (node) =>
+            node instanceof HTMLElement &&
+            node.dataset?.cursor === "hidden"
+        );
       }
 
-      // 🎨 2. COLOR switching
+      setVisible(!hideZone);
+
+      // 🎨 color detection
       const section = el?.closest("[data-cursor]") as HTMLElement | null;
-      if (section?.dataset.cursorColor) {
-        setColor(section.dataset.cursorColor);
+      const newColor = section?.dataset.cursorColor;
+
+      if (newColor) {
+        setColor((prev) => (prev !== newColor ? newColor : prev));
       }
     };
 
@@ -43,7 +51,7 @@ export function GlobalCursor() {
         left: pos.x,
         top: pos.y,
         transform: "translate(-50%, -50%)",
-        opacity: visible ? 1 : 0, // 👈 fades out
+        opacity: visible ? 1 : 0,
       }}
     >
       <div

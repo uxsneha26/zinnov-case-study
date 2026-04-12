@@ -100,6 +100,7 @@ export function PersonalSection() {
   frontTitle="painting"
   frontImage="/images/painting.png"
   backTitle="Making art"
+  cursorLabel="View work"
   disableOverlayClick={true}
 enableImageOverlay={false}
   teaserLines={[
@@ -107,7 +108,7 @@ enableImageOverlay={false}
     "hands move faster than doubt,",
     "and something honest appears.",
   ]}
-  cursorLabel="View work"
+  
 />
 
                 {/* B: Cards 3 & 4 */}

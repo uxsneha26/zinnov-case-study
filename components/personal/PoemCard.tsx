@@ -179,6 +179,7 @@ const prev = () => {
           {/* Back — div wrapper so carousel chevrons can be real <button>s (no nesting) */}
           <div
             role="button"
+            data-cursor={isPoem ? "hidden" : undefined}
             tabIndex={0}
             aria-label={`${cursorLabel}: ${backTitle}`}
             onClick={() => {
@@ -200,21 +201,38 @@ const prev = () => {
                 }
               }
             }}
+            onMouseEnter={(e) => {
+              if (!isPoem) return;
+            
+              const rect = e.currentTarget.getBoundingClientRect();
+            
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+            
+              setCursorPos({ x, y });
+              setHovering(true);
+            }}
+            
             onMouseMove={(e) => {
               if (!isPoem && !isGallery) return;
+            
               const rect = e.currentTarget.getBoundingClientRect();
-              setCursorPos({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
-              });
+            
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+            
+              setCursorPos({ x, y });
+
+            
+              // ✅ Always active while inside
+              
             }}
-            onMouseEnter={() => {
-              if (isPoem || isGallery) setHovering(true);
-            }}
+            
             onMouseLeave={() => {
               setHovering(false);
             }}
-            data-cursor="hidden"
+
+// Hide cursor when hovering over poem or gallery image overlay
             className={`absolute inset-0 overflow-hidden rounded-xl shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)] ${
               (isPoem || isGallery) ? "cursor-none" : "cursor-default"
             }`}
@@ -238,17 +256,37 @@ const prev = () => {
               
                 {showCarousel && (
                   <div
-                    className="relative flex-1 w-full shadow-[inset_0_-40px_60px_rgba(0,0,0,0.12),inset_0_20px_40px_rgba(0,0,0,0.01)] overflow-hidden rounded-lg"
-                    onMouseMove={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      setCursorPos({
-                        x: e.clientX - rect.left,
-                        y: e.clientY - rect.top,
-                      });
-                    }}
-                    onMouseEnter={() => setHovering(true)}
-                    onMouseLeave={() => setHovering(false)}
-                  >
+                  className="relative flex-1 w-full shadow-[inset_0_-40px_60px_rgba(0,0,0,0.12),inset_0_20px_40px_rgba(0,0,0,0.01)] overflow-hidden rounded-lg"
+                
+                  onMouseEnter={(e) => {
+                    if (!isGallery) return;
+                
+                    const rect = e.currentTarget.getBoundingClientRect();
+                
+                    setCursorPos({
+                      x: e.clientX - rect.left,
+                      y: e.clientY - rect.top,
+                    });
+                
+                    setHovering(true);
+                  }}
+                
+                  onMouseMove={(e) => {
+                    if (!isGallery) return;
+                
+                    const rect = e.currentTarget.getBoundingClientRect();
+                
+                    setCursorPos({
+                      x: e.clientX - rect.left,
+                      y: e.clientY - rect.top,
+                    });
+                  }}
+                
+                  onMouseLeave={() => {
+                    if (isGallery) setHovering(false);
+                  }}
+                >
+                  
                     <img
                       src={images[currentIndex]}
                       alt=""
@@ -256,9 +294,7 @@ const prev = () => {
                     />
 {/* Previous image button */}
 <button
-  onMouseEnter={() => setHovering(false)}
-  onMouseLeave={() => setHovering(true)}
-                      type="button"
+                  type="button"
                       aria-label="Previous image"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -269,10 +305,8 @@ const prev = () => {
                       &lt;
                     </button>
 
-                    {/* Next image button */}
-                    <button
-  onMouseEnter={() => setHovering(false)}
-  onMouseLeave={() => setHovering(true)}
+{/* Next image button */}
+              <button
                       type="button"
                       aria-label="Next image"
                       onClick={(e) => {
@@ -282,11 +316,7 @@ const prev = () => {
                       className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full text-lg text-[#815555] bg-white/60 p-2 shadow-sm hover:bg-white"
                     >
                       &gt;
-
-                      
-                    </button>
-
-                    
+                    </button>                    
                   </div>
                 )}
 
@@ -308,52 +338,31 @@ const prev = () => {
                 </div>
                 </div>
 
-                {/* GALLERY CURSOR (painting + art) */}
-    {isGallery && (
-      <div
-        className="pointer-events-none absolute z-[999] [transform:translateZ(0)]"
-        style={{
-          left: cursorPos.x,
-          top: cursorPos.y,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <div className="h-3 w-3 rounded-full bg-[#C49C9C]/80 border-[2px] border-[#E8DFDA] shadow-[0_20px_60px_rgba(152,125,125,0.18)]" />
-      </div>
-    )}
+{/* GALLERY CURSOR (painting + art) */}
               
             </div>
 
-            {hovering && (
-  <>
-    {/* POEM CURSOR */}
-    {(isPoem || (isGallery && enableImageOverlay)) && (
-      <div
-        className="pointer-events-none absolute z-[999] transition-transform duration-50 ease-out"
-        style={{
-          left: cursorPos.x,
-          top: cursorPos.y,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-xs backdrop-blur-md">
-          {cursorLabel}
-        </div>
-      </div>
-    )}
-
-    
-  </>
-)}
-              
-                
-              </div>
-            
+            {hovering && (isPoem || isGallery) && (
+  <div
+    className="pointer-events-none absolute z-[999] transition-transform duration-150 ease-out"
+    style={{
+      left: cursorPos.x,
+      top: cursorPos.y,
+      transform: "translate(-50%, -50%)",
+    }}
+  >
+    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-xs backdrop-blur-md">
+      {cursorLabel}
+    </div>
+  </div>
+)}                
+</div>   
           </div>
         </div>
       
-        {!disableOverlayClick && (
-      <PoemOverlay
+      
+{!disableOverlayClick && (
+    <PoemOverlay
         open={overlayOpen}
         onClose={() => setOverlayOpen(false)}
         title={overlayHeading}
@@ -434,18 +443,9 @@ export const paintingCardProps = {
   enableImageOverlay: false,
   teaserLines: [
     "Layers of color where silence used to sit—",
-    "each stroke a small argument with the blank page,",
-    "until the canvas forgets who started first.",
-  ],
+],
   cursorLabel: "View work",
-  poemText: `Making art
-
-Layers of color where silence used to sit—
-each stroke a small argument with the blank page,
-until the canvas forgets who started first.
-
-This is placeholder body text for the painting overlay.
-Replace with your artist statement or gallery notes.`,
+poemText: `Making art`,
 } as const satisfies PoemCardProps;
 
 /** Art / creative explorations */
@@ -470,18 +470,10 @@ export const artCardProps = {
   frontImageClassName: `${frontImageWrapBase} h-80 w-44`,
   backTitle: "Creative explorations",
   teaserLines: [
-    "Shapes lean toward each other like a quiet conversation,",
-    "texture as punctuation, negative space as breath—",
-    "nothing finished, everything invited.",
+  "Shapes lean toward each other like a quiet conversation,",
   ],
-  cursorLabel: "Explore",
+  cursorLabel: "View Artwork",
   enableImageOverlay: true,
   disableOverlayClick: false,
-  poemText: `Creative explorations
-
-Shapes lean toward each other like a quiet conversation,
-texture as punctuation, negative space as breath—
-nothing finished, everything invited.
-
-Placeholder for a longer piece about process, play, and curiosity.`,
+  poemText: `Creative explorations`,
 } as const satisfies PoemCardProps;
