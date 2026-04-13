@@ -10,7 +10,6 @@ import {
 } from "@/components/personal/PoemCard";
 import { MusicCard } from "./MusicCard";
 
-
 const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400"],
