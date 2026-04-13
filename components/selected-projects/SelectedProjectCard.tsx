@@ -8,7 +8,7 @@ type Props = {
   project: SelectedProject;
 };
 
-const CTA_LABEL = "View case study";
+const CTA_LABEL = "View Case Study";
 
 export function SelectedProjectCard({ project }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -64,6 +64,7 @@ export function SelectedProjectCard({ project }: Props) {
     <div
       ref={rootRef}
       role="article"
+      data-cursor="hidden"
       className="group relative mx-auto h-[520px] w-full max-w-[520px] cursor-none overflow-hidden rounded-2xl border border-[#e5dfd6]"
       onMouseEnter={handleEnter}
       onMouseMove={handleMove}
@@ -149,7 +150,8 @@ export function SelectedProjectCard({ project }: Props) {
         }}
         aria-hidden
       >
-        <div className="pointer-events-none flex items-center justify-center rounded-full bg-[#F3E8DF] px-4 py-2 text-[16px] tracking-[0.04em] text-[#3d372f] shadow-sm whitespace-nowrap">
+
+        <div className={`${instrumentSerif.className} pointer-events-none flex items-center justify-center rounded-full bg-[#F3E8DF] px-4 py-2 text-[16px] tracking-[0.04em] text-[#3d372f] shadow-sm whitespace-nowrap`}>
   {CTA_LABEL}
 </div>
       </div>

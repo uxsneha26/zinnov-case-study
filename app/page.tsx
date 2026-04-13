@@ -129,7 +129,7 @@ function InteractivePortrait() {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <div className="pointer-events-none flex items-center justify-center rounded-full bg-[#f4c7c3] px-4 py-2 text-[16px] tracking-[0.04em] text-center text-xs text-neutral-800 transition-transform duration-300 ease-out group-hover:scale-100">
+          <div className={`${instrumentSerif.className} pointer-events-none flex items-center justify-center rounded-full bg-[#f4c7c3] px-4 py-2 text-[16px] tracking-[0.04em] text-center text-xs text-neutral-800 transition-transform duration-300 ease-out group-hover:scale-100`}>
             Glad you're here
           </div>
         </div>
