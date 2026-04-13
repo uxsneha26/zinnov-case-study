@@ -24,7 +24,7 @@ export function PersonalSection() {
   return (
     <section
       id="personal-section"
-      className="relative z-40 -mt-[100vh] w-full"
+      className="relative z-40 -mt-[100vh] w-full bg-[#F5EFEA]"
       aria-labelledby="personal-section-heading"
       data-cursor
   data-cursor-color="#C49C9C"
@@ -44,7 +44,7 @@ export function PersonalSection() {
           priority
         />
       </div>
-      <div className="relative z-30 -mt-[80vh] md:-mt-[80vh] lg:-mt-[90vh] w-full">
+      <div className="relative z-30 -mt-[90vh] md:-mt-[80vh] lg:-mt-[90vh] w-full">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Full-viewport panel: sits above Architecture (z-30) while user scrolls this track */}
           <div className="relative h-full w-full">
@@ -55,8 +55,6 @@ export function PersonalSection() {
               className="absolute inset-0 z-0"
               aria-hidden
             />
-
-            {/* Readability tint over placeholder (or future photo) */}
             
 
             {/* Foreground: heading in flow with bento row (shared top baseline) */}
