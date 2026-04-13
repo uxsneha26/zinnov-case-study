@@ -103,6 +103,8 @@ export type PoemCardProps = {
   disableOverlayClick?: boolean;
   /** Images for the image overlay */
   overlayImages?: string[];
+  /** Show image cursor for gallery variant */
+  showImageCursor?: boolean;
 };
 
 /**
@@ -121,6 +123,7 @@ export function PoemCard({
   cursorLabel,
   poemText = DEFAULT_POEM,
   overlayTitle,
+  showImageCursor = false,
   disableOverlayClick = false,
   variant = "poem",
   
@@ -214,7 +217,7 @@ const prev = () => {
             }}
             
             onMouseMove={(e) => {
-              if (!isPoem && !isGallery) return;
+              if (!isPoem) return;
             
               const rect = e.currentTarget.getBoundingClientRect();
             
@@ -234,7 +237,7 @@ const prev = () => {
 
 // Hide cursor when hovering over poem or gallery image overlay
             className={`absolute inset-0 overflow-hidden rounded-xl shadow-sm [backface-visibility:hidden] [transform:rotateY(180deg)] ${
-              (isPoem || isGallery) ? "cursor-none" : "cursor-default"
+              (isPoem || showImageCursor) ? "cursor-none" : "cursor-default"
             }`}
           >
             {isGallery ? (
@@ -259,7 +262,7 @@ const prev = () => {
                   className="relative flex-1 w-full shadow-[inset_0_-40px_60px_rgba(0,0,0,0.12),inset_0_20px_40px_rgba(0,0,0,0.01)] overflow-hidden rounded-lg"
                 
                   onMouseEnter={(e) => {
-                    if (!isGallery) return;
+                    if (!showImageCursor) return;
                 
                     const rect = e.currentTarget.getBoundingClientRect();
                 
@@ -272,7 +275,7 @@ const prev = () => {
                   }}
                 
                   onMouseMove={(e) => {
-                    if (!isGallery) return;
+                    if (!showImageCursor) return;
                 
                     const rect = e.currentTarget.getBoundingClientRect();
                 
@@ -287,8 +290,9 @@ const prev = () => {
                   }}
                 >
                   
-                    <img
-                      src={images[currentIndex]}
+                  <img
+  data-cursor={showImageCursor ? "hidden" : undefined}
+  src={images[currentIndex]}
                       alt=""
                       className="h-full w-full object-cover"
                     />
@@ -296,6 +300,9 @@ const prev = () => {
 <button
                   type="button"
                       aria-label="Previous image"
+                      onMouseEnter={() => setHovering(false)}
+                      onMouseLeave={() => setHovering(true)}
+                      data-cursor="default"
                       onClick={(e) => {
                         e.stopPropagation();
                         prev();
@@ -309,6 +316,9 @@ const prev = () => {
               <button
                       type="button"
                       aria-label="Next image"
+                      onMouseEnter={() => setHovering(false)}
+                      onMouseLeave={() => setHovering(true)}
+                      data-cursor="default"
                       onClick={(e) => {
                         e.stopPropagation();
                         next();
@@ -342,7 +352,7 @@ const prev = () => {
               
             </div>
 
-            {hovering && (isPoem || isGallery) && (
+            {hovering && (isPoem || (showImageCursor && showCarousel)) && (
   <div
     className="pointer-events-none absolute z-[999] transition-transform duration-150 ease-out"
     style={{
@@ -419,7 +429,7 @@ export const musingsCardProps = {
   frontImage: "/images/musings-icon.png",
   frontImageAlt: "Musings illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-40`,
-  backTitle: "Spring, in another time",
+  backTitle: "The Spring of Time",
   backBackgroundImage: DEFAULT_BACK_BG,
   teaserLines: DEFAULT_TEASER,
   cursorLabel: "Read poem",
@@ -465,7 +475,7 @@ export const artCardProps = {
   ],
 
   frontTitle: "art",
-  frontImage: "/images/art-abstract.png",
+  frontImage: "/images/art.png",
   frontImageAlt: "Abstract creative illustration",
   frontImageClassName: `${frontImageWrapBase} h-80 w-44`,
   backTitle: "Creative explorations",
@@ -475,5 +485,6 @@ export const artCardProps = {
   cursorLabel: "View Artwork",
   enableImageOverlay: true,
   disableOverlayClick: false,
+  showImageCursor: true,
   poemText: `Creative explorations`,
 } as const satisfies PoemCardProps;

@@ -10,6 +10,7 @@ import {
 } from "@/components/personal/PoemCard";
 import { MusicCard } from "./MusicCard";
 
+
 const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400"],
@@ -124,30 +125,9 @@ enableImageOverlay={false}
 />
                   
 
-                  <PoemCard
-  variant="gallery"
-  images={[
-    "/images/gallery/art-1-zoom.png",
-    "/images/gallery/art-2-zoom.png",
-    "/images/gallery/art-3-zoom.png",
-  ]}
-  overlayImages={[
-    "/images/gallery/art-1.png",
-    "/images/gallery/art-2.png",
-    "/images/gallery/art-3.png",
-  ]}
-  
-  className="h-full"
-  frontTitle="art"
-  frontImage="/images/art.png"
-  backTitle="Creative explorations"
-  enableImageOverlay={true}
-  teaserLines={[
-    "Fragments of thought,",
-    "assembled into something felt,",
-    "not always understood.",
-  ]}
-  cursorLabel="View Artwork"
+<PoemCard
+  {...artCardProps}
+className="h-full"
 />
                 </div>
               </div>
