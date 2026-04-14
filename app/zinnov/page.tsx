@@ -2168,7 +2168,7 @@ export default function Home() {
             className={`${headingFont.className} text-5xl md:text-6xl font-semibold mb-8 leading-tight text-gray-900`}
           />
 
-          <p className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+          <p className= {`${bodyFont.className} mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto`}>
             Think of the leaders who run{" "}
             
             <Highlight color="#F0D3D3">
@@ -2308,7 +2308,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 text-gray-900`}
         />
 
-        <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+        <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
           Zinnov works closely with teams of global companies that run their strategy, innovation, and technology centers out of India. These teams, often called{" "}
           
           <Highlight color="#F0D3D3">
@@ -2363,7 +2363,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           Let me explain by laying down a scenario...
         </h2>
 
-        <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+        <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
           Imagine you are a strategy leader at a Global Capability Center, tasked
           with evaluating expansion opportunities and making high-stakes business
           decisions.
@@ -2444,7 +2444,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
       What Zinnov&apos;s service flow looks like
     </h2>
 
-    <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+    <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
       Before reimagining the experience, we mapped how Zinnov&apos;s service
       currently operates across user journeys, research layers, and internal
       interventions.
@@ -2463,7 +2463,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
       <div className="bg-white/60 backdrop-blur rounded-full p-1 flex gap-1 shadow-sm">
         <button
           onClick={() => setView("flow")}
-          className={`px-4 py-2 rounded-full text-sm transition ${
+          className= {`${bodyFont.className} px-4 py-2 rounded-full text-sm transition ${
             view === "flow" ? "bg-black text-white" : "text-gray-600"
           }`}
         >
@@ -2471,7 +2471,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
         </button>
         <button
           onClick={() => setView("pain")}
-          className={`px-4 py-2 rounded-full text-sm transition ${
+          className= {`${bodyFont.className} px-4 py-2 rounded-full text-sm transition ${
             view === "pain" ? "bg-black text-white" : "text-gray-600"
           }`}
         >
@@ -2492,7 +2492,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           transition={{ duration: 0.4 }}
           className="flex justify-center"
         >
-          <div className="w-full flex justify-center">
+          <div className= {`${bodyFont.className} w-full flex justify-center`}>
           <div className="flex items-center justify-center gap-4">
 
     {/* Entry Point */}
@@ -2622,7 +2622,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           >
             From interviews to prioritized features
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
             We captured verbatim signals, modeled priorities, and surfaced what should ship first.
           </p>
         </div>
@@ -2631,11 +2631,11 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           <PersonaCard {...personaData} />
         </div>
 
-        <div className="max-w-6xl mx-auto mt-16">
+        <div className= {`${bodyFont.className} max-w-6xl mx-auto mt-16`}>
           <StickyNotes ideas={ideas} />
         </div>
 
-        <div className="max-w-6xl mx-auto mt-16">
+        <div className= {`${bodyFont.className} max-w-6xl mx-auto mt-16`}>
           <ImpactMatrix ideas={ideas} />
         </div>
       </motion.section>
@@ -2662,11 +2662,11 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           >
             From fragmented exploration to guided decision-making
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
             We redesigned the service flow to introduce clarity, reduce manual effort, and enable faster, more confident decisions.
           </p>
           <p
-            className={`${bodyFont.className} mt-4 text-base md:text-lg text-gray-700 leading-relaxed`}
+            className={`${bodyFont.className} mt-4 text-lg md:text-lg text-gray-700 leading-relaxed`}
           >
             The updated experience introduces structured entry points, contextual discovery, and tiered pathways (L1, L2, L3), ensuring users can move from exploration to action with minimal friction.
           </p>
@@ -2677,7 +2677,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
             <div className="bg-white/60 backdrop-blur rounded-full p-1 flex gap-1 shadow-sm">
               <button
                 onClick={() => setUpdatedFlowView("flow")}
-                className={`px-4 py-2 rounded-full text-sm transition ${
+                className={`${bodyFont.className} px-4 py-2 rounded-full text-sm transition ${
                   updatedFlowView === "flow" ? "bg-black text-white" : "text-gray-600"
                 }`}
               >
@@ -2685,7 +2685,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
               </button>
               <button
                 onClick={() => setUpdatedFlowView("intervention")}
-                className={`px-4 py-2 rounded-full text-sm transition ${
+                className={`${bodyFont.className} px-4 py-2 rounded-full text-sm transition ${
                   updatedFlowView === "intervention"
                     ? "bg-black text-white"
                     : "text-gray-600"
@@ -2705,7 +2705,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
               transition={{ duration: 0.4 }}
               className="flex justify-center"
             >
-              <div className="w-full flex justify-center">
+              <div className= {`${bodyFont.className} w-full flex justify-center`}>
                 <div className="flex items-center justify-center gap-4">
                   {updatedFlowView === "intervention" ? (
                     <ImprovementWrapper note="Guided and personalized entry">
@@ -2912,7 +2912,7 @@ function AdminPlatformWorkshopStickyNotes({
         >
           Ideas from Internal Team Workshops
         </h3>
-        <p className="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+        <p className= {`${bodyFont.className} mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center`}>
           We conducted a focused workshop with Business Development and Customer
           Support teams to understand their workflows, uncover pain points, and
           identify opportunities to streamline internal operations.
@@ -3313,7 +3313,7 @@ function AdminPlatformCaseStudySection() {
           >
             Designing the Operational Backbone for Internal Teams
           </h2>
-          <p className="text-left text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className= {`${bodyFont.className} text-left text-lg md:text-xl text-gray-700 leading-relaxed`}>
             While the customer-facing platform enables discovery and
             decision-making, the internal platform powers the teams that keep the
             system running.
@@ -3357,7 +3357,7 @@ function AdminPlatformCaseStudySection() {
             Let me explain how internal teams manage operations…
           </h2>
 
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
             Imagine you are part of the business development or customer support
             team, handling multiple client requests, tracking ongoing engagements,
             and responding to queries that require quick, contextual insights.

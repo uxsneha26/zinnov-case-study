@@ -37,7 +37,7 @@ export function PersonalSection() {
       {/* Background Image */}
       
       
-      <div className="relative z-30 -mt-[90vh] md:-mt-[80vh] lg:-mt-[90vh] w-full h-[200vh]">
+      <div className="relative z-30 -mt-[90vh] md:-mt-[80vh] lg:-mt-[90vh] w-full min-h-[200vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
         <div className="absolute inset-0 -z-10">
         <Image
