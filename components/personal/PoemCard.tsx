@@ -5,9 +5,10 @@ import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
 
 const DEFAULT_TEASER = [
-  "Light through the curtain, thin as paper—",
-  "I write your name where the dust gathers,",
-  "and the room pretends not to watch.",
+  "I wish to see the spring",
+  "of a land in a different time",
+  "to be woken by the sound",
+  "of the nightingale’s rhyme",
 ] as const;
 
 const DEFAULT_POEM = 
@@ -332,7 +333,7 @@ const prev = () => {
 
 <div className="pt-4">
   {isPoem && (
-    <p className="text-2xl md:text-3xl text-[#2F2323]">
+    <p className={`${bodySerif.className} text-2xl md:text-3xl text-[#2F2323]`}>
       {backTitle}
     </p>
   )}
@@ -361,7 +362,7 @@ const prev = () => {
       transform: "translate(-50%, -50%)",
     }}
   >
-    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-xs backdrop-blur-md">
+    <div className={`${instrumentSerif.className} flex h-20 w-20 items-center justify-center rounded-full border border-[#987D7D] bg-[#815555]/70 text-white text-sm backdrop-blur-md`}>
       {cursorLabel}
     </div>
   </div>

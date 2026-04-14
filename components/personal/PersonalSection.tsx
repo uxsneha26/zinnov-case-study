@@ -24,7 +24,7 @@ export function PersonalSection() {
   return (
     <section
       id="personal-section"
-      className="relative z-40 -mt-[100vh] w-full bg-[#F5EFEA]"
+      className="relative z-40 -mt-[100vh] w-full"
       aria-labelledby="personal-section-heading"
       data-cursor
   data-cursor-color="#C49C9C"
@@ -35,7 +35,11 @@ export function PersonalSection() {
         (overlap is handled by margin + paint order, not by changing flow above).
       */}
       {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
+      
+      
+      <div className="relative z-30 -mt-[90vh] md:-mt-[80vh] lg:-mt-[90vh] w-full h-[200vh]">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="absolute inset-0 -z-10">
         <Image
           src="/images/BG2.png" // replace with your file
           alt="Background"
@@ -43,9 +47,7 @@ export function PersonalSection() {
           className="object-cover object-[center_30%]"
           priority
         />
-      </div>
-      <div className="relative z-30 -mt-[90vh] md:-mt-[80vh] lg:-mt-[90vh] w-full">
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+</div>
           {/* Full-viewport panel: sits above Architecture (z-30) while user scrolls this track */}
           <div className="relative h-full w-full">
             {/* Background layer — placeholder until real photography/texture */}
@@ -55,6 +57,8 @@ export function PersonalSection() {
               className="absolute inset-0 z-0"
               aria-hidden
             />
+
+
             
 
             {/* Foreground: heading in flow with bento row (shared top baseline) */}

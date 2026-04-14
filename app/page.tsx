@@ -100,6 +100,7 @@ function InteractivePortrait() {
       </p>
 
       <div
+      data-cursor="hidden"
         className="relative group mt-3 h-[220px] w-[220px] shrink-0 overflow-hidden rounded-xl hover:cursor-none md:mt-4 md:h-[280px] md:w-[280px]"
         onMouseEnter={onMouseEnter}
         onMouseMove={onMouseMove}

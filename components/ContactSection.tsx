@@ -32,16 +32,16 @@ export function ContactSection() {
   return (
     <section
       id="contact-section"
-      className="relative w-full"
+      className="relative z-50 -mt-[80vh] w-full"
       aria-labelledby="contact-heading"
       data-cursor
       data-cursor-color="#C49C9C"
     >
-      <div className="relative w-full">
-      <div className="relative w-full">
-      <div className="relative min-h-screen w-full flex items-center">
+      <div className="relative z-30 -mt-[80vh] md:-mt-[80vh] lg:-mt-[90vh] w-full">
+        <div className="sticky bottom-0 h-screen w-full overflow-hidden">
+          <div className="relative h-screen w-full">
             <div
-        className={`relative flex min-h-0 flex-1 flex-col px-8 pb-10 pt-16 md:px-16 md:pb-14 md:pt-20 lg:px-24`}
+        className={`relative flex min-h-screen flex-1 flex-col ${heroBg} px-8 pb-10 pt-16 md:px-16 md:pb-14 md:pt-20 lg:px-24`}
       >
         <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
           
@@ -122,7 +122,6 @@ export function ContactSection() {
           </div>
         </div>
       </div>
-      
     </section>
   );
 }

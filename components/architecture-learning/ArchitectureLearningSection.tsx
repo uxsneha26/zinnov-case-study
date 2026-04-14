@@ -93,9 +93,7 @@ export function ArchitectureLearningSection() {
     <section
       ref={sectionRef}
       id="architecture-learning-section"
-      className="relative z-30 -mt-[80vh] md:-mt-[80vh] lg:-mt-[90vh] w-full overflow-hidden"
-      data-cursor
-  data-cursor-color="#FFFFFF"
+      className="relative z-30 -mt-[80vh] md:-mt-[80vh] lg:-mt-[90vh] w-full"
     >
       <div className="relative h-[620vh] w-full">
 
@@ -136,7 +134,7 @@ export function ArchitectureLearningSection() {
               <img
                 src={IMAGE_PLACEHOLDER}
                 alt=""
-                className="relative z-0 h-auto w-full object-contain overflow-hidden"
+                className="relative z-0 h-auto w-full object-contain"
               />
 
               {ARCHITECTURE_HOTSPOTS.map((h) => (
