@@ -2228,7 +2228,7 @@ export default function Home() {
                   <h3
                     className={`${headingFont.className} text-base md:text-lg font-semibold text-gray-900 leading-tight`}
                   >
-                    Timeline
+                    
                   </h3>
                 </div>
                 <p

@@ -3,6 +3,7 @@ import { Jost, Instrument_Serif, Crimson_Text, Caveat } from "next/font/google";
 import { motion } from "framer-motion";
 import { GradualSpacing } from "@/components/ui/gradual-spacing";
 import { Highlight } from "@/components/ui/highlight";
+import { TriangulationSection } from "@/components/case-study/triangulation/TriangulationSection";
 
 const headingFont = Jost({
   subsets: ["latin"],
@@ -101,13 +102,13 @@ export default function JKCCaseStudyPage() {
           className="mt-20 md:mt-24 relative flex justify-center items-center"
         >
           {/* Glow */}
-          <div className="absolute w-[600px] h-[600px] bg-[#C89DC9] rounded-full blur-[140px] opacity-40 z-0"></div>
+          
 
           {/* Image */}
           <img
-            src="/jkc/app-preview.png"
+            src="/jkc/preview.png"
             alt="Zinnov Platform"
-            className="relative z-10 rounded-xl shadow-2xl w-full max-w-3xl transition duration-500 ease-out hover:scale-[1.015] hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
+            className="relative z-10 rounded-xl shadow-2xl shadow-[#D5C2D6] w-full max-w-3xl transition duration-500 ease-out hover:scale-[1.015] hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)]"
           />
         </motion.div>
 
@@ -258,17 +259,12 @@ Worked across business, product, and engineering teams to align operational goal
         <h2
           className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
         >
-          Let me explain by laying down a scenario...
+          Before designing a system, it was critical to understand how the ecosystem currently operates....
         </h2>
 
         <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
-          Imagine you are a strategy leader at a Global Capability Center, tasked
-          with evaluating expansion opportunities and making high-stakes business
-          decisions.
-          <br />
-          <br />
-          You turn to available research, reports, and benchmarking tools to
-          guide your thinking.
+        While each stakeholder performs their role efficiently, the lack of a connected system leads 
+        to gaps in communication, visibility, and decision-making.
         </p>
 
         {/* SECTION 2: COMIC STRIP */}
@@ -321,6 +317,10 @@ Worked across business, product, and engineering teams to align operational goal
           </div>
         </div>
       </motion.section>
+
+      <TriangulationSection />
+
+
 {/* main wrapper ends here */}
     </main>
   );
