@@ -3430,7 +3430,8 @@ function AdminPlatformCaseStudySection() {
           <AdminPlatformWorkshopStickyNotes ideas={adminPlatformWorkshopIdeas} />
         </div>
 
-        <section className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#F3F6ED] py-20 md:py-28">
+        <section className= "rounded-2xl relative bg-[#F3F6ED] py-20 md:py-28">
+        <div className="relative left-1/2 right-1/2 w-full -translate-x-1/2">
           <div className="max-w-3xl mx-auto text-center px-6 md:px-0 space-y-6 md:space-y-8">
             <p
               className={`${headingFont.className} text-xs tracking-[0.2em] uppercase text-gray-500`}
@@ -3479,6 +3480,7 @@ function AdminPlatformCaseStudySection() {
                 &rdquo;
               </span>
             </div>
+          </div>
           </div>
         </section>
 
