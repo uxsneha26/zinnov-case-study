@@ -10,16 +10,16 @@ export function Highlight({
   color?: string;
 }) {
   return (
-    <span className="relative inline-block overflow-hidden align-middle">
+    <span className="relative inline-block align-middle">
 
-      {/* Background animation */}
+      {/* Animated highlight (BEHIND text) */}
       <motion.span
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
         style={{ backgroundColor: color }}
-        className="absolute inset-0 origin-left rounded"
+        className="absolute inset-0 origin-left rounded z-0"
       />
 
       {/* Text */}
