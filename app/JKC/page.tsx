@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { GradualSpacing } from "@/components/ui/gradual-spacing";
 import { Highlight } from "@/components/ui/highlight";
 import { TriangulationSection } from "@/components/case-study/triangulation/TriangulationSection";
+import { ReactNode } from "react";
 
 const headingFont = Jost({
   subsets: ["latin"],
@@ -19,6 +20,16 @@ const quoteFont = Caveat({
   subsets: ["latin"],
   weight: ["400"],
 });
+
+const structuredAnnotationPalette = [
+    { bg: "bg-[#F6E8B1]/40", circle: "bg-[#EEDB9A]/70" },
+    { bg: "bg-[#EAF7EF]/50", circle: "bg-[#c8e9d8]/70" },
+    { bg: "bg-[#EAF0FF]/50", circle: "bg-[#d4dcfa]/70" },
+    { bg: "bg-[#FDECEC]/50", circle: "bg-[#f5c8c8]/70" },
+  ];
+
+const editorialHighlightClass = "bg-[#E6EDC8] px-1.5 py-0.5 rounded-sm";
+
 
 // insight cards
 const insightCards = [
@@ -53,7 +64,258 @@ const insightCards = [
       bg: "bg-[#EAF7F6]",
     },
   ];
+
   
+type EditorialPageBreakerSectionProps = {
+    label: string;
+    heading: string;
+    body: ReactNode;
+    quote: string;
+  };
+  
+type DesignDirectionBlockProps = {
+    title: string;
+    description: string;
+    imageSrc: string;
+    imageAlt: string;
+    annotations: DesignAnnotationData[];
+  };
+
+  type DesignAnnotationData = {
+    n: number;
+    title: string;
+    body: string;
+  };
+
+
+  const designDirectionSections: DesignDirectionBlockProps[] = [
+    {
+      title: "Reimagining the Home Experience",
+      description:
+        "The home surface sets the tone for how leaders encounter research: it must surface what matters first, adapt to role and context, and cut interpretive work. By replacing dense catalogs with guided entry, prioritized signals, and clear next steps, we reduce cognitive overload, improve discoverability, and shorten the path from login to decision.",
+      imageSrc: "/design/home.png",
+      imageAlt: "Home experience design direction",
+      annotations: [
+        {
+          n: 1,
+          title: "Guided entry based on user context",
+          body: "Personalized onboarding based on role, industry, and past behavior.",
+        },
+        {
+          n: 2,
+          title: "Reduced cognitive overload",
+          body: "Key insights surfaced first instead of long report lists.",
+        },
+        {
+          n: 3,
+          title: "Contextual recommendations",
+          body: "Relevant reports shown based on intent and usage patterns.",
+        },
+        {
+          n: 4,
+          title: "Quick insight summaries",
+          body: "AI-generated summaries for faster understanding.",
+        },
+        {
+          n: 5,
+          title: "Action-oriented navigation",
+          body: "Clear next steps instead of passive browsing.",
+        },
+      ],
+    },
+    {
+      title: "Building a Community Layer for GCC Leaders",
+      description:
+        "Leaders learn as much from peers as from documents—but only when trust, structure, and continuity are explicit. This layer makes peer learning scannable: themes over threads, credibility signals over noise, and events wired into a feedback loop so shared knowledge compounds instead of dissipating.",
+      imageSrc: "/design/community.png",
+      imageAlt: "Community experience design direction",
+      annotations: [
+        {
+          n: 1,
+          title: "Peer learning layer",
+          body: "Users learn from similar GCC leaders and case studies.",
+        },
+        {
+          n: 2,
+          title: "Structured discussions",
+          body: "Conversations organized by themes, not random threads.",
+        },
+        {
+          n: 3,
+          title: "Credibility signals",
+          body: "Verified experts and contributors highlighted.",
+        },
+        {
+          n: 4,
+          title: "Knowledge sharing loops",
+          body: "Users contribute insights back into the ecosystem.",
+        },
+        {
+          n: 5,
+          title: "Event-driven engagement",
+          body: "Webinars, discussions, and expert sessions integrated.",
+        },
+      ],
+    },
+    {
+      title: "Making Reports Actionable, Not Overwhelming",
+      description:
+        "Reports fail when they read like archives. This direction treats every document as a decision interface: scannable structure, tools to compare and validate, and filters aligned to intent—so leaders spend less time decoding and more time committing, with less reliance on manual synthesis.",
+      imageSrc: "/design/reports.png",
+      imageAlt: "Reports experience design direction",
+      annotations: [
+        {
+          n: 1,
+          title: "Scannable report structure",
+          body: "Content broken into digestible sections.",
+        },
+        {
+          n: 2,
+          title: "Visual comparison tools",
+          body: "Side-by-side comparison of insights.",
+        },
+        {
+          n: 3,
+          title: "Insight validation layer",
+          body: "Cross-referencing across sources.",
+        },
+        {
+          n: 4,
+          title: "Dynamic filtering",
+          body: "Filter by intent, industry, and use-case.",
+        },
+        {
+          n: 5,
+          title: "Decision-ready outputs",
+          body: "Summaries and recommendations instead of raw data.",
+        },
+      ],
+    },
+  ];
+
+  function DesignDirectionBlock({
+    title,
+    description,
+    imageSrc,
+    imageAlt,
+    annotations,
+  }: DesignDirectionBlockProps) {
+    return (
+      <div className="max-w-5xl mx-auto">
+        <div className="max-w-3xl mx-auto text-left">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            Design direction
+          </p>
+          <h3
+            className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
+          >
+            {title}
+          </h3>
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            {description}
+          </p>
+        </div>
+  
+        <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-12 items-start">
+            <div className="min-w-0 w-full rounded-2xl overflow-hidden border border-[#e7e5df] shadow-md bg-[#f8f7f4]">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+  
+            <div className="flex flex-col gap-6 items-start">
+              {annotations.map((a, index) => {
+                const palette =
+                  structuredAnnotationPalette[
+                    index % structuredAnnotationPalette.length
+                  ];
+                return (
+                  <div
+                    key={a.n}
+                    className={[
+                      palette.bg,
+                      "w-[260px] shrink-0 border border-[#dfe6d5] rounded-md shadow-sm p-3 flex gap-2 items-start",
+                      "hover:scale-[1.02] transition-transform duration-200 ease-out",
+                    ].join(" ")}
+                  >
+                    <div
+                      className={`h-5 w-5 shrink-0 rounded-full ${palette.circle} flex items-center justify-center text-[10px] font-medium text-gray-900`}
+                    >
+                      {a.n}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-sm text-gray-900">
+                        {a.title}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-1 leading-snug">
+                        {a.body}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function EditorialPageBreakerSection({
+  label,
+  heading,
+  body,
+  quote,
+}: EditorialPageBreakerSectionProps) {
+  return (
+    <section className="py-20 md:py-20 bg-[#f6f5ef]">
+      <div className="max-w-3xl mx-auto text-center px-6 md:px-0 space-y-12 md:space-y-20">
+        <p
+          className={`${headingFont.className} text-xs uppercase tracking-[0.2em] text-gray-500`}
+        >
+          
+        </p>
+        <h2
+          className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 leading-tight`}
+        >
+          {heading}
+        </h2>
+        <p
+          className={`${bodyFont.className} text-lg md:text-xl leading-relaxed text-gray-700`}
+        >
+          {body}
+        </p>
+
+        <div className="relative max-w-2xl mx-auto pt-2 pb-10 md:pb-12 px-2">
+          <span
+            aria-hidden
+            className={`${bodyFont.className} absolute top-1 -left-0 md:left-0 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+          >
+            &ldquo;
+          </span>
+          <blockquote
+            className={`${bodyFont.className} relative z-10 mx-auto text-4xl text-[#9CC22A] text-center px-8 md:px-10 leading-snug font-normal`}
+          >
+            {quote}
+          </blockquote>
+          <span
+            aria-hidden
+            className={`${bodyFont.className} absolute top-32 -right-1 md:right-1 text-[120px] leading-none text-[#9CC22A] opacity-70 select-none pointer-events-none`}
+          >
+            &rdquo;
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /*main section startes here*/ 
 export default function JKCCaseStudyPage() {
@@ -349,8 +611,7 @@ Worked across business, product, and engineering teams to align operational goal
             <Highlight color="#FFFAB8">cohesive, scalable experience</Highlight> that supports real-world operations.
           </p>
         </div>
-
-        <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+    <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
           <img
             src="/jkc/design/information-architecture.png"
             alt="all applications information architecture"
@@ -360,7 +621,35 @@ Worked across business, product, and engineering teams to align operational goal
         </div>
       </motion.section>
 
-  
+  {/* DESIGN DIRECTIONS */}
+  <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full border-t border-[#dfe6d5]/60"
+      >
+        <EditorialPageBreakerSection
+          label="PRODUCT SYNTHESIS"
+          heading="Design Directions"
+          body={
+            <>
+              Research insights and prioritized ideas converge into{" "}
+              <span className={editorialHighlightClass}>three concrete surfaces</span>{" "}
+              — calmer entry, credible peer learning, and reports built for
+              decisions — not generic UX polish, but product behavior aligned to
+              how GCC leaders actually work.
+            </>
+          }
+          quote="Design is not about adding features, but about structuring clarity into every interaction."
+        />
+
+        <div className="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-8 md:pt-12 space-y-20 md:space-y-28">
+          {designDirectionSections.map((section) => (
+            <DesignDirectionBlock key={section.title} {...section} />
+          ))}
+        </div>
+      </motion.section>
 
 {/* main wrapper ends here */}
     </main>
