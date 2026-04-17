@@ -89,108 +89,128 @@ type DesignDirectionBlockProps = {
 
 
   const designDirectionSections: DesignDirectionBlockProps[] = [
+    // CTS section
     {
-      title: "Reimagining the Home Experience",
+      title: "Staying on Top of Lead Lifecycle",
       description:
-        "The home surface sets the tone for how leaders encounter research: it must surface what matters first, adapt to role and context, and cut interpretive work. By replacing dense catalogs with guided entry, prioritized signals, and clear next steps, we reduce cognitive overload, improve discoverability, and shorten the path from login to decision.",
-      imageSrc: "/design/home.png",
+        "CTS officers operate at the very start of the supply chain, where speed and clarity directly impact conversion. The experience was designed to help them capture, track, and act on leads without losing momentum — ensuring that no opportunity falls through gaps between systems or stakeholders.",
+      imageSrc: "/theme/cts.png",
       imageAlt: "Home experience design direction",
       annotations: [
         {
           n: 1,
-          title: "Guided entry based on user context",
-          body: "Personalized onboarding based on role, industry, and past behavior.",
+          title: "Structured lead capture",
+          body: "Standardized inputs for site details, requirements, and location to reduce ambiguity.",
         },
         {
           n: 2,
-          title: "Reduced cognitive overload",
-          body: "Key insights surfaced first instead of long report lists.",
+          title: "Clear assignment visibility",
+          body: "Real-time status of dealer allocation and ownership of each lead.",
         },
         {
           n: 3,
-          title: "Contextual recommendations",
-          body: "Relevant reports shown based on intent and usage patterns.",
+          title: "Conversion-focused tracking",
+          body: "Lead stages mapped clearly from creation to fulfillment.",
         },
         {
           n: 4,
-          title: "Quick insight summaries",
-          body: "AI-generated summaries for faster understanding.",
-        },
-        {
-          n: 5,
-          title: "Action-oriented navigation",
-          body: "Clear next steps instead of passive browsing.",
+          title: "Actionable next steps",
+          body: "Prompts and nudges to move leads forward instead of passive tracking.",
         },
       ],
     },
+    // SFA section
     {
-      title: "Building a Community Layer for GCC Leaders",
+      title: "Enabling the System Behind the Scenes",
       description:
-        "Leaders learn as much from peers as from documents—but only when trust, structure, and continuity are explicit. This layer makes peer learning scannable: themes over threads, credibility signals over noise, and events wired into a feedback loop so shared knowledge compounds instead of dissipating.",
-      imageSrc: "/design/community.png",
+        "SFA acts as the backbone of the ecosystem — configuring how different stakeholders interact with the system. The focus was to simplify complex administrative workflows like onboarding, role management, and incentive structuring, ensuring that the system remains scalable and adaptable.",
+      imageSrc: "/theme/sfa.png",
       imageAlt: "Community experience design direction",
       annotations: [
         {
           n: 1,
-          title: "Peer learning layer",
-          body: "Users learn from similar GCC leaders and case studies.",
+          title: "Role-based access control",
+          body: "Clear mapping of permissions across CTS, dealers, and retailers.",
         },
         {
           n: 2,
-          title: "Structured discussions",
-          body: "Conversations organized by themes, not random threads.",
+          title: "Streamlined onboarding flows",
+          body: "Faster setup for new users with guided configurations.",
         },
         {
           n: 3,
-          title: "Credibility signals",
-          body: "Verified experts and contributors highlighted.",
+          title: "Incentive configuration made flexible",
+          body: "Easy creation and management of schemes across regions and roles.",
         },
         {
           n: 4,
-          title: "Knowledge sharing loops",
-          body: "Users contribute insights back into the ecosystem.",
-        },
-        {
-          n: 5,
-          title: "Event-driven engagement",
-          body: "Webinars, discussions, and expert sessions integrated.",
+          title: "Centralized system governance",
+          body: "A single source to manage users, rules, and performance structures.",
         },
       ],
     },
+
+    // Dealer section
     {
-      title: "Making Reports Actionable, Not Overwhelming",
+      title: "Managing Orders, Performance & Relationships",
       description:
-        "Reports fail when they read like archives. This direction treats every document as a decision interface: scannable structure, tools to compare and validate, and filters aligned to intent—so leaders spend less time decoding and more time committing, with less reliance on manual synthesis.",
-      imageSrc: "/design/reports.png",
+        "Dealers sit at the center of execution — balancing incoming demand with supply, logistics, and relationships. The experience was designed to give them better control and visibility across orders, retailer activity, and performance metrics.",
+      imageSrc: "/theme/dealer.png",
       imageAlt: "Reports experience design direction",
       annotations: [
         {
           n: 1,
-          title: "Scannable report structure",
-          body: "Content broken into digestible sections.",
+          title: "Unified order management",
+          body: "All incoming requests consolidated into a single actionable view.",
         },
         {
           n: 2,
-          title: "Visual comparison tools",
-          body: "Side-by-side comparison of insights.",
+          title: "Retailer activity visibility",
+          body: "Insights into who is ordering, how frequently, and at what scale.",
         },
         {
           n: 3,
-          title: "Insight validation layer",
-          body: "Cross-referencing across sources.",
+          title: "Performance tracking",
+          body: "Clear metrics on fulfillment, volume, and growth over time.",
         },
         {
           n: 4,
-          title: "Dynamic filtering",
-          body: "Filter by intent, industry, and use-case.",
-        },
-        {
-          n: 5,
-          title: "Decision-ready outputs",
-          body: "Summaries and recommendations instead of raw data.",
+          title: "Relationship strengthening tools",
+          body: "Better visibility enables proactive engagement with retailers and contractors.",
         },
       ],
     },
+
+    // Retailer section
+    {
+        title: "Simplifying Ordering & Incentive Awareness",
+        description:
+          "Retailers operate in high-frequency, low-margin environments where ease and speed matter most. The experience focused on making ordering seamless while ensuring they clearly understand the benefits and incentives tied to their actions.",
+        imageSrc: "/theme/retailer.png",
+        imageAlt: "Reports experience design direction",
+        annotations: [
+          {
+            n: 1,
+            title: "Quick order placement",
+            body: "Reduced friction in placing and repeating orders.",
+          },
+          {
+            n: 2,
+            title: "Transparent delivery expectations",
+            body: "Better clarity on timelines and fulfillment status.",
+          },
+          {
+            n: 3,
+            title: "Incentive visibility",
+            body: "Clear understanding of schemes, rewards, and earnings.",
+          },
+          {
+            n: 5,
+            title: "Decision confidence",
+            body: "Improved experience reduces dependency on external follow-ups or guesswork.",
+          },
+        ],
+      },
   ];
 
   function DesignDirectionBlock({
@@ -634,14 +654,16 @@ Worked across business, product, and engineering teams to align operational goal
           heading="Design Directions"
           body={
             <>
-              Research insights and prioritized ideas converge into{" "}
-              <span className={editorialHighlightClass}>three concrete surfaces</span>{" "}
-              — calmer entry, credible peer learning, and reports built for
-              decisions — not generic UX polish, but product behavior aligned to
-              how GCC leaders actually work.
+              Bringing structure to a fragmented ecosystem required more than interface 
+              improvements - it demanded clarity in how information flows, decisions are made, 
+              and stakeholders interact.
+              We focused on simplifying complexity at every touchpoint: 
+              <span className={editorialHighlightClass}>making actions more intuitive,</span>{" "} 
+              surfacing the right information at the right time, and ensuring that each role operates 
+              with confidence, not guesswork.
             </>
           }
-          quote="Design is not about adding features, but about structuring clarity into every interaction."
+          quote="Design is not about creating one solution for all, but about shaping the right experience for each role within a shared system."
         />
 
         <div className="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-8 md:pt-12 space-y-20 md:space-y-28">
@@ -650,6 +672,8 @@ Worked across business, product, and engineering teams to align operational goal
           ))}
         </div>
       </motion.section>
+
+
 
 {/* main wrapper ends here */}
     </main>
