@@ -1,5 +1,11 @@
-import { bodySerif, instrumentSerif } from "@/lib/fonts";
+import { bodySerif } from "@/lib/fonts";
 import { TriangulationCard } from "./TriangulationCard";
+import { Jost } from "next/font/google";
+
+const headingFont = Jost({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
 
 const DEFAULT_CARDS = [
   {
@@ -14,7 +20,7 @@ const DEFAULT_CARDS = [
       "KPI structures and measurement logic",
       "Role-based responsibilities and workflows",
     ],
-    bgColor: "bg-[#F3F0E6]",
+    bgColor: "bg-[#E9EEDD]",
   },
   {
     title: "User Reality",
@@ -64,27 +70,69 @@ export function TriangulationSection({
       <div className="max-w-5xl mx-auto">
         <header className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2
-            className={`${instrumentSerif.className} text-3xl md:text-4xl font-normal text-gray-900 leading-tight mb-5`}
+            className={`${headingFont.className} text-4xl md:text-4xl font-semibold text-gray-900 leading-tight mb-5`}
           >
             {sectionTitle}
           </h2>
           <p
-            className={`${bodySerif.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+            className={`${bodySerif.className} text-lg md:text-xl text-left text-gray-700 leading-relaxed`}
           >
             {sectionDescription}
           </p>
         </header>
 
-        <div className="flex flex-col gap-6 md:gap-8">
-          <div className="flex justify-center">
-            <div className="w-full max-w-xl">
-              <TriangulationCard {...top} />
-            </div>
-          </div>
+        <div className="relative isolate z-0">
+          <svg
+            className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full overflow-visible md:block"
+            aria-hidden
+            preserveAspectRatio="none"
+          >
+            <line
+              x1="50%"
+              y1="27%"
+              x2="25%"
+              y2="73%"
+              className="stroke-gray-400"
+              
+              strokeDasharray="4 4"
+              strokeWidth={1.4}
+              vectorEffect="non-scaling-stroke"
+            />
+            <line
+              x1="50%"
+              y1="27%"
+              x2="75%"
+              y2="73%"
+              className="stroke-gray-400"
+              
+              strokeDasharray="4 4"
+              strokeWidth={1.4}
+              vectorEffect="non-scaling-stroke"
+            />
+            <line
+              x1="25%"
+              y1="73%"
+              x2="75%"
+              y2="73%"
+              className="stroke-gray-400"
+              
+              strokeDasharray="4 4"
+              strokeWidth={1.4}
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <TriangulationCard {...left} />
-            <TriangulationCard {...right} />
+          <div className="relative z-10 flex flex-col gap-6 md:gap-8">
+            <div className="flex justify-center">
+              <div className="w-full max-w-xl">
+                <TriangulationCard {...top} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+              <TriangulationCard {...left} />
+              <TriangulationCard {...right} />
+            </div>
           </div>
         </div>
       </div>
