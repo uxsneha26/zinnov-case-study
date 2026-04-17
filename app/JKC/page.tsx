@@ -320,7 +320,7 @@ Worked across business, product, and engineering teams to align operational goal
 
       <TriangulationSection/>
 
-
+{/* Information Architecture */}
     <motion.section
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -343,11 +343,10 @@ Worked across business, product, and engineering teams to align operational goal
           <p
             className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
           >
-            
-
-We mapped end-to-end user flows across stakeholders — tracing how leads are generated, orders are processed, and decisions are made across the system.
-
-This revealed critical gaps and overlaps, allowing us to restructure workflows into a cohesive, scalable experience that supports real-world operations.
+            We mapped end-to-end user flows across stakeholders — tracing how leads are generated, 
+            orders are processed, and decisions are made across the system.
+            This revealed critical gaps and overlaps, allowing us to restructure workflows into a 
+            <Highlight color="#FFFAB8">cohesive, scalable experience</Highlight> that supports real-world operations.
           </p>
         </div>
 

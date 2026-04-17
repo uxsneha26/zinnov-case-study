@@ -71,6 +71,8 @@ export function TriangulationSection({
 
   return (
     <section className="w-full px-6 py-16 md:py-24 border-t border-[#dfe6d5]/50">
+      
+      
       <div className="max-w-5xl mx-auto">
         <header className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2
@@ -157,7 +159,41 @@ export function TriangulationSection({
             </div>
           </div>
         </div>
+        
+        
+      </div>
+
+
+      <div className="max-w-5xl mx-auto">
+        <header className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <div
+  className={`${bodySerif.className} text-lg md:text-xl text-left text-gray-700 leading-relaxed`}
+>
+<div>
+<>
+          
+<br />
+<br />
+Bringing these perspectives together revealed not just{" "}
+    <Highlight>gaps</Highlight>, but <Highlight>patterns</Highlight>.
+    <br />
+    <br />
+    While the business defined clear structures and users adapted through
+    workarounds, the system itself lacked <Highlight>cohesion</Highlight>.
+    Information was <Highlight color="#F0D3D3">fragmented</Highlight>, workflows were{" "}
+    <Highlight color="#F0D3D3">disconnected</Highlight>, and decision-making relied heavily on{" "}
+    <Highlight color="#F0D3D3">manual effort</Highlight>.
+    <br />
+    <br />
+    These insights formed the foundation for defining the{" "}
+    <Highlight color="#E6F0AA">core problem</Highlight>.
+        </>
+</div>
+</div>
+        </header>
+        
       </div>
     </section>
+
   );
 }
