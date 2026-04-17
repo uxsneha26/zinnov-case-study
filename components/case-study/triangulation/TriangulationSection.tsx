@@ -1,6 +1,9 @@
+"use client";
+
 import { bodySerif } from "@/lib/fonts";
 import { TriangulationCard } from "./TriangulationCard";
 import { Jost } from "next/font/google";
+import { Highlight } from "@/components/ui/highlight";
 
 const headingFont = Jost({
   subsets: ["latin"],
@@ -54,14 +57,15 @@ const DEFAULT_CARDS = [
   },
 ] as const;
 
-export type TriangulationSectionProps = {
+
+type TriangulationSectionProps = {
   sectionTitle?: string;
-  sectionDescription?: string;
+  sectionDescription?: React.ReactNode;
 };
 
 export function TriangulationSection({
   sectionTitle = "From Complexity to Clarity",
-  sectionDescription = "Before defining the problem, we triangulated insights across business intent, user reality, and system design.",
+  sectionDescription,
 }: TriangulationSectionProps) {
   const [top, left, right] = DEFAULT_CARDS;
 
@@ -74,11 +78,29 @@ export function TriangulationSection({
           >
             {sectionTitle}
           </h2>
-          <p
-            className={`${bodySerif.className} text-lg md:text-xl text-left text-gray-700 leading-relaxed`}
-          >
-            {sectionDescription}
-          </p>
+          <div
+  className={`${bodySerif.className} text-lg md:text-xl text-left text-gray-700 leading-relaxed`}
+>
+<div>
+<>
+          Understanding the system wasn’t straightforward.
+          <br />
+          <br />
+          Each application came with its own set of{" "}
+          <Highlight color="#FFFAB8">features</Highlight>,{" "}
+          <Highlight color="#FFFAB8">workflows</Highlight>, and{" "}
+          <Highlight color="#FFFAB8">success metrics</Highlight> — spread across detailed
+          documentation and shaped by different stakeholders. Looking at them in
+          isolation only added to the <Highlight color="#F0D3D3">complexity</Highlight>.
+          <br />
+          <br />
+          To make sense of it, we stepped back and examined the system from three
+          lenses — what the <Highlight color="#E6F0AA">business intended</Highlight>, how users{" "}
+          <Highlight color="#E6F0AA">actually operated</Highlight>, and how these could translate into{" "}
+          <Highlight color="#C7F2F0">structured digital experiences</Highlight>.
+        </>
+</div>
+</div>
         </header>
 
         <div className="relative isolate z-0">

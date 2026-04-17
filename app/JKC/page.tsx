@@ -318,8 +318,50 @@ Worked across business, product, and engineering teams to align operational goal
         </div>
       </motion.section>
 
-      <TriangulationSection />
+      <TriangulationSection/>
 
+
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="w-full py-16 md:py-24 px-6 md:px-10"
+    >
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto text-left mb-10 md:mb-14">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-5 leading-tight text-gray-900`}
+          >
+            Structuring the System at Scale
+          </h2>
+          <p
+            className={`${headingFont.className} text-lg md:text-xl text-gray-800 font-medium mb-6 leading-snug`}
+          >
+            Designing for this ecosystem meant going beyond screens and features.
+          </p>
+          <p
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
+          >
+            
+
+We mapped end-to-end user flows across stakeholders — tracing how leads are generated, orders are processed, and decisions are made across the system.
+
+This revealed critical gaps and overlaps, allowing us to restructure workflows into a cohesive, scalable experience that supports real-world operations.
+          </p>
+        </div>
+
+        <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+          <img
+            src="/jkc/design/information-architecture.png"
+            alt="all applications information architecture"
+            className="w-full h-[650px] object-cover rounded-2xl"
+          />
+        </div>
+        </div>
+      </motion.section>
+
+  
 
 {/* main wrapper ends here */}
     </main>
