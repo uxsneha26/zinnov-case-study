@@ -76,6 +76,8 @@ type EditorialPageBreakerSectionProps = {
 type DesignDirectionBlockProps = {
     title: string;
     description: string;
+    userFlowSrc: string;
+    userFlowAlt: string;
     imageSrc: string;
     imageAlt: string;
     annotations: DesignAnnotationData[];
@@ -94,7 +96,9 @@ type DesignDirectionBlockProps = {
       title: "Staying on Top of Lead Lifecycle",
       description:
         "CTS officers operate at the very start of the supply chain, where speed and clarity directly impact conversion. The experience was designed to help them capture, track, and act on leads without losing momentum — ensuring that no opportunity falls through gaps between systems or stakeholders.",
-      imageSrc: "/theme/cts.png",
+      userFlowSrc: "/jkc/theme/cts.png",
+      userFlowAlt: "Home experience design direction",
+      imageSrc: "/jkc/design/cts.png",
       imageAlt: "Home experience design direction",
       annotations: [
         {
@@ -124,7 +128,9 @@ type DesignDirectionBlockProps = {
       title: "Enabling the System Behind the Scenes",
       description:
         "SFA acts as the backbone of the ecosystem — configuring how different stakeholders interact with the system. The focus was to simplify complex administrative workflows like onboarding, role management, and incentive structuring, ensuring that the system remains scalable and adaptable.",
-      imageSrc: "/theme/sfa.png",
+      userFlowSrc: "/jkc/theme/sfa.png",
+      userFlowAlt: "Community experience design direction",
+      imageSrc: "/jkc/design/sfa.png",
       imageAlt: "Community experience design direction",
       annotations: [
         {
@@ -155,7 +161,9 @@ type DesignDirectionBlockProps = {
       title: "Managing Orders, Performance & Relationships",
       description:
         "Dealers sit at the center of execution — balancing incoming demand with supply, logistics, and relationships. The experience was designed to give them better control and visibility across orders, retailer activity, and performance metrics.",
-      imageSrc: "/theme/dealer.png",
+      userFlowSrc: "/jkc/theme/dealer.png",
+      userFlowAlt: "Reports experience design direction",
+      imageSrc: "/jkc/design/dealer.png",
       imageAlt: "Reports experience design direction",
       annotations: [
         {
@@ -186,7 +194,9 @@ type DesignDirectionBlockProps = {
         title: "Simplifying Ordering & Incentive Awareness",
         description:
           "Retailers operate in high-frequency, low-margin environments where ease and speed matter most. The experience focused on making ordering seamless while ensuring they clearly understand the benefits and incentives tied to their actions.",
-        imageSrc: "/theme/retailer.png",
+        userFlowSrc: "/jkc/theme/retailer.png",
+        userFlowAlt: "Reports experience design direction",
+        imageSrc: "/jkc/design/retailer.png",
         imageAlt: "Reports experience design direction",
         annotations: [
           {
@@ -216,6 +226,8 @@ type DesignDirectionBlockProps = {
   function DesignDirectionBlock({
     title,
     description,
+    userFlowSrc,
+    userFlowAlt,    
     imageSrc,
     imageAlt,
     annotations,
@@ -239,6 +251,17 @@ type DesignDirectionBlockProps = {
             {description}
           </p>
         </div>
+
+        {/* User Flow Block */}
+        <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+        <img
+  src={userFlowSrc}
+  alt={userFlowAlt}
+  className="w-full min-h-[650px] object-cover opacity-90 rounded-2xl"
+/>
+        </div>
+  
+  {/* Annotation Block */}
   
         <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
           <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-12 items-start">
