@@ -294,10 +294,10 @@ type DesignDirectionBlockProps = {
                       {a.n}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-sm text-gray-900">
+                      <p className={`${headingFont.className} font-semibold text-sm text-gray-900`}>
                         {a.title}
                       </p>
-                      <p className="text-xs text-gray-600 mt-1 leading-snug">
+                      <p className={`${bodyFont.className} text-xs text-gray-600 mt-1 leading-snug`}>
                         {a.body}
                       </p>
                     </div>
