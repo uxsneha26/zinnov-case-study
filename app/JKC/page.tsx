@@ -30,6 +30,37 @@ const structuredAnnotationPalette = [
 
 const editorialHighlightClass = "bg-[#E6EDC8] px-1.5 py-0.5 rounded-sm";
 
+const impactCardGlassShellClass =
+  "relative rounded-2xl p-7 bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_12px_40px_rgba(0,0,0,0.10)] overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_18px_60px_rgba(0,0,0,0.15)] hover:-translate-y-1 isolate";
+
+const impactCardTintLayerClasses = [
+  "absolute inset-0 rounded-2xl bg-[rgba(244,222,229,0.25)] pointer-events-none",
+  "absolute inset-0 rounded-2xl bg-[rgba(234,244,236,0.25)] pointer-events-none",
+  "absolute inset-0 rounded-2xl bg-[rgba(234,240,255,0.25)] pointer-events-none",
+] as const;
+
+const impactMetricBaseClass = `${headingFont.className} text-5xl md:text-6xl leading-none tracking-tight`;
+
+const impactMetricToneClasses = [
+  "text-[#9C7A73]",
+  "text-[#5F807A]",
+  "text-[#6E7F99]",
+] as const;
+
+const cards = [
+  {
+    title: "35%",
+    text: "reduction in manual coordination across tools",
+  },
+  {
+    title: "2x",
+    text: "faster response time to client queries",
+  },
+  {
+    title: "50%",
+    text: "improvement in visibility across workflows and requests",
+  },
+];
 
 // insight cards
 const insightCards = [
@@ -74,6 +105,7 @@ type EditorialPageBreakerSectionProps = {
   };
   
 type DesignDirectionBlockProps = {
+    sectionLabel: string;
     title: string;
     description: string;
     userFlowSrc: string;
@@ -93,6 +125,7 @@ type DesignDirectionBlockProps = {
   const designDirectionSections: DesignDirectionBlockProps[] = [
     // CTS section
     {
+      sectionLabel: "Customer Engagement & Technical Services",
       title: "Staying on Top of Lead Lifecycle",
       description:
         "CTS officers operate at the very start of the supply chain, where speed and clarity directly impact conversion. The experience was designed to help them capture, track, and act on leads without losing momentum — ensuring that no opportunity falls through gaps between systems or stakeholders.",
@@ -125,6 +158,7 @@ type DesignDirectionBlockProps = {
     },
     // SFA section
     {
+      sectionLabel: "Sales Operation Management",
       title: "Enabling the System Behind the Scenes",
       description:
         "SFA acts as the backbone of the ecosystem — configuring how different stakeholders interact with the system. The focus was to simplify complex administrative workflows like onboarding, role management, and incentive structuring, ensuring that the system remains scalable and adaptable.",
@@ -158,6 +192,7 @@ type DesignDirectionBlockProps = {
 
     // Dealer section
     {
+      sectionLabel: "Orders and Business Management",
       title: "Managing Orders, Performance & Relationships",
       description:
         "Dealers sit at the center of execution — balancing incoming demand with supply, logistics, and relationships. The experience was designed to give them better control and visibility across orders, retailer activity, and performance metrics.",
@@ -189,8 +224,43 @@ type DesignDirectionBlockProps = {
       ],
     },
 
+    // Dealer section
+    {
+      sectionLabel: "",
+      title: "",
+      description:
+        "",
+      userFlowSrc: "",
+      userFlowAlt: "",
+      imageSrc: "/jkc/design/dealer1.png",
+      imageAlt: "Reports experience design direction",
+      annotations: [
+        {
+          n: 1,
+          title: "Unified order management",
+          body: "All incoming requests consolidated into a single actionable view.",
+        },
+        {
+          n: 2,
+          title: "Retailer activity visibility",
+          body: "Insights into who is ordering, how frequently, and at what scale.",
+        },
+        {
+          n: 3,
+          title: "Performance tracking",
+          body: "Clear metrics on fulfillment, volume, and growth over time.",
+        },
+        {
+          n: 4,
+          title: "Relationship strengthening tools",
+          body: "Better visibility enables proactive engagement with retailers and contractors.",
+        },
+      ],
+    },
+
     // Retailer section
     {
+        sectionLabel: "Retails Sales Management",
         title: "Simplifying Ordering & Incentive Awareness",
         description:
           "Retailers operate in high-frequency, low-margin environments where ease and speed matter most. The experience focused on making ordering seamless while ensuring they clearly understand the benefits and incentives tied to their actions.",
@@ -224,47 +294,60 @@ type DesignDirectionBlockProps = {
   ];
 
   function DesignDirectionBlock({
+    sectionLabel,
     title,
     description,
     userFlowSrc,
-    userFlowAlt,    
+    userFlowAlt,
     imageSrc,
     imageAlt,
     annotations,
   }: DesignDirectionBlockProps) {
+  
+    const hasHeader = sectionLabel || title || description;
+    const hasUserFlow = userFlowSrc;
+  
     return (
       <div className="max-w-5xl mx-auto">
-        <div className="max-w-3xl mx-auto text-left">
-          <p
-            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
-          >
-            Design direction
-          </p>
-          <h3
-            className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
-          >
-            {title}
-          </h3>
-          <p
-            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
-          >
-            {description}
-          </p>
-        </div>
-
-        {/* User Flow Block */}
-        <div className="relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
-        <img
-  src={userFlowSrc}
-  alt={userFlowAlt}
-  className="w-full min-h-[650px] object-cover opacity-90 rounded-2xl"
-/>
-        </div>
   
-  {/* Annotation Block */}
+        {/* ✅ HEADER */}
+        {hasHeader && (
+          <div className="max-w-3xl mx-auto text-left">
+            {sectionLabel && (
+              <p className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}>
+                {sectionLabel}
+              </p>
+            )}
   
+            {title && (
+              <h3 className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}>
+                {title}
+              </h3>
+            )}
+  
+            {description && (
+              <p className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
+                {description}
+              </p>
+            )}
+          </div>
+        )}
+  
+        {/* ✅ USER FLOW */}
+        {hasUserFlow && (
+          <div className="mt-16 md:mt-20 relative w-full rounded-2xl overflow-hidden border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+            <img
+              src={userFlowSrc}
+              alt={userFlowAlt}
+              className="w-full min-h-[650px] object-cover opacity-90 rounded-2xl"
+            />
+          </div>
+        )}
+  
+        {/* ✅ ANNOTATION BLOCK (always visible) */}
         <div className="mt-10 md:mt-12 rounded-2xl border border-[#dfe6d5] bg-[#f8faf4] p-6 md:p-8">
           <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-12 items-start">
+  
             <div className="min-w-0 w-full rounded-2xl overflow-hidden border border-[#e7e5df] shadow-md bg-[#f8f7f4]">
               <img
                 src={imageSrc}
@@ -279,6 +362,7 @@ type DesignDirectionBlockProps = {
                   structuredAnnotationPalette[
                     index % structuredAnnotationPalette.length
                   ];
+  
                 return (
                   <div
                     key={a.n}
@@ -293,6 +377,7 @@ type DesignDirectionBlockProps = {
                     >
                       {a.n}
                     </div>
+  
                     <div className="min-w-0">
                       <p className={`${headingFont.className} font-semibold text-sm text-gray-900`}>
                         {a.title}
@@ -305,12 +390,14 @@ type DesignDirectionBlockProps = {
                 );
               })}
             </div>
+  
           </div>
         </div>
+  
       </div>
     );
   }
-
+  
   function EditorialPageBreakerSection({
   label,
   heading,
@@ -354,6 +441,68 @@ type DesignDirectionBlockProps = {
           >
             &rdquo;
           </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdminImpactSection() {
+  return (
+    <section className="w-full py-20 md:py-28">
+      <div className="max-w-3xl mx-auto text-left">
+        <div className="max-w-3xl mb-12">
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-4`}
+          >
+            <p
+              className={`${headingFont.className} text-sm tracking-[0.14em] font-normal uppercase text-gray-600 mb-3`}
+            >
+              IMPACT
+            </p>
+            Strengthening Business and Operational Efficiency
+          </h2>
+          <p
+            className={`${bodyFont.className} text-lg text-gray-700 leading-relaxed`}
+          >
+            The internal platform equips teams with better visibility, reduced
+            coordination overhead, and faster execution across workflows.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((card, index) => (
+            <div key={card.title} className={impactCardGlassShellClass}>
+              <div
+                className={
+                  impactCardTintLayerClasses[
+                    index % impactCardTintLayerClasses.length
+                  ]
+                }
+              />
+              <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.35),transparent_60%)] pointer-events-none" />
+              <div className="relative z-10">
+                <h3
+                  className={`${impactMetricBaseClass} ${
+                    impactMetricToneClasses[
+                      index % impactMetricToneClasses.length
+                    ]
+                  }`}
+                  style={{
+                    textShadow:
+                      "0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <div className="w-8 h-[1.5px] bg-black/10 my-3 rounded-full backdrop-blur-sm" />
+                <p
+                  className={`${bodyFont.className} text-base text-gray-800/80 leading-relaxed mt-3 max-w-[85%]`}
+                >
+                  {card.text}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -696,9 +845,60 @@ Worked across business, product, and engineering teams to align operational goal
         </div>
       </motion.section>
 
+      {/* Impact Metrics */}
+      <AdminImpactSection />
 
+      {/* End Note */}
 
-{/* main wrapper ends here */}
+      <section className="w-full mt-24 md:mt-32 pb-20 md:pb-28">
+      <div className="max-w-3xl mx-auto px-6">
+        <div
+          className="mt-20 md:mt-28 max-w-3xl mx-auto rounded-2xl p-8 md:p-10 bg-white/40 backdrop-blur-md border border-white/50 shadow-[0_10px_30px_rgba(0,0,0,0.06)] text-center"
+        >
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold text-gray-900 mb-6 md:mb-8`}
+          >
+            End note
+          </h2>
+          <div
+            className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed space-y-5`}
+          >
+            <p>
+              Working on this project shifted how I think about design, from{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                assembling screens
+              </span>{" "}
+              to{" "}
+              <span className="bg-[#E6F0AA] px-1.5 py-0.5 rounded">
+                shaping systems that support real decisions
+              </span>.
+            </p>
+            <p>
+              It made me more conscious of{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                clarity, structure
+              </span>, and the role of{" "}
+              <span className="bg-[] px-1.5 py-0.5 rounded">
+                context in reducing effort
+              </span>{" "}
+              for users. More importantly, it reinforced that{" "}
+              <span className="bg-[#F0D3D3] px-1.5 py-0.5 rounded">
+                good design isn&apos;t about adding more
+              </span>, but about{" "}
+              <span className="bg-[rgba(219, 238, 192, 0.8)] px-1.5 py-0.5 rounded">
+                making the right things easier to see, understand, and act on
+              </span>.
+            </p>
+            <p>
+              These are{" "}
+              <span className="bg-[#C7F2F0] px-1.5 py-0.5 rounded">
+                principles I now carry into every problem I approach
+              </span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
     </main>
   );
 }

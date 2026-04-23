@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { instrumentSerif } from "@/lib/fonts";
+import { Instrument_Serif, Caveat } from "next/font/google";
 import { FaLinkedin } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
 
@@ -9,6 +9,17 @@ const CONTACT_EMAIL = "hello@example.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/your-profile";
 const PDF_URL =
   "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view?usp=sharing";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400",],
+});
+
+const quoteFont = Caveat({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 
 const heroBg =
   "bg-[#f2ebe3] bg-[radial-gradient(ellipse_85%_65%_at_15%_10%,rgba(232,223,212,0.55)_0%,transparent_52%),radial-gradient(ellipse_70%_50%_at_90%_85%,rgba(221,212,200,0.35)_0%,transparent_48%)]";
@@ -48,7 +59,7 @@ export function ContactSection() {
           <div className="flex min-w-0 flex-col">
             <h2 id="contact-heading" className="text-[#412F2F]">
               <span
-                className={`${instrumentSerif.className} block text-lg font-normal tracking-tight text-neutral-600 md:text-xl`}
+                className={`${quoteFont.className} block text-lg font-normal tracking-tight text-neutral-600 md:text-xl`}
               >
                 if you saw something you liked
               </span>
