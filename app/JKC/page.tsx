@@ -397,7 +397,7 @@ type DesignDirectionBlockProps = {
       </div>
     );
   }
-  
+
   function EditorialPageBreakerSection({
   label,
   heading,
@@ -504,6 +504,23 @@ function AdminImpactSection() {
             </div>
           ))}
         </div>
+
+{/* Leadership */}
+        <p
+            className={`${bodyFont.className} text-lg my-20 text-gray-700 leading-relaxed`}
+          >
+            The internal platform equips teams with better visibility, reduced
+            coordination overhead, and faster execution across workflows.
+          </p>
+
+        </div>
+
+        <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden my-20 border border-[#dfe6d5] shadow-[0_18px_44px_rgba(0,0,0,0.08)] bg-[#eef0e8]">
+          <img
+            src="/jkc/steerco.png"
+            alt="all applications information architecture"
+            className="w-[full] h-[full] object-cover rounded-2xl"
+          />
       </div>
     </section>
   );
