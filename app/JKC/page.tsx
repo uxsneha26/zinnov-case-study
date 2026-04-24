@@ -96,7 +96,265 @@ const insightCards = [
     },
   ];
 
+  // persona cards
+
+  type PersonaCardProps = {
+    name: string;
+    role: string;
+    description: string;
+    quote: React.ReactNode;
+    expectations: string[];
+    painPoints: string[];
+    avatarSrc: string;
+    appsUsed: string[];
+  };
   
+  function PersonaCard({
+    name,
+    role,
+    description,
+    quote,
+    expectations,
+    painPoints,
+    avatarSrc,
+    appsUsed,
+  }: PersonaCardProps) {
+    return (
+      <div className="relative overflow-hidden rounded-2xl border border-[#dfe6d5] bg-[#f8faf4]/70 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-60"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 30%, rgba(199,242,240,0.45), rgba(240,211,211,0.18) 55%, rgba(255,251,230,0) 72%)",
+          }}
+        />
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 p-6 md:p-8">
+          <div className="space-y-4 md:pr-4 md: flex flex-col items-center md:items-start text-center md:text-left">
+            <img
+              src={avatarSrc}
+              alt={`${name} avatar`}
+              className="h-64 w-64 rounded-xl object-cover border border-[#dfe6d5] bg-white/60 shadow-sm"
+            />
+            <h3
+              className={`${headingFont.className} text-xl font-semibold text-gray-900 mt-1`}
+            >
+              {name}
+            </h3>
+            <div className="text-sm text-gray-500 leading-snug space-y-1">
+              <p>{role}</p>
+              
+            </div>
+      
+          </div>
+          
+          
+  
+          <div className="space-y-5 md:px-2">
+            <div>
+              <p
+                className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+              >
+                Type of work
+              </p>
+              <p className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-snug`}>
+                {description}
+              </p>
+            </div>
+            
+  
+            <p
+              className={`${quoteFont.className} text-lg leading-relaxed text-gray-900 max-w-md`}
+            >
+              {quote}
+            </p>
+            <div>
+              <p
+                className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-600 mb-2`}
+              >
+                Touch Points
+              </p>
+              <div className="flex flex-wrap gap-2">
+  {appsUsed.map((app) => (
+    <span
+      key={app}
+      className="text-xs px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-gray-700"
+    >
+      {app}
+    </span>
+  ))}
+</div>
+            </div>
+            
+            
+  
+            
+          </div>
+  
+          <div className="space-y-4 md:pl-4 md:">
+            <div className="rounded-xl p-4 bg-[#FDECEC] border border-[#F5B5B5]">
+              <p
+                className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+              >
+                Pain points
+              </p>
+              <ul className="space-y-2">
+                {painPoints.map((item) => (
+                  <li
+                    key={item}
+                    className={`${bodyFont.className} text-sm text-[#7F2A2A] leading-snug`}
+                  >
+                     <Highlight color="#FDECEC">{item}</Highlight>
+                  </li>
+                ))}
+              </ul>
+            </div>
+  
+            <div className="rounded-xl p-4 bg-[#EAF4EC] border border-[#cfe2d2]">
+              <p
+                className={`${headingFont.className} text-xs tracking-[0.14em] uppercase text-gray-700 mb-2`}
+              >
+                Expectations
+              </p>
+              <ul className="space-y-2">
+                {expectations.map((item) => (
+                  <li
+                    key={item}
+                    className={`${bodyFont.className} text-sm text-gray-700 leading-snug`}
+                  >
+                     <Highlight color="#EAF4EC">{item}</Highlight>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  // persona data
+  const personaData = {
+    name: "Karan",
+    role: "Customer Technical Services Officer",
+    description:
+      "Manages field leads, influencer onboarding, site visits, service requests, and lead-to-conversion tracking. Mapped to 50+ leads and influencers simultaneously.",
+    quote:
+    <>“I like to be{" "}
+              <Highlight color="#F0D3D3">organised with my work.</Highlight> But sometimes the{" "}
+              <Highlight color="#E6F0AA">tools feel ancient</Highlight>and hinder my performance.”
+              </>
+    ,
+    expectations: [
+      "- Statistical dashboard with immediate action capability",
+      "- Simplified influencer tracking and nudging",
+      "- Clear performance visibility with leaderboard features",
+    ],
+    painPoints: [
+      "- Monitoring lead status and influencer mapping is fragmented",
+      "- Tracking site visits and conversion leads is manual",
+      "- No way to manage incentive schemes in one place"
+    ],
+    avatarSrc: "/jkc/ctspersona.png",
+    appsUsed: [
+      "Salesforce",
+      "WhatsApp",
+      "Excel",
+      "Call logs",
+      "Dealer visits"
+    ],
+  };
+
+  const personaData2 = {
+    name: "Harsh Vardhan.",
+    role: "District Marketing Officer (DMO)",
+    description:
+      "Onboards and offboards dealers, monitors analytics, manages JCP (Journey Cycle Plan), oversees financials and loyalty for each dealer.",
+    quote:
+    <>“I want to be{" "}
+              <Highlight color="#F0D3D3">on top of everything</Highlight> that goes in my departments in terms o{" "}
+              <Highlight color="#E6F0AA">numbers."</Highlight>
+              </>
+    ,
+    expectations: [
+      "- Seamless navigation with minimal friction",
+      "- Interactive, scannable dashboard",
+      "- A clear next step, not another search loop",
+    ],
+    painPoints: [
+      "- Multiple functionalities to monitor simultaneously",
+      "- Complicated dashboard slows analysis",
+      "- Long action paths increase time to decision",
+    ],
+    avatarSrc: "/jkc/sfapersona.png",
+    appsUsed: [
+      "Salesforce",
+      "WhatsApp",
+      "Excel",
+      "Email",
+
+    ],
+  };
+
+  const personaData3 = {
+    name: "Prashant B.",
+    role: "Dealership Owner",
+    description:
+      "Manages 20–30 stakeholders monthly. Handles order placement, financial reconciliation, lead validation, contractor lifting oversight, and loyalty tracking, all across separate tools.",
+    quote:
+    <>“I'd like to be able to {" "}
+              <Highlight color="#F0D3D3">strategise and plan my goals</Highlight>  from a business point of view. I would {" "}
+              <Highlight color="#E6F0AA">love if the tools</Highlight> I use could help me achieve that."
+              </>
+      ,
+    expectations: [
+      "- Intuitive interface for priority tasks, orders, performance, leads",
+      "- Ability to customise dashboard and surface what matters most",
+      "- Actionable steps, not just data",
+    ],
+    painPoints: [
+      "- Order placing is a confusing, multi-step process",
+      "- Can't see priority notifications upfront",
+      "- No clear guidance to improve his own performance metrics",
+    ],
+    avatarSrc: "/jkc/dealerpersona.png",
+    appsUsed: [
+      "Internal Dashboard",
+      "WhatsApp",
+      "Call logs",
+      "SAP"
+    ],
+  };
+
+  const personaData4 = {
+    name: "Satish K.",
+    role: "Retail Shop Owner",
+    description:
+      "Runs a local construction materials store, serving contractors, individual home builders, and walk-in customers. Places orders through dealers and influences brand choice at the point of sale.",
+    quote:
+    <>“Customers ask for{" "}
+    <Highlight color="#F0D3D3">availability and price instantly.</Highlight>  If I don’t have clarity,{" "}
+    <Highlight color="#E6F0AA">I lose the sale."</Highlight>
+    </>
+    ,
+    expectations: [
+      "- Quick and reliable way to place and track orders",
+      "- Clear visibility into delivery timelines and stock availability",
+      "- Ability to respond faster to contractors and customers",
+    ],
+    painPoints: [
+      "- No real-time visibility into order status or delivery timelines",
+      "- Dependency on dealer for updates → constant follow-ups via calls",
+      "- Difficulty in managing multiple contractor demands simultaneously",
+    ],
+    avatarSrc: "/jkc/retailerpersona.png",
+    appsUsed: [
+      "Dealer App",
+      "WhatsApp",
+      "Loyalty App",
+      "Call logs",
+    ],
+  };
+
 type EditorialPageBreakerSectionProps = {
     label: string;
     heading: string;
@@ -636,9 +894,12 @@ export default function JKCCaseStudyPage() {
                 <p
                   className={`${bodyFont.className} text-sm md:text-base text-gray-700 leading-relaxed`}
                 >
-                  Led the design of a multi-application ecosystem, translating complex supply workflows into structured, role-based digital experiences.
+                  Led the information architecture, strategy, and design direction across a suite of 7 
+                  role-based applications.
 
-Worked across business, product, and engineering teams to align operational goals with intuitive user journeys.
+                  Worked at the intersection of supply chain operations, sales strategy, and product design
+                  to translate complex multi-stakeholder workflows into clear, usable experiences.
+
                 </p>
               </div>
 
@@ -658,9 +919,12 @@ Worked across business, product, and engineering teams to align operational goal
                   className={`${bodyFont.className} text-sm md:text-lg text-gray-700 leading-relaxed`}
                 >
                   <p>
-                  Designed a unified platform ecosystem connecting internal teams, 
-                  dealers, and external stakeholders — transforming fragmented supply 
-                  operations into a streamlined, insight-driven system.
+                  Reimagined how a leading cement manufacturer's entire stakeholder network,
+                  from internal sales officers to independent contractors, manages orders, tracks
+                  leads, monitors loyalty, and makes field decisions. The result is a unified digital
+                  ecosystem that reduces manual coordination, improves field visibility, and drives
+                  engagement across the supply chain.
+
                   </p>
                 </div>
               </div>
@@ -685,15 +949,24 @@ Worked across business, product, and engineering teams to align operational goal
 
         <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
 
-        The cement supply chain operates across a highly distributed ecosystem 
-        involving multiple stakeholders like contractors, retailers, and industry influencers. Each 
-        stakeholder functions with 
-        <Highlight color="#FFFAB8">different priorities, disconnected tools, and varying 
-        levels of digital adoption.</Highlight>{" "}
+        India's cement industry runs on relationships. A manufacturer's reach depends not just on its
+        product, but on how well it enables its <Highlight color="#FFFAB8">dealers, field teams, retailers, 
+        and contractors</Highlight> to do their jobs every day.
+
         <br />
         <br />
-        This leads to <Highlight color="#F0D3D3">fragmented workflows, delayed communication, 
-        and limited visibility</Highlight>{" "} across the supply pipeline.
+
+        This leading cement manufacturer operates across 40+ countries with a strong domestic presence
+        in grey cement, white cement, and wall putty. Their challenge wasn't brand recognition, it was
+        <Highlight color="#FFFAB8">coordination.</Highlight> 
+        
+        <br />
+        <br />
+        Thousands of stakeholders across the supply chain were <Highlight color="#F0D3D3">managing orders, leads, loyalty</Highlight>
+        <Highlight color="#F0D3D3">schemes, and site visits </Highlight>through fragmented tools, manual processes, and phone calls.
+
+        This lack of connectedness creates gaps in communication, visibility, and decision-making,
+        leading to delays, missed opportunities, and frustrated stakeholders.
         </p>
 
       </motion.div>
@@ -703,16 +976,17 @@ Worked across business, product, and engineering teams to align operational goal
         <p
           className={`${quoteFont.className} text-2xl md:text-xl leading-snug text-gray-800`}
         >
-          The challenge was not just to design interfaces, but to create a connected system that{" "}
+          The challenge was not just building apps. It was designing a system where a dealer
+          in Gurgaon, a contractor in Rohtak, and a sales officer in a remote depot could all
+          {" "}
           
           <Highlight color="#E6F0AA">
-          aligns business operations
+          do their jobs confidently,
           </Highlight>{" "}
           
-          with{" "}
-          
           <Highlight color="#C7F2F0">
-          real-world execution.
+          on one connected platform.{" "}
+          
           </Highlight>{" "}
         </p>
 
@@ -730,12 +1004,21 @@ Worked across business, product, and engineering teams to align operational goal
         <h2
           className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
         >
-          Before designing a system, it was critical to understand how the ecosystem currently operates....
+        Before designing a system, it was critical to understand how the ecosystem currently operates....
         </h2>
 
         <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
-        While each stakeholder performs their role efficiently, the lack of a connected system leads 
-        to gaps in communication, visibility, and decision-making.
+        Imagine you are a dealer.
+        <br />
+        <br />
+        You manage a warehouse, a team of field officers, dozens of retailers
+        who depend on your stock, and a portfolio of contractors who are building sites across your region.
+        
+        <br />
+        <br />
+        Every day you're juggling: pending order approvals, contractor lifting updates, loyalty scheme
+        deadlines, lead conversions you need to validate, and finance checks from your sales manager.
+
         </p>
 
         {/* SECTION 2: COMIC STRIP */}
@@ -790,6 +1073,52 @@ Worked across business, product, and engineering teams to align operational goal
       </motion.section>
 
       <TriangulationSection/>
+
+      {/* USER RESEARCH & FEATURE PRIORITIZATION */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="w-full py-16 md:py-20 px-6 md:px-10"
+      >
+        <div className="max-w-3xl mx-auto text-">
+          <p
+            className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
+          >
+            User Research & Feature Prioritization
+          </p>
+          <h2
+            className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}
+          >
+            From interviews to prioritized features
+          </h2>
+          <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
+            We captured verbatim signals, modeled priorities, and surfaced what should ship first.
+          </p>
+        </div>
+
+{/* CTS */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <PersonaCard {...personaData} />
+        </div>
+
+{/* SFA */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <PersonaCard {...personaData2} />
+        </div>
+
+{/* Dealer */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <PersonaCard {...personaData3} />
+        </div>
+
+{/* Influencer */}
+<div className="max-w-6xl mx-auto mt-12">
+          <PersonaCard {...personaData4} />
+        </div>
+        
+      </motion.section>
 
 {/* Information Architecture */}
     <motion.section
