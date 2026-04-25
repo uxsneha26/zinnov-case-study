@@ -7,6 +7,7 @@ import { PersonalSection } from "@/components/personal/PersonalSection";
 import { ContactSection } from "@/components/ContactSection";
 import { SelectedProjectsSection } from "@/components/selected-projects/SelectedProjectsSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
+import TestimonialsSectionalt from "@/components/testimonials/TestimonialsSectionalt";
 
   const handwrittenFont = Caveat({
     subsets: ["latin"],
@@ -193,7 +194,7 @@ export default function Home() {
       <SelectedProjectsSection />
 
       <TestimonialsSection />
-
+      <TestimonialsSectionalt />
       <ArchitectureLearningSection />
 
       <PersonalSection />
