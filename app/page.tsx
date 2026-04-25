@@ -8,6 +8,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { SelectedProjectsSection } from "@/components/selected-projects/SelectedProjectsSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 import TestimonialsSectionalt from "@/components/testimonials/TestimonialsSectionalt";
+import { Navbar } from "@/components/Navbar";
 
   const handwrittenFont = Caveat({
     subsets: ["latin"],
@@ -148,6 +149,7 @@ export default function Home() {
       data-cursor
       data-cursor-color="#8C6A6A"
     >
+      <Navbar />
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center gap-20 px-6 py-24 md:flex-row md:items-start md:justify-center md:py-32">
       <InteractivePortrait />
 

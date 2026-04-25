@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Jost, Crimson_Text } from "next/font/google";
 import "./globals.css";
 import { GlobalCursor } from "@/components/cursor";
-
+import { Navbar } from "@/components/Navbar";
 export default function Layout({
   children,
 }: {
@@ -12,6 +12,7 @@ export default function Layout({
     <html lang="en">
       <body>
         <GlobalCursor />
+        <Navbar />
         {children}
       </body>
     </html>
