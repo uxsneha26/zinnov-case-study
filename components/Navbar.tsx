@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { bodySerif, caveat } from "@/lib/fonts";
@@ -19,36 +19,85 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
   const pathname = usePathname();
   const isHome = pathname === "/";
   const lastY = useRef(0);
+  const lockScroll = useRef(false);
+const lockY = useRef(0);
   const [visible, setVisible] = useState(true);
+  const [active, setActive] = useState<string>("hero");
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
       const delta = y - lastY.current;
-      if (y < 8) setVisible(true);
-      else if (delta > 4) setVisible(false);
-      else if (delta < -4) setVisible(true);
+  
+      // 🔹 NAV VISIBILITY LOGIC (unchanged)
+      if (y < 8) {
+        setVisible(true);
+      } 
+      else if (delta > 4) {
+        setVisible(false);
+      } 
+      else if (delta < -4) {
+        // 🔹 trigger nav first
+        if (!visible && !lockScroll.current) {
+          setVisible(true);
+      
+          // lock scroll for a moment
+          lockScroll.current = true;
+          lockY.current = y;
+      
+          setTimeout(() => {
+            lockScroll.current = false;
+          }, 220); // tweak timing if needed
+        }
+      }
+      if (lockScroll.current) {
+        window.scrollTo(0, lockY.current);
+      }
+  
       lastY.current = y;
+  
+      // 🔹 ACTIVE SECTION LOGIC (new)
+      const sections = ["hero", "projects", "personal", "contact"];
+  
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+  
+        const rect = el.getBoundingClientRect();
+  
+        if (rect.top <= 200 && rect.bottom >= 200) {
+          setActive(id);
+          break;
+        }
+      }
     };
+  
     lastY.current = window.scrollY;
+  
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isHome) return;
-
-    const run = () => {
+  
+    const scrollNow = () => {
       const hash = window.location.hash.replace(/^#/, "");
       if (!hash) return;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => scrollToSection(hash));
-      });
+  
+      const el = document.getElementById(hash);
+      if (!el) return;
+  
+      const y = el.getBoundingClientRect().top + window.pageYOffset;
+  
+      window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
     };
-
-    run();
-    window.addEventListener("hashchange", run);
-    return () => window.removeEventListener("hashchange", run);
+  
+    scrollNow();
+  
+    window.addEventListener("hashchange", scrollNow);
+    return () => window.removeEventListener("hashchange", scrollNow);
   }, [isHome, pathname]);
 
   return (
@@ -59,9 +108,24 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
       aria-label="Primary"
     >
       {/* FULL WIDTH BLUR BACKGROUND */}
-<div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-  <div className="absolute inset-0 bg-gradient-to-b from-[#f2ebe3]/80 via-[#f2ebe3]/40 to-transparent" />
-  <div className="absolute inset-0 backdrop-blur-lg [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.65)_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.65)_45%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+
+{/* gradient layer */}
+<div
+  className={`absolute inset-0 transition-all duration-300 ${
+    visible
+      ? "bg-gradient-to-b from-[#f2ebe3]/95 via-[#f2ebe3]/70 to-transparent"
+      : "bg-gradient-to-b from-[#f2ebe3]/80 via-[#f2ebe3]/40 to-transparent"
+  }`}
+/>
+
+{/* blur layer */}
+<div
+  className={`absolute inset-0 transition-all duration-300 ${
+    visible ? "backdrop-blur-2xl" : "backdrop-blur-md"
+  } [mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.65)_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,rgba(0,0,0,0.65)_45%,transparent_100%)]`}
+/>
+
 </div>
 
 {/* CONTENT CONTAINER */}
@@ -72,7 +136,7 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
           <Link
             href="/#projects"
             scroll={false}
-            className={`${bodySerif.className} ${linkBase}`}
+            className={`${bodySerif.className} ${linkBase} ${active === "projects" ? "text-[#a8a29e]" : ""}`}
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault();
@@ -85,7 +149,7 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
           <Link
             href="/#personal"
             scroll={false}
-            className={`${bodySerif.className} ${linkBase}`}
+            className={`${bodySerif.className} ${linkBase} ${active === "personal" ? "text-[#a8a29e]" : ""}`}
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault();
@@ -98,7 +162,9 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
           <Link
             href="/#hero"
             scroll={false}
-            className={`${caveat.className} text-[18px] md:text-[28px] leading-none text-[#3d3832] transition-colors duration-300 hover:text-[#a8a29e]`}
+            className={`${caveat.className} text-[18px] md:text-[28px] leading-none transition-colors duration-300 ${
+              active === "hero" ? "text-[#a8a29e]" : "text-[#3d3832]"
+            }`}
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault();
@@ -111,7 +177,7 @@ export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: stri
           <Link
             href="/#contact"
             scroll={false}
-            className={`${bodySerif.className} ${linkBase}`}
+            className={`${bodySerif.className} ${linkBase} ${active === "contact" ? "text-[#a8a29e]" : ""}`}
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault();

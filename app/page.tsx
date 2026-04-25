@@ -149,8 +149,8 @@ export default function Home() {
       data-cursor
       data-cursor-color="#8C6A6A"
     >
-      <Navbar />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center gap-20 px-6 py-24 md:flex-row md:items-start md:justify-center md:py-32">
+      
+      <div id="hero" className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center gap-20 px-6 py-24 md:flex-row md:items-start md:justify-center md:py-32">
       <InteractivePortrait />
 
         <div className="w-full max-w-xl shrink-0 text-left md:flex-1 md:min-w-0">
@@ -193,14 +193,24 @@ export default function Home() {
         </div>
       </div>
 
+      <section id="projects">
       <SelectedProjectsSection />
+      </section>
+
 
       <TestimonialsSection />
       <TestimonialsSectionalt />
       <ArchitectureLearningSection />
 
+      <section id="personal">
       <PersonalSection />
+      </section>
+
+      <section id="contact">
       <ContactSection />
+      </section>
+
+
     </main>
   );
 }
