@@ -18,9 +18,7 @@ function scrollToSection(id: string) {
 export function Navbar({ resumeHref = DEFAULT_RESUME_HREF }: { resumeHref?: string }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const lastY = useRef(0);
-  const lockScroll = useRef(false);
-const lockY = useRef(0);
+  const lastY = useRef(0)
   const [visible, setVisible] = useState(true);
   const [active, setActive] = useState<string>("hero");
 
@@ -29,37 +27,22 @@ const lockY = useRef(0);
       const y = window.scrollY;
       const delta = y - lastY.current;
   
-      // 🔹 NAV VISIBILITY LOGIC (unchanged)
-      if (y < 8) {
+      // show nav at top
+      if (y < 10) {
         setVisible(true);
       } 
-      else if (delta > 4) {
+      // scrolling down → hide
+      else if (delta > 2) {
         setVisible(false);
       } 
-      else if (delta < -4) {
-        // 🔹 trigger nav first
-        if (!visible && !lockScroll.current) {
-          setVisible(true);
-      
-          // lock scroll for a moment
-          lockScroll.current = true;
-          lockY.current = y;
-      
-          setTimeout(() => {
-            lockScroll.current = false;
-          }, 220); // tweak timing if needed
-        }
+      // scrolling up → show
+      else if (delta < -1) {
+        setVisible(true);
       }
-      const scrollBottom =
-  window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
-
-if (lockScroll.current && !scrollBottom) {
-  window.scrollTo(0, lockY.current);
-}
   
       lastY.current = y;
   
-      // 🔹 ACTIVE SECTION LOGIC (new)
+      // ACTIVE SECTION LOGIC (keep)
       const sections = ["hero", "projects", "personal", "contact"];
   
       for (const id of sections) {
@@ -78,8 +61,10 @@ if (lockScroll.current && !scrollBottom) {
     lastY.current = window.scrollY;
   
     window.addEventListener("scroll", onScroll, { passive: true });
+  
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+    
   
 
   useLayoutEffect(() => {
@@ -198,7 +183,7 @@ if (lockScroll.current && !scrollBottom) {
             rel="noopener noreferrer"
             className={`${bodySerif.className} ${linkBase}`}
           >
-            Resume
+            About
           </a>
         </div>
       </div>
