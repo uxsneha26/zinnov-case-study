@@ -50,9 +50,12 @@ const lockY = useRef(0);
           }, 220); // tweak timing if needed
         }
       }
-      if (lockScroll.current) {
-        window.scrollTo(0, lockY.current);
-      }
+      const scrollBottom =
+  window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+
+if (lockScroll.current && !scrollBottom) {
+  window.scrollTo(0, lockY.current);
+}
   
       lastY.current = y;
   
@@ -163,7 +166,9 @@ const lockY = useRef(0);
             href="/#hero"
             scroll={false}
             className={`${caveat.className} text-[18px] md:text-[28px] leading-none transition-colors duration-300 ${
-              active === "hero" ? "text-[#a8a29e]" : "text-[#3d3832]"
+              active === "hero"
+                ? "text-[#a8a29e]"
+                : "text-[#3d3832] hover:text-[#a8a29e]"
             }`}
             onClick={(e) => {
               if (pathname === "/") {

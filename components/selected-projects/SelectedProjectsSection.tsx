@@ -2,6 +2,7 @@ import { projects } from "@/data/selectedProjects";
 import { instrumentSerif } from "@/lib/fonts";
 import { SelectedProjectCard } from "./SelectedProjectCard";
 
+
 export function SelectedProjectsSection() {
   return (
     <section

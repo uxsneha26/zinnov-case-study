@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SelectedProject } from "@/data/selectedProjects";
 import { bodySerif, instrumentSerif, labelSans } from "@/lib/fonts";
+import { useRouter } from "next/navigation";
 
 type Props = {
   project: SelectedProject;
@@ -31,8 +32,8 @@ export function SelectedProjectCard({ project }: Props) {
       return;
     }
     const loop = () => {
-      smooth.current.x += (target.current.x - smooth.current.x) * 0.18;
-      smooth.current.y += (target.current.y - smooth.current.y) * 0.18;
+      smooth.current.x += (target.current.x - smooth.current.x) * 0.25;
+      smooth.current.y += (target.current.y - smooth.current.y) * 0.25;
       setPointer({ x: smooth.current.x, y: smooth.current.y });
       frameRef.current = requestAnimationFrame(loop);
     };
@@ -41,32 +42,49 @@ export function SelectedProjectCard({ project }: Props) {
   }, [active, stop]);
 
   const handleMove = useCallback((e: React.MouseEvent) => {
-    target.current = { x: e.clientX, y: e.clientY };
-  }, []);
-
-  const handleEnter = useCallback(() => {
     const el = rootRef.current;
     if (!el) return;
-    const r = el.getBoundingClientRect();
-    const cx = r.left + r.width / 2;
-    const cy = r.top + r.height / 2;
-    target.current = { x: cx, y: cy };
-    smooth.current = { x: cx, y: cy };
-    setPointer({ x: cx, y: cy });
+  
+    const rect = el.getBoundingClientRect();
+
+target.current = {
+  x: e.clientX - rect.left,
+  y: e.clientY - rect.top,
+};
+  }, []);
+
+  const handleEnter = useCallback((e: React.MouseEvent) => {
+    const el = rootRef.current;
+    if (!el) return;
+  
+    const rect = el.getBoundingClientRect();
+  
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+  
+    target.current = { x, y };
+    smooth.current = { x, y };
+    setPointer({ x, y });
+  
     setActive(true);
   }, []);
+
+
 
   const handleLeave = useCallback(() => {
     setActive(false);
   }, []);
 
+  const router = useRouter();
+
+
+
   return (
     <div
-      ref={rootRef}
-      role="article"
+    ref={rootRef}
       data-cursor="hidden"
-      className="group relative mx-auto h-[520px] w-full max-w-[520px] cursor-none overflow-hidden rounded-2xl border border-[#e5dfd6]"
-      onMouseEnter={handleEnter}
+      className="group relative mx-auto h-[520px] w-full max-w-[520px] cursor-none overflow-hidden rounded-2xl border border-[#e5dfd6] transition-transform duration-300 hover:scale-[1.01]"
+      onMouseEnter={(e) => handleEnter(e)}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
@@ -139,22 +157,39 @@ export function SelectedProjectCard({ project }: Props) {
         </div>
       </div>
 
-      <div
-        className={`pointer-events-none fixed z-[200] transition-opacity duration-200 ease-out ${
-          active ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          left: pointer.x,
-          top: pointer.y,
-          transform: "translate(-50%, -50%)",
-        }}
-        aria-hidden
-      >
-
-        <div className={`${instrumentSerif.className} pointer-events-none flex items-center justify-center rounded-full bg-[#F3E8DF] px-4 py-2 text-[16px] tracking-[0.04em] text-[#3d372f] shadow-sm whitespace-nowrap`}>
-  {CTA_LABEL}
-</div>
+      {/* CURSOR LAYER */}
+<div
+  className={`pointer-events-none absolute inset-0 z-[30] ${
+    active ? "opacity-100" : "opacity-0"
+  }`}
+>
+  <div
+    style={{
+      position: "absolute",
+      left: pointer.x,
+      top: pointer.y,
+      transform: "translate(-50%, -50%)",
+    }}
+  >
+    <div className={`${instrumentSerif.className} flex items-center justify-center rounded-full bg-[#F3E8DF] px-4 py-2 text-[16px] tracking-[0.04em] text-[#3d372f] shadow-sm whitespace-nowrap`}>
+      {CTA_LABEL}
+    </div>
+  </div>
+      
       </div>
+      {/* CLICK LAYER */}
+      <div
+        className="absolute inset-0 z-20 cursor-none"
+        onClick={(e) => {
+          e.stopPropagation();
+
+          if (project.id === "zinnov") {
+            router.push("/zinnov");
+          } else if (project.id === "jk-cement") {
+            router.push("/JKC");
+          }
+        }}
+      />
     </div>
   );
 }
