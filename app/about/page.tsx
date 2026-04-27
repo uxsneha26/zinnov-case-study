@@ -12,7 +12,7 @@ const metaClass = `${labelSans.className} text-xs font-medium uppercase tracking
 const bodyClass = `${bodySerif.className} text-neutral-700`;
 const labelClass = `${labelSans.className} text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-500`;
 
-const ctaClass = `${instrumentSerif.className} no-print inline-flex items-center justify-center rounded-full border border-neutral-300/80 bg-white/70 px-8 py-3 text-base text-neutral-800 shadow-sm backdrop-blur-sm transition duration-300 ease-out hover:border-[#BEA3A0]/50 hover:bg-[#EADCD4]/45`;
+const ctaClass = `${instrumentSerif.className} inline-flex items-center justify-center rounded-full border border-neutral-300/80 bg-white/70 px-8 py-3 text-base text-neutral-800 shadow-sm backdrop-blur-sm transition duration-300 ease-out hover:border-[#BEA3A0]/50 hover:bg-[#EADCD4]/45`;
 
 function DownloadResumeButton() {
   return (
@@ -22,26 +22,55 @@ function DownloadResumeButton() {
   );
 }
 
-function TagsLine({ items }: { items: string }) {
+const projectCardClass =
+  "rounded-2xl border border-neutral-200/50 bg-[#e8dfd6]/55 p-4 md:p-5";
+
+function ExperienceProjectCard({
+  title,
+  tags,
+  description,
+}: {
+  title: string;
+  tags: string[];
+  description: string;
+}) {
   return (
-    <p className={`${labelClass} mt-5 max-w-none leading-relaxed text-neutral-500`}>
-      <span className="text-neutral-400">Tags · </span>
-      {items}
-    </p>
+    <div className={projectCardClass}>
+      <div className="mb-3:mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+        <h4
+          className={`${instrumentSerif.className} text-lg font-semibold tracking-[0.04em] text-neutral-800 md:text-xl`}
+        >
+          {title}
+        </h4>
+        <ul className="flex flex-wrap gap-1.5 sm:max-w-[58%] sm:justify-end">
+          {tags.map((t) => (
+            <li
+              key={t}
+              className={`${labelSans.className} rounded-full bg-white/60 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.16em] text-neutral-500`}
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p className={`${bodyClass} text-[0.95rem] leading-relaxed text-neutral-700 md:text-base`}>
+        {description}
+      </p>
+    </div>
   );
 }
 
 export default function AboutPage() {
   return (
     <main
-      className={`${pageBg} min-h-screen px-6 py-20 pb-32 md:px-10 md:py-28`}
+  className={`${pageBg} min-h-[auto] px-6 ppy-20 md:py-28`}
       data-cursor
       data-cursor-color="#8C6A6A"
     >
       <div className="about-reveal-parent mx-auto flex max-w-5xl flex-col">
         {/* SECTION 1 — HERO (unchanged) */}
-        <section className="about-reveal about-delay-0 mx-auto mb-20 max-w-2xl text-center md:mb-24">
-          <h1 className={`${h1Class} mb-6 text-4xl font-normal leading-tight md:text-5xl`}>About me</h1>
+        <section className="mb-8 md:mb-10">
+          <h1 className={`${h1Class} mb-6 text-4xl font-normal text-center leading-tight md:text-5xl`}>About me</h1>
           <p
             className={`${caveat.className} mx-auto mb-10 max-w-lg text-2xl leading-snug text-neutral-600 md:text-3xl`}
           >
@@ -54,7 +83,7 @@ export default function AboutPage() {
 
         {/* SECTION 2 — STORY (web only, editorial 2-col + pull quote) */}
         <section
-          className="no-print about-reveal about-delay-1 mb-20 md:mb-28"
+          className="about-reveal about-delay-1 mb-20 md:mb-28"
           aria-label="Story"
         >
           <div className="mx-auto max-w-5xl border-b border-neutral-300/35 pb-20 md:pb-28">
@@ -122,43 +151,55 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Printable resume (excludes story; section 1 remains on screen before this block) */}
-        <div id="resume" className="resume-page mx-auto w-full max-w-3xl">
+        {/* Resume (excludes story; section 1 remains on screen before this block) */}
+        <div
+  id="resume"
+  className="resume-page mx-auto w-full max-w-3xl"
+>
           {/* SECTION 3 — IDENTITY */}
-          <section className="about-reveal about-delay-2 mb-20 md:mb-24">
-            <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between md:gap-14">
-              <div className="min-w-0 flex-1 text-left">
-                <p className={`${metaClass} mb-3`}>Profile</p>
-                <h2 className={`${h2Class} mb-2 text-3xl font-normal tracking-[0.05em] md:text-4xl`}>
-                  Sneha Sharma
-                </h2>
-                <p className={`${labelSans.className} mb-6 text-sm font-medium tracking-wide text-neutral-600`}>
-                  Product Designer
-                </p>
-                <p className={`${labelClass} mb-8 text-neutral-500`}>
-                  Currently at Lollypop Design Studio
-                </p>
-                <p className={`${bodyClass} max-w-xl text-lg leading-loose text-neutral-700`}>
-                  I design systems and experiences shaped by spatial thinking, structure and human
-                  behavior.
-                </p>
-              </div>
-              <div
-                className="mx-auto h-40 w-40 shrink-0 rounded-full border border-neutral-200/80 bg-gradient-to-br from-[#e8dfd6] to-[#d4c4b8] shadow-inner md:mx-0 md:h-44 md:w-44"
-                aria-hidden
-              />
-            </div>
-            <div className="mt-12 md:mt-14">
-              <DownloadResumeButton />
-            </div>
-          </section>
+<section className="about-reveal about-delay-2 mb-4">
+  <div className="relative flex flex-col md:flex-row items-start gap-6 md:gap-7">
 
-          {/* SECTION 4 — EXPERIENCE */}
-          <section className="about-reveal about-delay-3 mb-20 md:mb-24">
-            <h2 className={`${h2Class} mb-12 text-2xl font-normal md:text-3xl`}>Experience</h2>
+    {/* TEXT BLOCK */}
+    <div className="min-w-0 flex-1 text-left space-y-2">
+      <p className={`${metaClass} mb-3`}>Profile</p>
 
-            <article className="mb-16 md:mb-20">
-              <header className="mb-5">
+      <h2 className={`${h2Class} mb-2 text-3xl font-normal tracking-[0.05em] md:text-4xl`}>
+        Sneha Sharma
+      </h2>
+
+      <p className={`${labelSans.className} mb-6 text-sm font-medium tracking-wide text-neutral-600`}>
+        Product Designer
+      </p>
+
+      <p className={`${labelClass} mb-6 text-neutral-500`}>
+        Currently at Lollypop Design Studio
+      </p>
+
+      <p className={`${bodyClass} max-w-xl text-lg leading-loose text-neutral-700`}>
+        I design systems and experiences shaped by spatial thinking, structure and human
+        behavior.
+      </p>
+    </div>
+
+    {/* IMAGE */}
+<div
+  className="mx-auto md:mx-0
+  h-28 w-28 md:h-44 md:w-44
+  rounded-full border border-neutral-200/80
+  bg-gradient-to-br from-[#e8dfd6] to-[#d4c4b8] shadow-inner"
+  aria-hidden
+/>
+  </div>
+</section>
+
+          {/* SECTION 4 — EXPERIENCE (project-oriented) */}
+          <section className="about-reveal about-delay-3 mb-20 mb-6">
+          <h2 className={`${h2Class} mb-8 text-2xl font-normal md:text-3xl`}>
+            Experience
+          </h2>
+            <article className="mb-20 md:mb-24">
+              <header>
                 <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>Lollypop Design Studio</h3>
                 <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
                   User Experience Designer
@@ -167,21 +208,34 @@ export default function AboutPage() {
                   Aug 2023 – Present
                 </p>
               </header>
-              <TagsLine items="UX Strategy · Research · Design Systems · Product Thinking · B2B Platforms" />
-              <ul
-                className={`${bodyClass} mt-6 list-disc space-y-3 pl-5 text-base leading-loose md:text-[1.05rem]`}
-              >
-                <li>Led experience design for JK Cement platform unifying 9 applications</li>
-                <li>Designed e-commerce and insights platform for Mordor Intelligence</li>
-                <li>
-                  Built product concepts for Peak XV (Sequoia Capital), Banglalink and Surya Lighting
-                </li>
-                <li>Worked across research, UX strategy, and interface systems</li>
-              </ul>
+              <div className="my-8 h-px w-full bg-neutral-300/40" aria-hidden />
+              <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
+              <div className="flex flex-col gap-6 md:gap-8">
+                <ExperienceProjectCard
+                  title="JK Cement Platform"
+                  tags={["UX Strategy", "Design Systems", "B2B Platform"]}
+                  description="Led experience design for a unified platform consolidating 9 applications into a single system. Structured workflows to align business processes and improve usability across stakeholders."
+                />
+                <ExperienceProjectCard
+                  title="Mordor Intelligence"
+                  tags={["E-commerce", "Personalization", "Dashboard Design"]}
+                  description="Designed an insights-driven platform with custom report generation and personalized dashboards to support decision-making."
+                />
+                <ExperienceProjectCard
+                  title="Peak XV / Banglalink / Surya Lighting"
+                  tags={["Concept Design", "Research", "UX Strategy"]}
+                  description="Developed proof-of-concepts and pitch experiences focused on user engagement, learning flows and behavioral insights."
+                />
+                <ExperienceProjectCard
+                  title="Green SM"
+                  tags={["User Research", "Interviews"]}
+                  description="Conducted interviews with 30+ users across Bangalore and Chennai. Mapped user insights from ride-hailing competitors into actionable design directions."
+                />
+              </div>
             </article>
 
             <article>
-              <header className="mb-5">
+              <header>
                 <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>Studio Ardete</h3>
                 <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
                   Architect
@@ -190,26 +244,31 @@ export default function AboutPage() {
                   Nov 2021 – Jul 2023
                 </p>
               </header>
-              <TagsLine items="Spatial Design · Systems Thinking · Stakeholder Management" />
-              <ul
-                className={`${bodyClass} mt-6 list-disc space-y-3 pl-5 text-base leading-loose md:text-[1.05rem]`}
-              >
-                <li>Led community development and sustainable design initiatives</li>
-                <li>Managed stakeholder coordination and execution</li>
-              </ul>
+              <div className="my-8 h-px w-full bg-neutral-300/40" aria-hidden />
+              <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
+              <div className="flex flex-col gap-6 md:gap-8">
+                <ExperienceProjectCard
+                  title="Purwa Village"
+                  tags={["Spatial Design", "Sustainability", "Research"]}
+                  description="Worked on a community development project focusing on biodiversity, organic farming and natural building practices. Managed on-ground execution and stakeholder coordination."
+                />
+                <ExperienceProjectCard
+                  title="Design Communication & Publications"
+                  tags={["Graphic Design", "Content Writing"]}
+                  description="Created architectural representations and published work across platforms like ArchDaily. Contributed to in-house design manuals and storytelling."
+                />
+              </div>
             </article>
           </section>
 
-
-          {/* SECTION 6 — EDUCATION */}
-          <section className="about-reveal about-delay-5 mb-20 md:mb-24">
+          {/* SECTION 5 — EDUCATION */}
+          <section className="about-reveal about-delay-5 mb-16 md:mb-20">
             <h2 className={`${h2Class} mb-12 text-2xl font-normal md:text-3xl`}>Education</h2>
-            <dl className="space-y-8">
+            <dl className="space-y-3">
               {[
-                ["Interaction Design", "IISc Bangalore"],
+                ["Interaction Design Certification", "IISc Bangalore"],
                 ["UX Design Certification", "Carvaan"],
                 ["B.Arch", "Aayojan School of Architecture, Jaipur"],
-                ["High School", "DPS Rewari (2010–2012)"],
               ].map(([title, place]) => (
                 <div key={title}>
                   <dt className={`${bodySerif.className} text-lg font-semibold text-neutral-800`}>
@@ -221,24 +280,21 @@ export default function AboutPage() {
             </dl>
           </section>
 
-          {/* SECTION 7 — CORE CAPABILITIES */}
-          <section className="about-reveal about-delay-6 mb-20 md:mb-24">
+          {/* SECTION 6 — CORE CAPABILITIES */}
+          <section className="about-reveal about-delay-5 mb-20 md:mb-24">
             <h2 className={`${h2Class} mb-10 text-2xl font-normal md:text-3xl`}>Core Capabilities</h2>
             <ul
-              className={`${labelSans.className} flex flex-wrap gap-x-3 gap-y-3 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600`}
+              className={`${labelSans.className} flex flex-wrap gap-x-2 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600`}
             >
               {[
                 "UX Strategy",
                 "Research & Synthesis",
                 "Design Systems",
-                "Interaction Design",
-                "Information Architecture",
-                "User Journeys",
-                "Stakeholder Alignment",
+                "Business Strategy",
               ].map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-full border border-neutral-300/60 bg-white/50 px-4 py-2.5 text-[11px] tracking-[0.14em] text-neutral-600 backdrop-blur-sm"
+                  className="rounded-full border border-neutral-300/60 bg-white/50 px-3 py-2 text-[11px] tracking-[0.14em] text-neutral-600 backdrop-blur-sm"
                 >
                   {tag}
                 </li>
@@ -247,7 +303,7 @@ export default function AboutPage() {
           </section>
 
           {/* Bottom CTA */}
-          <section className="about-reveal about-delay-7 border-t border-neutral-300/30 pt-16 text-center md:pt-20">
+          <section className="about-reveal about-delay-6 border-t border-neutral-300/30 text-center pt-12 md:pt-16">
             <p
               className={`${instrumentSerif.className} mx-auto mb-10 max-w-md text-lg leading-loose text-neutral-700 md:text-xl`}
             >
