@@ -47,18 +47,25 @@ export function TriangulationCard({
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-6 md:gap-4 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_2fr] gap-6 md:gap-4 items-start">
         <div className="min-w-0">
           <p
             className={`${labelSans.className} text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-gray-600`}
           >
             What we did?
           </p>
-          <ul className={`${bulletsListClass} mt-3`}>
-            {bullets.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
+          <ul
+  className={`${bodySerif.className} mt-3 space-y-2.5 text-base text-gray-700 leading-relaxed`}
+>
+  {bullets.map((line) => (
+    <li key={line} className="flex gap-2">
+      <span className="text-gray-400 shrink-0" aria-hidden>
+        ·
+      </span>
+      <span>{line}</span>
+    </li>
+  ))}
+</ul>
         </div>
 
         <div className="min-w-0">

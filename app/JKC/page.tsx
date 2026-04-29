@@ -65,7 +65,7 @@ const cards = [
 // insight cards
 const insightCards = [
     {
-      title: "Fragmented Workflows",
+      title: "Fragmented Coordination",
       text: "Processes exist, but don’t connect across stakeholders.",
       bg: "bg-[#FDF1F1]",
     },
@@ -944,7 +944,7 @@ export default function JKCCaseStudyPage() {
         
         <GradualSpacing
           text="A Complex, Fragmented Ecosystem"
-          className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 text-gray-900`}
+          className={`${headingFont.className} text-3xl md:text-4xl text-center font-semibold mb-6 text-gray-900`}
         />
 
         <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
@@ -1086,7 +1086,7 @@ export default function JKCCaseStudyPage() {
           <p
             className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
           >
-            User Research & Feature Prioritization
+            Persona Mapping
           </p>
           <h2
             className={`${headingFont.className} text-3xl md:text-4xl font-semibold mb-6 leading-tight text-gray-900`}

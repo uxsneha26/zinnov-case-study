@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { bodySerif, caveat, instrumentSerif, labelSans } from "@/lib/fonts";
 
 const pageBg =
@@ -12,7 +13,7 @@ const metaClass = `${labelSans.className} text-xs font-medium uppercase tracking
 const bodyClass = `${bodySerif.className} text-neutral-700`;
 const labelClass = `${labelSans.className} text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-500`;
 
-const ctaClass = `${instrumentSerif.className} inline-flex items-center justify-center rounded-full border border-neutral-300/80 bg-white/70 px-8 py-3 text-base text-neutral-800 shadow-sm backdrop-blur-sm transition duration-300 ease-out hover:border-[#BEA3A0]/50 hover:bg-[#EADCD4]/45`;
+const ctaClass = `${instrumentSerif.className} no-print inline-flex items-center justify-center rounded-full border border-neutral-300/80 bg-white/70 px-8 py-3 text-base text-neutral-800 shadow-sm backdrop-blur-sm transition duration-300 ease-out hover:scale-[1.02] hover:border-[#BEA3A0]/50 hover:bg-[#EADCD4]/45`;
 
 function DownloadResumeButton() {
   return (
@@ -23,20 +24,22 @@ function DownloadResumeButton() {
 }
 
 const projectCardClass =
-  "rounded-2xl border border-neutral-200/50 bg-[#e8dfd6]/55 p-4 md:p-5";
+  "rounded-2xl border border-neutral-200/50 bg-[#e8dfd6]/55 p-4 md:p-5 transition-all duration-300 ease-out hover:scale-[1.015] hover:border-[#BEA3A0]/40 hover:shadow-lg";
 
 function ExperienceProjectCard({
   title,
   tags,
   description,
+  revealClassName = "about-reveal about-delay-2",
 }: {
   title: string;
   tags: string[];
   description: string;
+  revealClassName?: string;
 }) {
   return (
-    <div className={projectCardClass}>
-      <div className="mb-3:mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+    <div className={`${projectCardClass} ${revealClassName}`}>
+      <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <h4
           className={`${instrumentSerif.className} text-lg font-semibold tracking-[0.04em] text-neutral-800 md:text-xl`}
         >
@@ -61,15 +64,35 @@ function ExperienceProjectCard({
 }
 
 export default function AboutPage() {
+  useEffect(() => {
+    const nodes = document.querySelectorAll<HTMLElement>(".about-reveal");
+    if (nodes.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.06 }
+    );
+
+    nodes.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main
-  className={`${pageBg} min-h-[auto] px-6 ppy-20 md:py-28`}
+      className={`${pageBg} min-h-screen px-6 py-20 pb-32 md:px-10 md:py-28`}
       data-cursor
       data-cursor-color="#8C6A6A"
     >
       <div className="about-reveal-parent mx-auto flex max-w-5xl flex-col">
         {/* SECTION 1 — HERO (unchanged) */}
-        <section className="mb-8 md:mb-10">
+        <section className="about-reveal about-delay-0 mb-8 md:mb-10">
           <h1 className={`${h1Class} mb-6 text-4xl font-normal text-center leading-tight md:text-5xl`}>About me</h1>
           <p
             className={`${caveat.className} mx-auto mb-10 max-w-lg text-2xl leading-snug text-neutral-600 md:text-3xl`}
@@ -83,7 +106,7 @@ export default function AboutPage() {
 
         {/* SECTION 2 — STORY (web only, editorial 2-col + pull quote) */}
         <section
-          className="about-reveal about-delay-1 mb-20 md:mb-28"
+          className="no-print about-reveal about-delay-1 mb-20 md:mb-28"
           aria-label="Story"
         >
           <div className="mx-auto max-w-5xl border-b border-neutral-300/35 pb-20 md:pb-28">
@@ -153,11 +176,11 @@ export default function AboutPage() {
 
         {/* Resume (excludes story; section 1 remains on screen before this block) */}
         <div
-  id="resume"
-  className="resume-page mx-auto w-full max-w-3xl"
->
+          id="resume"
+          className="resume-page about-reveal about-delay-2 mx-auto w-full max-w-3xl"
+        >
           {/* SECTION 3 — IDENTITY */}
-<section className="about-reveal about-delay-2 mb-4">
+<section className="about-reveal about-delay-3 mb-16 md:mb-20">
   <div className="relative flex flex-col md:flex-row items-start gap-6 md:gap-7">
 
     {/* TEXT BLOCK */}
@@ -194,7 +217,7 @@ export default function AboutPage() {
 </section>
 
           {/* SECTION 4 — EXPERIENCE (project-oriented) */}
-          <section className="about-reveal about-delay-3 mb-20 mb-6">
+          <section className="about-reveal about-delay-4 mb-20 md:mb-24">
           <h2 className={`${h2Class} mb-8 text-2xl font-normal md:text-3xl`}>
             Experience
           </h2>
@@ -212,21 +235,25 @@ export default function AboutPage() {
               <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
               <div className="flex flex-col gap-6 md:gap-8">
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-2"
                   title="JK Cement Platform"
                   tags={["UX Strategy", "Design Systems", "B2B Platform"]}
                   description="Led experience design for a unified platform consolidating 9 applications into a single system. Structured workflows to align business processes and improve usability across stakeholders."
                 />
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-3"
                   title="Mordor Intelligence"
                   tags={["E-commerce", "Personalization", "Dashboard Design"]}
                   description="Designed an insights-driven platform with custom report generation and personalized dashboards to support decision-making."
                 />
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-4"
                   title="Peak XV / Banglalink / Surya Lighting"
                   tags={["Concept Design", "Research", "UX Strategy"]}
                   description="Developed proof-of-concepts and pitch experiences focused on user engagement, learning flows and behavioral insights."
                 />
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-5"
                   title="Green SM"
                   tags={["User Research", "Interviews"]}
                   description="Conducted interviews with 30+ users across Bangalore and Chennai. Mapped user insights from ride-hailing competitors into actionable design directions."
@@ -248,11 +275,13 @@ export default function AboutPage() {
               <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
               <div className="flex flex-col gap-6 md:gap-8">
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-2"
                   title="Purwa Village"
                   tags={["Spatial Design", "Sustainability", "Research"]}
                   description="Worked on a community development project focusing on biodiversity, organic farming and natural building practices. Managed on-ground execution and stakeholder coordination."
                 />
                 <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-3"
                   title="Design Communication & Publications"
                   tags={["Graphic Design", "Content Writing"]}
                   description="Created architectural representations and published work across platforms like ArchDaily. Contributed to in-house design manuals and storytelling."
@@ -281,7 +310,7 @@ export default function AboutPage() {
           </section>
 
           {/* SECTION 6 — CORE CAPABILITIES */}
-          <section className="about-reveal about-delay-5 mb-20 md:mb-24">
+          <section className="about-reveal about-delay-6 mb-20 md:mb-24">
             <h2 className={`${h2Class} mb-10 text-2xl font-normal md:text-3xl`}>Core Capabilities</h2>
             <ul
               className={`${labelSans.className} flex flex-wrap gap-x-2 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600`}
@@ -303,7 +332,7 @@ export default function AboutPage() {
           </section>
 
           {/* Bottom CTA */}
-          <section className="about-reveal about-delay-6 border-t border-neutral-300/30 text-center pt-12 md:pt-16">
+          <section className="about-reveal about-delay-7 border-t border-neutral-300/30 pt-12 text-center md:pt-16">
             <p
               className={`${instrumentSerif.className} mx-auto mb-10 max-w-md text-lg leading-loose text-neutral-700 md:text-xl`}
             >
