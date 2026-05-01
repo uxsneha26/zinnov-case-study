@@ -17,9 +17,13 @@ const ctaClass = `${instrumentSerif.className} no-print inline-flex items-center
 
 function DownloadResumeButton() {
   return (
-    <button type="button" className={ctaClass} onClick={() => window.print()}>
-      Download Resume
-    </button>
+    <a
+  href="/resume/Sneha_Sharma_Resume.pdf"
+  download
+  className={`${ctaClass} hover:scale-[1.02] transition-all duration-300`}
+>
+  Download Resume
+</a>
   );
 }
 
@@ -63,6 +67,51 @@ function ExperienceProjectCard({
   );
 }
 
+function ArchivePostCard({
+  title,
+  description,
+  image,
+  link,
+}: {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+}) {
+  return (
+    <article
+      className={`${projectCardClass} flex flex-col gap-5 md:flex-row md:items-stretch md:gap-6 hover:scale-[1.01] hover:shadow-md`}
+    >
+      <div className="flex min-w-0 flex-1 flex-col">
+        <h3 className={`${h3Class} text-xl font-normal leading-snug md:text-2xl`}>{title}</h3>
+        <p className={`${bodyClass} mt-3 text-[0.95rem] leading-relaxed md:text-base`}>{description}</p>
+        <p className={`${metaClass} mt-4 normal-case tracking-[0.08em] text-neutral-500`}> May 1, 2026</p>
+        <a
+          href={link}
+          className={`${labelSans.className} mt-5 inline-flex w-fit text-sm font-medium tracking-wide text-neutral-700 transition-all duration-300 ease-out hover:underline hover:opacity-80`}
+        >
+          Read on Medium →
+        </a>
+      </div>
+      <div className="w-full md:w-[36%]">
+        {image ? (
+          <img
+            src={image}
+            alt={`${title} cover image`}
+            className="h-44 w-full rounded-xl border border-neutral-200/50 bg-[#ece4db]/65 object-cover md:h-full md:min-h-[10.5rem]"
+          />
+        ) : (
+          <div
+            role="img"
+            aria-label={`${title} image placeholder`}
+            className="h-44 w-full rounded-xl border border-neutral-200/50 bg-[#ece4db]/65 md:h-full md:min-h-[10.5rem]"
+          />
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default function AboutPage() {
   useEffect(() => {
     const nodes = document.querySelectorAll<HTMLElement>(".about-reveal");
@@ -99,14 +148,11 @@ export default function AboutPage() {
           >
             A designer shaped by spatial thinking and quiet intent.
           </p>
-          <div className="flex justify-center">
-            <DownloadResumeButton />
-          </div>
         </section>
 
         {/* SECTION 2 — STORY (web only, editorial 2-col + pull quote) */}
         <section
-          className="no-print about-reveal about-delay-1 mb-20 md:mb-28"
+          className="no-print about-reveal about-delay-60ms mb-20 md:mb-28"
           aria-label="Story"
         >
           <div className="mx-auto max-w-5xl border-b border-neutral-300/35 pb-20 md:pb-28">
@@ -174,13 +220,25 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <section className="about-reveal w-full max-w-3xl mx-auto about-delay-100ms mb-20 md:mb-24" aria-label="From my archive">
+          <h2 className={`${h2Class} mb-8 text-2xl font-normal md:text-3xl`}>From my archive</h2>
+          <ArchivePostCard
+            title="Before We Know, We Feel: On Spatial Intelligence in Experience Design"
+            description="A reflection on how architecture taught me to see digital spaces as places people live in, even briefly."
+            image="images/blog-cover.png"
+            link="https://medium.com/@design.snehasharma/before-we-know-we-feel-on-spatial-intelligence-in-experience-design-945d5a2a4198"
+          />
+        </section>
+
+        <div className="mx-auto my-4 md:my-8 h-px w-full max-w-4xl bg-gradient-to-r from-transparent via-neutral-300/40 to-transparent" />
+
         {/* Resume (excludes story; section 1 remains on screen before this block) */}
         <div
           id="resume"
-          className="resume-page about-reveal about-delay-2 mx-auto w-full max-w-3xl"
+          className="resume-page about-reveal mb-16 md:mb-20 about-delay-140ms mx-auto w-full max-w-3xl"
         >
           {/* SECTION 3 — IDENTITY */}
-<section className="about-reveal about-delay-3 mb-16 md:mb-20">
+<section className="about-reveal about-delay-180ms mb-16 md:mb-20">
   <div className="relative flex flex-col md:flex-row items-start gap-6 md:gap-7">
 
     {/* TEXT BLOCK */}
@@ -196,7 +254,7 @@ export default function AboutPage() {
       </p>
 
       <p className={`${labelClass} mb-6 text-neutral-500`}>
-        Currently at Lollypop Design Studio
+        Lollypop Design Studio
       </p>
 
       <p className={`${bodyClass} max-w-xl text-lg leading-loose text-neutral-700`}>
@@ -206,18 +264,23 @@ export default function AboutPage() {
     </div>
 
     {/* IMAGE */}
-<div
+    <img
+  src="/images/profile.jpeg"   // 👈 your image path
+  alt="Sneha Sharma"
   className="mx-auto md:mx-0
   h-28 w-28 md:h-44 md:w-44
-  rounded-full border border-neutral-200/80
-  bg-gradient-to-br from-[#e8dfd6] to-[#d4c4b8] shadow-inner"
-  aria-hidden
+  rounded-full object-cover
+  border border-neutral-200/80 shadow-inner"
 />
-  </div>
+</div>
 </section>
 
+<div className="flex justify-center mb-20 md:mb-24">
+            <DownloadResumeButton />
+          </div>
+
           {/* SECTION 4 — EXPERIENCE (project-oriented) */}
-          <section className="about-reveal about-delay-4 mb-20 md:mb-24">
+          <section className="about-reveal about-delay-220ms space-y-24 mb-20 md:mb-24">
           <h2 className={`${h2Class} mb-8 text-2xl font-normal md:text-3xl`}>
             Experience
           </h2>
@@ -225,7 +288,7 @@ export default function AboutPage() {
               <header>
                 <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>Lollypop Design Studio</h3>
                 <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
-                  User Experience Designer
+                  Associate Senior UX Designer
                 </p>
                 <p className={`${labelSans.className} mt-1 text-xs tracking-wide text-neutral-500`}>
                   Aug 2023 – Present
@@ -235,28 +298,58 @@ export default function AboutPage() {
               <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
               <div className="flex flex-col gap-6 md:gap-8">
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-2"
-                  title="JK Cement Platform"
-                  tags={["UX Strategy", "Design Systems", "B2B Platform"]}
-                  description="Led experience design for a unified platform consolidating 9 applications into a single system. Structured workflows to align business processes and improve usability across stakeholders."
+                  revealClassName="about-reveal about-delay-260ms"
+                  title="Green SM"
+                  tags={["User Research", "Competitive Analysis", "Insight Mapping"]}
+                  description="Conducted primary research across Bangalore and Chennai, conducting 30+ in-depth interviews to uncover behavioral patterns in ride-hailing usage. Benchmarked 6 competitor platforms end-to-end and translated fragmented user concerns into structured insights, informing actionable design directions for improved decision-making."
                 />
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-3"
-                  title="Mordor Intelligence"
+                  revealClassName="about-reveal about-delay-280ms"
+                  title="Zivame"
                   tags={["E-commerce", "Personalization", "Dashboard Design"]}
                   description="Designed an insights-driven platform with custom report generation and personalized dashboards to support decision-making."
                 />
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-4"
-                  title="Peak XV / Banglalink / Surya Lighting"
-                  tags={["Concept Design", "Research", "UX Strategy"]}
-                  description="Developed proof-of-concepts and pitch experiences focused on user engagement, learning flows and behavioral insights."
+                  revealClassName="about-reveal about-delay-300ms"
+                  title="ACT Smart WiFi"
+                  tags={["Product Design", "Systems Thinking", "UX Strategy"]}
+                  description="Led the design of a smart WiFi ecosystem enabling users to manage devices, usage, and network security seamlessly. Simplified complex backend systems into intuitive user controls, improving accessibility and reducing friction in everyday network interactions."
                 />
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-5"
-                  title="Green SM"
-                  tags={["User Research", "Interviews"]}
-                  description="Conducted interviews with 30+ users across Bangalore and Chennai. Mapped user insights from ride-hailing competitors into actionable design directions."
+                  revealClassName="about-reveal about-delay-320ms"
+                  title="Sleep Number"
+                  tags={["Proof of Concept", "Systems Thinking", "Product Strategy"]}
+                  description="Designed a connected experience integrating IoT devices to create a personalized sleep ecosystem. Structured interactions around behavioral patterns and real-time data, enabling users to understand and improve their sleep quality through tailored insights and adaptive recommendations."
+                />
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-340ms"
+                  title="Surya Lighting"
+                  tags={["Proof of Concept", "Digital Experience", "Conversion Design"]}
+                  description="Designed a connected experience integrating IoT devices to create a personalized sleep ecosystem. Structured interactions around behavioral patterns and real-time data, enabling users to understand and improve their sleep quality through tailored insights and adaptive recommendations."
+                />
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-360ms"
+                  title="Zinnov (Decision Intelligence Platform)"
+                  tags={["B2B Platform", "Usability Testing", "Business Strategy"]}
+                  description="Designed a decision intelligence platform for global capability leaders, structuring complex research data into intuitive discovery and validation flows. Improved information architecture and navigation, enabling faster synthesis of insights and more confident decision-making."
+                />
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-380ms"
+                  title="JK Cement"
+                  tags={["Enterprise UX", "Platform Thinking"]}
+                  description="Led experience design for a unified enterprise platform consolidating 9 disparate applications across sales, finance, and supply chain. Established scalable interaction patterns and workflows, reducing fragmentation and aligning cross-functional business operations."
+                />
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-400ms"
+                  title="Peak XV (Sequoia Capital)"
+                  tags={["Proof of Concept", "Community Platforms"]}
+                  description="Designed a proof-of-concept to strengthen community-driven learning for early-stage founders. Structured discovery and engagement flows to simplify access to insights, peer knowledge, and curated content. Translated abstract ecosystem needs into a scalable product direction that improves participation and knowledge exchange."
+                />
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-420ms"
+                  title="Mordor Intelligence"
+                  tags={["E-commerce", "Personalization"]}
+                  description="Designed a research-driven e-commerce platform with custom reporting and personalized dashboards. Structured content and interactions to support efficient data consumption, enabling users to move from discovery to insight generation with reduced cognitive load."
                 />
               </div>
             </article>
@@ -275,23 +368,89 @@ export default function AboutPage() {
               <p className={`${metaClass} mb-6 text-left`}>Selected Work within Experience</p>
               <div className="flex flex-col gap-6 md:gap-8">
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-2"
+                  revealClassName="about-reveal about-delay-440ms"
                   title="Purwa Village"
                   tags={["Spatial Design", "Sustainability", "Research"]}
-                  description="Worked on a community development project focusing on biodiversity, organic farming and natural building practices. Managed on-ground execution and stakeholder coordination."
+                  description="Led design and on-ground execution for a community development project focused on biodiversity, organic farming, and natural building practices. Managed stakeholder coordination and translated research insights into implementable spatial strategies."
                 />
                 <ExperienceProjectCard
-                  revealClassName="about-reveal about-delay-3"
+                  revealClassName="about-reveal about-delay-460ms"
                   title="Design Communication & Publications"
                   tags={["Graphic Design", "Content Writing"]}
-                  description="Created architectural representations and published work across platforms like ArchDaily. Contributed to in-house design manuals and storytelling."
+                  description="Developed architectural representation and storytelling assets for publications across platforms like ArchDaily. Bridged design thinking with communication, crafting narratives that translated complex ideas into accessible visual formats."
                 />
               </div>
             </article>
+
+            <article>
+              <header>
+                <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>Hunnarshala</h3>
+                <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
+                  Fellow Architect & Researcher
+                </p>
+                <p className={`${labelSans.className} mt-1 text-xs tracking-wide text-neutral-500`}>
+                  May 2021 – Sep 2021
+                </p>
+              </header>
+              <div className="my-8 h-px w-full bg-neutral-300/40" aria-hidden />
+              <p className={`${metaClass} mb-6 text-left`}>Community Development Centre</p>
+              <div className="flex flex-col gap-6 md:gap-8">
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-480ms"
+                  title="Purwa Village"
+                  tags={["Field Research", "Sustainability", "Research", "Community Development"]}
+                  description="Collaborated on the design of a community and skill development centre in Bhuj. Conducted field research across 6 villages, analyzing construction practices and lifestyle patterns to inform sustainable design interventions."
+                />
+              </div>
+            </article>
+
+            <article>
+              <header>
+                <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>FM Garden Infrastructure</h3>
+                <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
+                  Architect
+                </p>
+                <p className={`${labelSans.className} mt-1 text-xs tracking-wide text-neutral-500`}>
+                  Feb 2021 – July 2021
+                </p>
+              </header>
+              <div className="my-8 h-px w-full bg-neutral-300/40" aria-hidden />
+              <div className="flex flex-col gap-6 md:gap-8">
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-500ms"
+                  title="FM Garden City"
+                  tags={["Urban Planning", "Design Execution", "Site Coordination"]}
+                  description="Designed residential units and contributed to township planning, including villas, apartments, and market spaces. Worked across concept development, execution drawings, and on-site coordination."
+                />
+              </div>
+            </article>
+
+            <article>
+              <header>
+                <h3 className={`${h3Class} text-xl font-normal md:text-2xl`}>MO:FA | SD Architects | The Traditionals | Hafeez Contractor</h3>
+                <p className={`${labelSans.className} mt-2 text-sm font-medium text-neutral-600`}>
+                  Junior Architect
+                </p>
+                <p className={`${labelSans.className} mt-1 text-xs tracking-wide text-neutral-500`}>
+                  July 20019 – Feb 2021
+                </p>
+              </header>
+              <div className="my-8 h-px w-full bg-neutral-300/40" aria-hidden />
+              <div className="flex flex-col gap-6 md:gap-8">
+                <ExperienceProjectCard
+                  revealClassName="about-reveal about-delay-520ms"
+                  title="Residential, Hospitality, Commercial & Institutional Projects"
+                  tags={["Design", "Design Execution", "Interior"]}
+                  description="Worked across architectural and interior design firms contributing to large-scale projects, including institutional and commercial developments. Gained experience in execution, stakeholder coordination, and presentation design."
+                />
+              </div>
+            </article>
+
+
           </section>
 
           {/* SECTION 5 — EDUCATION */}
-          <section className="about-reveal about-delay-5 mb-16 md:mb-20">
+          <section className="about-reveal about-delay-540ms mb-16 md:mb-20">
             <h2 className={`${h2Class} mb-12 text-2xl font-normal md:text-3xl`}>Education</h2>
             <dl className="space-y-3">
               {[
@@ -310,7 +469,7 @@ export default function AboutPage() {
           </section>
 
           {/* SECTION 6 — CORE CAPABILITIES */}
-          <section className="about-reveal about-delay-6 mb-20 md:mb-24">
+          <section className="about-reveal space-y-4 about-delay-560ms mb-20 md:mb-24">
             <h2 className={`${h2Class} mb-10 text-2xl font-normal md:text-3xl`}>Core Capabilities</h2>
             <ul
               className={`${labelSans.className} flex flex-wrap gap-x-2 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-neutral-600`}
@@ -320,6 +479,12 @@ export default function AboutPage() {
                 "Research & Synthesis",
                 "Design Systems",
                 "Business Strategy",
+                "UX Writing",
+                "Systems Thinking",
+                "Conversion Design",
+                "User Research",
+                "Competitive Analysis",
+                "Insight Mapping",
               ].map((tag) => (
                 <li
                   key={tag}
@@ -329,10 +494,32 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+            <ul
+              className={`${labelSans.className} flex flex-wrap gap-x-2 gap-y-2 text-xs font-medium uppercase tracking-[0.12em] text-neutral-700`}
+            >
+              {[
+                "Spatial Thinking",
+                "Critical Thinking",
+                "Storytelling",
+                "Decision Facilitation",
+                "Structured Communication",
+                "Stakeholder Coordination",
+                "Expectation Management",
+                "Proactiveness",
+                "Designed-Up Leadership",
+              ].map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-full bg-[#F3EAEA] border border-[#D4C4B8] px-3 py-2 text-[11px] tracking-[0.14em] text-neutral-600 backdrop-blur-sm"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
           </section>
 
           {/* Bottom CTA */}
-          <section className="about-reveal about-delay-7 border-t border-neutral-300/30 pt-12 text-center md:pt-16">
+            <section className="about-reveal about-delay-580ms border-t border-neutral-300/30 pt-12 text-center md:pt-16">
             <p
               className={`${instrumentSerif.className} mx-auto mb-10 max-w-md text-lg leading-loose text-neutral-700 md:text-xl`}
             >
