@@ -5,7 +5,7 @@ import { Instrument_Serif, Caveat } from "next/font/google";
 import { FaLinkedin } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
 
-const CONTACT_EMAIL = "hello@example.com";
+const CONTACT_EMAIL = "design.snehasharma@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/your-profile";
 const PDF_URL =
   "https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view?usp=sharing";
@@ -93,7 +93,7 @@ export function ContactSection() {
                 </div>
 
                 <a
-                  href={LINKEDIN_URL}
+                  href={"https://www.linkedin.com/in/sneha-sharma26"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-6 inline-flex w-fit items-center gap-2 text-neutral-600 transition-colors duration-200 hover:text-[#BEA3A0]"
@@ -105,20 +105,33 @@ export function ContactSection() {
 
               <div className="flex min-w-0 justify-center md:justify-end">
                 <a
-                  href={PDF_URL}
+                  href={"https://drive.google.com/file/d/1JRro_itkRzrwEZn7gYJ1fRs3l6OkM1BG/view?usp=sharing"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative block aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200/70 bg-white/40 shadow-sm backdrop-blur-sm transition duration-300 ease-out hover:scale-[1.02] hover:opacity-[0.98]"
                 >
-                  <div className="flex h-full min-h-[200px] w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-neutral-100/90 to-[#EADCD4]/40 p-8 text-center">
-                    <span
-                      className={`${instrumentSerif.className} text-lg text-neutral-700 md:text-xl`}
-                    >
-                      View PDF
-                    </span>
-                    <span className="text-xs text-neutral-500">
-                      Résumé / portfolio
-                    </span>
+                  <div className="relative h-full w-full">
+
+{/* Resume Image */}
+<img
+  src="/images/resume-preview.jpg" // 👉 replace with your actual image
+  alt="Resume preview"
+  className="h-full w-full object-cover rounded-2xl"
+/>
+
+{/* Overlay */}
+<div className="absolute inset-0 flex items-center justify-center bg-[#412F2F]/10 opacity-0 transition duration-300 group-hover:opacity-100">
+
+  <div className="rounded-full bg-white/80 backdrop-blur-md px-5 py-2 shadow-md">
+    <span className={`${instrumentSerif.className} text-sm text-[#412F2F]`}>
+      View Resume
+    </span>
+  </div>
+
+</div>
+
+
+                    
                   </div>
                 </a>
               </div>

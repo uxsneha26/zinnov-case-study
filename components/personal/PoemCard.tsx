@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { instrumentSerif, bodySerif, caveat } from "@/lib/fonts";
 import { PoemOverlay } from "./PoemOverlay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const DEFAULT_TEASER = [
   "I wish to see the spring",
@@ -310,7 +311,7 @@ const prev = () => {
                       }}
                       className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full text-lg text-[#815555] bg-white/60 p-2 shadow-sm hover:bg-white"
                     >
-                      &lt;
+                     <ChevronLeft size={18} strokeWidth={1.5} />
                     </button>
 
 {/* Next image button */}
@@ -326,7 +327,7 @@ const prev = () => {
                       }}
                       className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full text-lg text-[#815555] bg-white/60 p-2 shadow-sm hover:bg-white"
                     >
-                      &gt;
+                     <ChevronRight size={18} strokeWidth={1.5} />
                     </button>                    
                   </div>
                 )}

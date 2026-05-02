@@ -35,7 +35,7 @@ export const testimonials: Testimonial[] = [
     name: "Disha Somra",
     designation: "Product Lead, Consumer Platforms AI & iOT",
     company: "ACT Fibernet",
-    text: "he brought clarity to the product experience, with a strong focus on intuitive interactions and enabling users to easily manage their devices and network. She also had a natural knack for design innovation and visual execution, especially when working through ambiguous problem spaces and shaping them into intuitive interfaces. She is reliable, collaborative, and easy to work with, contributing positively to team dynamics throughout the project.",
+    text: "She brought clarity to the product experience, with a strong focus on intuitive interactions and enabling users to easily manage their devices and network. She also had a natural knack for design innovation and visual execution, especially when working through ambiguous problem spaces and shaping them into intuitive interfaces. She is reliable, collaborative, and easy to work with, contributing positively to team dynamics throughout the project.",
     image: "/testimonials/3.jpg",
     linkedin: "https://www.linkedin.com/",
     color: "beige",
