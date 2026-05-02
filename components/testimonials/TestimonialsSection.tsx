@@ -37,9 +37,9 @@ export function TestimonialsSection() {
         Kind words from collaborators
       </h2>
 
-      <div className="relative mt-16 md:mt-20">
-        <CircularTestimonials testimonials={items} autoplay={false} />
-      </div>
+      <div className="relative mt-16 md:mt-20 h-[420px] md:h-[460px]">
+  <CircularTestimonials testimonials={items} autoplay={false} />
+</div>
 
     </div>
 

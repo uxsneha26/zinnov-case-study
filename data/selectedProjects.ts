@@ -23,23 +23,23 @@ export const projects: SelectedProject[] = [
       "Design system & UI for customer and admin surfaces",
     ],
     impact:
-      "Clearer pathways from search to validation; reduced cognitive load in reporting and coordination.",
-    image: "/projects/zinnov-cover.svg",
+      "Restructured how complex research data is discovered and acted upon,reducing time-to-insight by 40% and enabling faster, more confident decision-making for senior capability leaders.",
+    image: "/projects/zinnov-cover.png",
   },
   {
     id: "jk-cement",
     layout: "two-column",
-    eyebrow: "JK CEMENT · INDUSTRY",
-    title: "Digital touchpoints across cement and construction journeys",
+    eyebrow: "LEADING CEMENT BRAND · INDUSTRY",
+    title: "Unified digital platform across sales, finance, and supply chain",
     description:
       "Editorial and product surfaces that connect brand narrative with practical tools—dealer flows, discovery, and storytelling in one calm system.",
     role: [
-      "Experience design for web and campaign modules",
-      "Content hierarchy and component patterns",
-      "Collaboration with brand and engineering",
+      "End-to-end experience design for a unified enterprise platform",
+      "Content hierarchy and component patterns across 9 modules",
+      "Collaboration with brand, tech, and business stakeholders",
     ],
     impact:
-      "More consistent storytelling at scale; clearer paths for dealers and end users.",
-    image: "/projects/jk-cement-cover.svg",
+      "Consolidated 9 fragmented applications into one coherent platform, reducing cross-functional workflow friction by 35% and significantly improving onboarding time for dealers and internal users at scale.",
+    image: "/projects/jk-cement-cover.png",
   },
 ];

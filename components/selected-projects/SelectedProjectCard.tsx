@@ -99,7 +99,7 @@ target.current = {
 
       {/* Text block: grows upward over image; card outer size never changes */}
       <div
-        className="absolute bottom-0 left-0 z-10 w-full overflow-hidden rounded-t-xl border-t border-[#ebe4dc]/90 bg-[#faf8f5] px-4 pb-4 pt-4 shadow-[0_-6px_28px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out h-[120px] group-hover:h-[240px] group-hover:shadow-[0_-12px_40px_rgba(0,0,0,0.09)] md:px-5 md:pt-5 md:pb-5"
+        className="absolute bottom-0 left-0 z-10 w-full overflow-hidden rounded-t-xl border-t border-[#ebe4dc]/90 bg-[#faf8f5] px-4 pb-4 pt-4 shadow-[0_-6px_28px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out h-[120px] group-hover:h-[280px] group-hover:shadow-[0_-12px_40px_rgba(0,0,0,0.09)] md:px-5 md:pt-5 md:pb-5"
       >
         <div className="mx-auto flex max-w-[90%] flex-col space-y-2 transition-all duration-300 ease-out group-hover:space-y-3">
           <p
@@ -125,16 +125,23 @@ target.current = {
         My role
       </p>
 
-      <div className="space-y-1">
-        {project.role.map((line) => (
-          <p
-            key={line}
-            className={`${bodySerif.className} text-[0.8125rem] leading-relaxed text-[#5c564c]`}
-          >
-            {line}
-          </p>
-        ))}
-      </div>
+      <div className="space-y-1.5 list-none">
+  {project.role.map((line) => (
+    <div key={line} className="flex items-start gap-2">
+      
+      {/* bullet */}
+      <span className="mt-[6px] h-[4px] w-[4px] min-h-[4px] min-w-[4px] rounded-full bg-[#a89f94] flex-shrink-0" />
+
+      {/* text */}
+      <p
+        className={`${bodySerif.className} text-[0.8125rem] leading-relaxed text-[#5c564c]`}
+      >
+        {line}
+      </p>
+
+    </div>
+  ))}
+</div>
     </div>
 
     {/* IMPACT */}

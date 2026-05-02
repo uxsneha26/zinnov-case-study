@@ -147,7 +147,7 @@ export const CircularTestimonials = ({
 </div>
 
       {/* RIGHT: TEXT */}
-      <div className="flex flex-col justify-between h-[280px] max-w-[560px]">
+      <div className="flex flex-col justify-between h-[360px] max-w-[600px]">
 
   <AnimatePresence mode="wait">
     <motion.div
