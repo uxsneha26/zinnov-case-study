@@ -790,7 +790,7 @@ function AdminImpactSection() {
         <p
             className={`${bodyFont.className} text-lg my-20 text-gray-700 leading-relaxed`}
           >
-            Across 7 applications and 8 user types, the system replaced calls,
+            Across 8 applications and 8 user types, the system replaced calls,
             spreadsheets, and manual handoffs with a single connected workflow.
             <br />
             <br />
@@ -1248,7 +1248,7 @@ export default function JKCCaseStudyPage() {
               </span>.
             </p>
             <p>
-            Designing for one user is hard. Designing for eight,{" "}
+            Designing for one user is hard. Designing for seven,{" "}
               <span className="bg-[#F0D3D3] px-1.5 py-0.5 rounded">
               each with different goals, different contexts, and different relationships to technology
               </span>, requires you to hold the whole system in your head while solving for one screen at a time.{" "}

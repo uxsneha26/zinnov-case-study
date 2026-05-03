@@ -741,11 +741,7 @@ function DesignDirectionBlock({
   return (
     <div className="max-w-5xl mx-auto">
       <div className="max-w-3xl mx-auto text-left">
-        <p
-          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
-        >
-          Design direction
-        </p>
+        
         <h3
           className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
         >
@@ -817,95 +813,95 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
       {
         n: 1,
         title: "Guided entry based on user context",
-        body: "Personalized onboarding based on role, industry, and past behavior.",
+        body: "Home adapts to user role and intent, guiding users toward relevant starting points instead of a static dashboard.",
       },
       {
         n: 2,
-        title: "Reduced cognitive overload",
-        body: "Key insights surfaced first instead of long report lists.",
+        title: "Signal-first information hierarchy",
+        body: "Key insights are prioritized upfront, reducing the need to scan through dense report lists.",
       },
       {
         n: 3,
-        title: "Contextual recommendations",
-        body: "Relevant reports shown based on intent and usage patterns.",
+        title: "Discovery through relevance",
+        body: "Content is surfaced based on behavior, trends, and usage patterns, making exploration feel guided rather than manual.",
       },
       {
         n: 4,
-        title: "Quick insight summaries",
-        body: "AI-generated summaries for faster understanding.",
+        title: "Condensed insight consumption",
+        body: "Summaries and previews enable quick understanding before committing to deeper exploration.",
       },
       {
         n: 5,
-        title: "Action-oriented navigation",
-        body: "Clear next steps instead of passive browsing.",
+        title: "Navigation driven by next actions",
+        body: "The interface nudges users toward meaningful next steps, shifting from passive browsing to active decision-making.",
       },
     ],
   },
   {
     title: "Building a Community Layer for GCC Leaders",
     description:
-      "Leaders learn as much from peers as from documents—but only when trust, structure, and continuity are explicit. This layer makes peer learning scannable: themes over threads, credibility signals over noise, and events wired into a feedback loop so shared knowledge compounds instead of dissipating.",
+      "Leaders learn as much from peers as from documents, but only when trust, structure, and continuity are explicit. This layer makes peer learning scannable: themes over threads, credibility signals over noise, and events wired into a feedback loop so shared knowledge compounds instead of dissipating.",
     imageSrc: "/design/community.png",
     imageAlt: "Community experience design direction",
     annotations: [
       {
         n: 1,
-        title: "Peer learning layer",
-        body: "Users learn from similar GCC leaders and case studies.",
+        title: "Peer intelligence surfaced contextually",
+        body: "Relevant discussions from similar GCC leaders are surfaced based on domain and interest, not chronological feeds.",
       },
       {
         n: 2,
-        title: "Structured discussions",
-        body: "Conversations organized by themes, not random threads.",
+        title: "Theme-driven knowledge organization",
+        body: "Conversations are clustered around topics, enabling users to navigate ideas instead of isolated threads.",
       },
       {
         n: 3,
-        title: "Credibility signals",
-        body: "Verified experts and contributors highlighted.",
+        title: "Trust through visible expertise",
+        body: "Contributor credibility is embedded into the interface, helping users assess signal over noise.",
       },
       {
         n: 4,
-        title: "Knowledge sharing loops",
-        body: "Users contribute insights back into the ecosystem.",
+        title: "Continuous knowledge feedback loops",
+        body: "Insights from discussions, events, and contributions feed back into the ecosystem, strengthening collective intelligence.",
       },
       {
         n: 5,
-        title: "Event-driven engagement",
-        body: "Webinars, discussions, and expert sessions integrated.",
+        title: "Engagement anchored in real-world interactions",
+        body: "Events, webinars, and expert sessions are integrated into the flow, bridging passive reading with active participation.",
       },
     ],
   },
   {
     title: "Making Reports Actionable, Not Overwhelming",
     description:
-      "Reports fail when they read like archives. This direction treats every document as a decision interface: scannable structure, tools to compare and validate, and filters aligned to intent—so leaders spend less time decoding and more time committing, with less reliance on manual synthesis.",
+      "Reports fail when they read like archives. This direction treats every document as a decision interface: scannable structure, tools to compare and validate, and filters aligned to intent, so leaders spend less time decoding and more time committing, with less reliance on manual synthesis.",
     imageSrc: "/design/reports.png",
     imageAlt: "Reports experience design direction",
     annotations: [
       {
         n: 1,
-        title: "Scannable report structure",
-        body: "Content broken into digestible sections.",
+        title: "Structured for scan, not reading",
+        body: "Reports are broken into clear, navigable sections that support quick understanding over linear consumption.",
       },
       {
         n: 2,
-        title: "Visual comparison tools",
-        body: "Side-by-side comparison of insights.",
+        title: "Comparison as a core interaction",
+        body: "Side-by-side views enable users to evaluate insights across companies, regions, or timeframes.",
       },
       {
         n: 3,
-        title: "Insight validation layer",
-        body: "Cross-referencing across sources.",
+        title: "Embedded validation mechanisms",
+        body: "Insights are supported by cross-referenced data, helping users verify before acting.",
       },
       {
         n: 4,
-        title: "Dynamic filtering",
-        body: "Filter by intent, industry, and use-case.",
+        title: "Intent-driven filtering system",
+        body: "Filters align with user goals: industry, use-case, and context, rather than generic categorization.",
       },
       {
         n: 5,
-        title: "Decision-ready outputs",
-        body: "Summaries and recommendations instead of raw data.",
+        title: "Outputs designed for decisions",
+        body: "Summaries and recommendations reduce interpretation effort, enabling faster commitment.",
       },
     ],
   },
@@ -914,23 +910,23 @@ const designDirectionSections: DesignDirectionBlockProps[] = [
 const decisionMakingToolsAnnotations: DesignAnnotationData[] = [
   {
     n: 1,
-    title: "Cost benchmarking tool",
-    body: "Compare operational costs across regions, vendors, and industry standards using internal and external data.",
+    title: "Benchmarking for contextual evaluation",
+    body: "Costs and performance are compared across regions, vendors, and industry standards to enable informed trade-offs.",
   },
   {
     n: 2,
-    title: "Site scorecards",
-    body: "Evaluate performance of GCC sites across key metrics like cost efficiency, talent, and scalability.",
+    title: "Standardized performance scorecards",
+    body: "Sites are evaluated across consistent metrics, making comparisons reliable and repeatable.",
   },
   {
     n: 3,
-    title: "Auto-generated insights",
-    body: "AI synthesizes inputs into structured summaries and highlights key decision signals.",
+    title: "Automated synthesis of insights",
+    body: "Raw inputs are translated into structured summaries, surfacing key signals without manual analysis.",
   },
   {
     n: 4,
-    title: "Custom input parameters",
-    body: "Users can define variables such as geography, scale, and business priorities for tailored outputs.",
+    title: "Configurable inputs aligned to business context",
+    body: "Users define variables like geography, scale, and priorities to generate tailored, decision-ready outputs.",
   },
 ];
 
@@ -963,7 +959,7 @@ function DecisionMakingToolsSection() {
             tools that help users generate decision-ready outputs such as cost
             benchmarking and site scorecards. These tools transform internal
             company data and external insights into structured, comparable, and
-            actionable formats — reducing dependency on manual analysis.
+            actionable formats, reducing dependency on manual analysis.
           </p>
         </div>
 
@@ -998,10 +994,10 @@ function DecisionMakingToolsSection() {
                       {a.n}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-sm text-gray-900">
+                    <p className={`${headingFont.className} font-semibold text-sm text-gray-900`}>
                         {a.title}
                       </p>
-                      <p className="text-xs text-gray-600 mt-1 leading-snug">
+                      <p className={`${bodyFont.className} text-xs text-gray-600 mt-1 leading-snug`}>
                         {a.body}
                       </p>
                     </div>
@@ -1194,9 +1190,9 @@ function UsabilityTestingSection() {
           >
             We conducted usability testing with GCC leaders, business
             operators, and strategy teams to understand how they interact with
-            the platform across core workflows. The insights revealed critical
+            the platform across core workflows. The insights revealed <Highlight color="#F0D3D3">critical
             gaps in personalization, discoverability, and decision-making
-            support, directly informing the final design directions.
+            support, </Highlight>directly informing the final design directions.
           </p>
         </div>
 
@@ -1352,7 +1348,7 @@ const finalUiAnnotationBgCycle = [
 
 type FinalUIScreenSectionProps = {
   heading: string;
-  description: string;
+  description: React.ReactNode;
   imageSrc: string;
   imageAlt: string;
   annotations: DesignAnnotationData[];
@@ -1368,11 +1364,7 @@ function FinalUIScreenSection({
   return (
     <div className="max-w-5xl mx-auto w-full">
       <div className="max-w-3xl mx-auto text-left">
-        <p
-          className={`${headingFont.className} text-sm tracking-[0.14em] uppercase text-gray-600 mb-3`}
-        >
-          FINAL UI
-        </p>
+        
         <h3
           className={`${headingFont.className} text-2xl md:text-3xl font-semibold mb-5 leading-tight text-gray-900`}
         >
@@ -1386,7 +1378,7 @@ function FinalUIScreenSection({
       </div>
 
       <div className={`mt-10 md:mt-12 ${finalUiGlassContainerClass}`}>
-        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10 md:gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[2.4fr_1fr] gap-10 md:gap-12 items-start">
           <div className="min-w-0 w-full">
             <div className="w-full rounded-2xl border border-[#e7e5df] bg-white/40 p-3">
               <img
@@ -1439,157 +1431,181 @@ function FinalUIScreenSection({
 
 const finalExperienceScreens: FinalUIScreenSectionProps[] = [
   {
-    heading: "Reimagining the Home Experience",
-    description:
-      "The home experience was redesigned to act as a personalized entry point, reducing dependency on search and guiding users toward relevant insights based on their context.",
+    heading: "Search as the Entry Point",
+    description:(
+      <>
+      The home experience was reimagined as a <Highlight color="#E6F0AA">search-led interface,</Highlight> 
+      transforming it from a passive dashboard into an active entry point.
+      Instead of navigating through predefined structures, users can express
+      intent directly and be guided toward relevant insights, tools, and actions
+      tailored to their context.
+      </>
+    ),
     imageSrc: "/final/home.png",
     imageAlt: "Final home experience UI",
     annotations: [
       {
         n: 1,
-        title: "Guided entry based on user role and behavior",
-        body: "Surfaces paths and modules aligned to role, industry, and recent activity.",
+        title: "Intent as the primary interaction",
+        body: "Users start by expressing what they need, replacing navigation-heavy exploration with direct input.",
       },
       {
         n: 2,
-        title: "Reduced cognitive overload through prioritization",
-        body: "Surfaces the most relevant signals first instead of long, undifferentiated lists.",
+        title: "Search as a routing layer",
+        body: "Queries don’t just return results, they guide users toward relevant modules, reports, and actions.",
       },
       {
         n: 3,
-        title: "Contextual recommendations based on intent",
-        body: "Suggests what to read next from stated goals and observed behavior.",
+        title: "Contextual understanding of user needs",
+        body: "Results adapt based on role, industry, and past behavior, making outcomes more relevant.",
       },
       {
         n: 4,
-        title: "Quick insight summaries for faster understanding",
-        body: "Short previews that support scanning before committing to full reports.",
+        title: "Reduced dependency on platform knowledge",
+        body: "Users no longer need to understand where things live, the system brings the right pathways to them.",
       },
       {
         n: 5,
-        title: "Action-oriented navigation",
-        body: "Keeps next steps visible so discovery turns into progress.",
+        title: "Seamless transition from query to action",
+        body: "From asking a question to accessing insights or tools, the experience flows without friction.",
       },
     ],
   },
   {
-    heading: "Making Reports Scannable and Actionable",
-    description:
-      "Reports were restructured to reduce effort in validation and interpretation, enabling users to quickly assess relevance and move toward decision-making.",
+    heading: "Decision Surfaces, Not Just Reports",
+    description:(
+      <>
+    Reports are structured as <Highlight color="#E6F0AA">interactive decision layers,</Highlight> where insights are
+    scannable, comparable, and directly tied to action. The focus shifts from
+    reading information to <Highlight color="#E6F0AA">evaluating and committing with clarity.</Highlight>
+    </>
+    ),
     imageSrc: "/final/reports.png",
     imageAlt: "Final reports experience UI",
     annotations: [
       {
         n: 1,
-        title: "Scannable report structure",
-        body: "Headings, highlights, and hierarchy tuned for fast comprehension.",
+        title: "Structured for quick comprehension",
+        body: "Information is organized into clear, digestible blocks that support rapid scanning.",
       },
       {
         n: 2,
         title: "AI-generated summaries",
-        body: "Condenses length into takeaways teams can align on quickly.",
+        body: "Users can compare data points across dimensions without switching contexts.",
       },
       {
         n: 3,
-        title: "Insight validation layer",
-        body: "Cross-checks and cues that reduce one-off manual verification.",
+        title: "Built-in validation cues",
+        body: "Signals and references help users assess the reliability of insights in real time.",
       },
       {
         n: 4,
-        title: "Dynamic filtering",
-        body: "Narrows content by intent, industry, and urgency.",
+        title: "Intent-aligned filtering",
+        body: "Users refine outputs based on context like industry, geography, and use-case.",
       },
       {
         n: 5,
-        title: "Decision-ready outputs",
-        body: "Frames conclusions so leaders can act without re-synthesis.",
+        title: "Action-linked outputs",
+        body: "Insights are paired with summaries and next steps, enabling immediate decision-making.",
       },
     ],
   },
   {
-    heading: "Surfacing Real-Time Market Signals",
-    description:
-      "GCC Pulse was designed to provide timely and relevant updates, helping users stay aligned with evolving market trends without manual tracking.",
-    imageSrc: "/final/gcc-pulse.png",
+    heading: "A Live Layer of Market Intelligence",
+    description:(
+      <>
+    GCC Pulse surfaces what is changing in real time, bringing <Highlight color="#E6F0AA">relevant signals, shifts, and </Highlight>
+    <Highlight color="#E6F0AA"> emerging patterns </Highlight> into focus without requiring active tracking.
+</>
+    ),
+imageSrc: "/final/gcc-pulse.png",
     imageAlt: "Final GCC Pulse UI",
     annotations: [
       {
         n: 1,
-        title: "Live trend visibility",
-        body: "Shows what is moving now versus static archives alone.",
+        title: "Real-time signal visibility",
+        body: "Surfaces active trends and shifts as they emerge, not after they stabilize.",
       },
       {
         n: 2,
-        title: "Contextual signals",
-        body: "Filters noise so relevance stays tied to your domain.",
+        title: "Context-aware filtering",
+        body: "Content adapts to user domain, ensuring relevance over volume.",
       },
       {
         n: 3,
-        title: "Highlighted key updates",
-        body: "Pulls forward changes that warrant executive attention.",
+        title: "Priority-driven highlights",
+        body: "Key developments are elevated based on potential impact, not recency alone.",
       },
       {
         n: 4,
-        title: "Reduced dependency on manual tracking",
-        body: "Less spreadsheet and inbox work to stay current.",
+        title: "Continuous awareness without effort",
+        body: "Reduces the need for manual tracking across sources and platforms.",
       },
     ],
   },
   {
-    heading: "Highlighting High-Value Insights",
-    description:
-      "The featured section was redesigned to curate and prioritize high-impact content, improving engagement and enabling faster discovery of valuable insights.",
+    heading: "Curated Signals, Not Just Content",
+    description:(
+      <>
+      High-value insights are surfaced through deliberate curation, bringing
+      the most <Highlight color="#E6F0AA"> relevant, timely, and impactful work </Highlight> into immediate view.
+      </>
+    ),
     imageSrc: "/final/featured.png",
     imageAlt: "Final featured insights UI",
     annotations: [
       {
         n: 1,
-        title: "Curated high-impact insights",
-        body: "Editorially chosen work that earns the spotlight.",
+        title: "Editorially prioritized insights",
+        body: "Content is curated based on relevance, impact, and timeliness—not just recency.",
       },
       {
         n: 2,
-        title: "Clear visual hierarchy",
-        body: "Emphasis and rhythm that match editorial intent.",
+        title: "Strong visual hierarchy",
+        body: "Layout emphasizes importance, helping users quickly identify what deserves attention.",
       },
       {
         n: 3,
-        title: "Easy scanning patterns",
-        body: "Chunked layout that supports quick orientation.",
+        title: "Scan-friendly content grouping",
+        body: "Information is chunked into clear sections for fast orientation and navigation.",
       },
       {
         n: 4,
-        title: "Encourages deeper engagement",
-        body: "Invites reading without adding friction to get started.",
+        title: "Low-friction exploration",
+        body: "Entry points are designed to encourage deeper engagement without cognitive load.",
       },
     ],
   },
   {
-    heading: "Guiding Exploration Through Trends",
-    description:
-      "Trending queries were enhanced to act as discovery triggers, helping users explore relevant topics and better understand emerging areas of interest.",
+    heading: "Trends as Entry Points to Exploration",
+    description:(
+      <>
+      Emerging queries surface what is gaining momentum, helping users
+      discover relevant topics through the <Highlight color="#E6F0AA">questions shaping the market.</Highlight>
+      </>
+    ),
     imageSrc: "/final/trending.png",
     imageAlt: "Final trending queries UI",
     annotations: [
       {
         n: 1,
-        title: "Strong visual cues for trends",
-        body: "Makes momentum visible so teams notice what is heating up.",
+        title: "Momentum made visible",
+        body: "Visual prominence reflects what topics are gaining traction in real time.",
       },
       {
         n: 2,
-        title: "Discovery-driven interaction",
-        body: "Invites exploration without losing the thread of intent.",
+        title: "Exploration anchored in intent",
+        body: "Queries act as natural entry points, connecting user curiosity to relevant content.",
       },
       {
         n: 3,
-        title: "Intent-based surfacing",
-        body: "Connects questions people ask to content that answers them.",
+        title: "Contextual discovery paths",
+        body: "Each trend leads into deeper insights, reports, and related themes.",
       },
       {
         n: 4,
-        title: "Improved feature visibility",
-        body: "Surfaces capabilities that might otherwise stay hidden.",
+        title: "Signals beyond navigation",
+        body: "Surfaces emerging areas of interest that may not exist in predefined structures.",
       },
     ],
   },
@@ -1841,7 +1857,7 @@ function FinalExperienceSection() {
             <span className={editorialHighlightClass}>structured insights</span>,
             and{" "}
             <span className={editorialHighlightClass}>guided workflows</span> into
-            a unified system — reducing friction, improving discoverability, and
+            a unified system, reducing friction, improving discoverability, and
             enabling faster, more confident decision-making.
           </>
         }
@@ -1854,7 +1870,8 @@ function FinalExperienceSection() {
             <div className={index > 0 ? "mt-16 md:mt-24" : ""}>
               <FinalUIScreenSection {...screen} />
             </div>
-            {screen.heading === "Guiding Exploration Through Trends" ? (
+
+            {screen.heading === "Trends as Entry Points to Exploration" ? (
               <CustomerImpactSection />
             ) : null}
           </Fragment>
@@ -1879,7 +1896,7 @@ const caseStudyLessonCards = [
   },
   {
     title: "Systems over screens",
-    text: "The biggest shift was thinking in systems — connecting rules, signals, and workflows instead of designing isolated interfaces.",
+    text: "The biggest shift was thinking in systems, connecting rules, signals, and workflows instead of designing isolated interfaces.",
   },
 ] as const;
 
@@ -2228,7 +2245,7 @@ export default function Home() {
                   <h3
                     className={`${headingFont.className} text-base md:text-lg font-semibold text-gray-900 leading-tight`}
                   >
-                    
+                    Timeline
                   </h3>
                 </div>
                 <p
@@ -2449,8 +2466,8 @@ Worked at the intersection of strategy, research, and product thinking, to move 
       currently operates across user journeys, research layers, and internal
       interventions.
       <br /><br />
-      While the system is robust, it relies heavily on user interpretation,
-      manual validation, and fragmented pathways to arrive at meaningful
+      While the system is robust, it <Highlight color="#F0D3D3">relies heavily on user interpretation,</Highlight>
+      <Highlight color="#F0D3D3">manual validation,</Highlight> and <Highlight color="#F0D3D3">fragmented pathways </Highlight> to arrive at meaningful
       decisions.
     </p>
   </div>
@@ -2663,7 +2680,7 @@ Worked at the intersection of strategy, research, and product thinking, to move 
             From fragmented exploration to guided decision-making
           </h2>
           <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
-            We redesigned the service flow to introduce clarity, reduce manual effort, and enable faster, more confident decisions.
+            We redesigned the service flow to <Highlight color="#E6F0AA">introduce clarity, reduce manual effort,</Highlight> and <Highlight color="#E6F0AA"> enable faster, more confident decisions.</Highlight>
           </p>
           <p
             className={`${bodyFont.className} mt-4 text-lg md:text-lg text-gray-700 leading-relaxed`}
@@ -2811,10 +2828,9 @@ Worked at the intersection of strategy, research, and product thinking, to move 
           heading="Design Directions"
           body={
             <>
-              Research insights and prioritized ideas converge into{" "}
-              <span className={editorialHighlightClass}>three concrete surfaces</span>{" "}
-              — calmer entry, credible peer learning, and reports built for
-              decisions — not generic UX polish, but product behavior aligned to
+              Research insights and prioritized ideas converge into  three concrete surfaces,{" "}
+              <span className={editorialHighlightClass}>calmer entry, credible peer learning, and reports built for
+              decisions, </span>{" "} not generic UX polish, but product behavior aligned to
               how GCC leaders actually work.
             </>
           }
@@ -2971,7 +2987,7 @@ function AdminPlatformWorkshopStickyNotes({
                     {note.title}
                   </p>
                   {note.detail ? (
-                    <p className="mt-1 text-xs text-gray-600 leading-snug">
+                    <p className={`${bodyFont.className} mt-1 text-xs text-gray-600 leading-snug`}>
                       {note.detail}
                     </p>
                   ) : null}
@@ -3115,171 +3131,246 @@ function AdminPlatformPersonaCardRahul() {
 const adminPlatformFinalScreens: FinalUIScreenSectionProps[] = [
   {
     heading: "Main Dashboard",
-    description:
-      "Overview of tasks, alerts, and key metrics in a personalized workspace for internal teams.",
+    description:(
+      <>
+    The dashboard consolidates tasks, signals, and performance metrics into a
+    <Highlight color="#E6F0AA"> single operational surface, </Highlight> enabling internal teams to monitor activity,
+    identify risks, and act without switching contexts. By structuring information
+    across subscriptions, usage, and tool performance, it provides a continuous view
+    of both system health and business momentum.
+    </>
+    ),
     imageSrc: "/design/dashboard.png",
     imageAlt: "Admin main dashboard UI",
     annotations: [
       {
         n: 1,
-        title: "Unified task surface",
-        body: "See what needs attention across BD and support in one view.",
+        title: "Consolidated operational view",
+        body: "Brings subscriptions, usage, and client activity into one surface, reducing the need to navigate across multiple tools.",
       },
       {
         n: 2,
-        title: "Alerts and signals",
-        body: "Surface SLAs, escalations, and follow-ups before they slip.",
+        title: "Signal-driven prioritization",
+        body: "Alerts, changes, and key movements are surfaced within metrics, helping teams identify what needs attention without manual tracking.",
       },
       {
         n: 3,
-        title: "Key metrics",
-        body: "Track throughput, response time, and pipeline health at a glance.",
+        title: "Layered information hierarchy",
+        body: "Information is organized from high-level summaries to detailed breakdowns, enabling both quick scanning and deeper analysis.",
       },
       {
         n: 4,
-        title: "Role-aware layout",
-        body: "Priorities adapt to BD vs. support responsibilities.",
+        title: "Performance visibility across dimensions",
+        body: "Metrics are structured across clients, regions, and usage patterns, supporting multi-dimensional understanding of platform performance.",
       },
       {
         n: 5,
-        title: "Faster orientation",
-        body: "Reduce tab-hopping when the day starts or context switches.",
+        title: "Embedded analytics within workflows",
+        body: "Charts and summaries are integrated directly into the interface, allowing users to interpret data without leaving their workflow.",
+      },
+      {
+        n: 6,
+        title: "Role-sensitive relevance",
+        body: "Content adapts to operational priorities, ensuring that business development, support, and management teams see what matters to them.",
+      },
+      {
+        n: 7,
+        title: "Reduced context switching",
+        body: "Combines monitoring, analysis, and decision cues in one place, minimizing fragmentation across tools and tabs.",
       },
     ],
   },
   {
     heading: "Account Dashboard",
-    description:
-      "Client-specific insights, activity tracking, and engagement history in one place.",
+    description:(
+      <>
+      The account dashboard brings together contract details, engagement history,
+      and performance signals into a <Highlight color="#E6F0AA"> single, evolving view of each client.</Highlight> By connecting
+      activity, stakeholders, and insights, it enables teams to understand account health,
+      track progress over time, and act with full context, without relying on fragmented tools
+      or manual follow-ups.
+      </>
+    ),
     imageSrc: "/design/account.png",
     imageAlt: "Admin account dashboard UI",
     annotations: [
       {
         n: 1,
-        title: "Account snapshot",
-        body: "Contracts, stakeholders, and open threads in one profile.",
+        title: "Unified account snapshot",
+        body: "Contracts, stakeholders, and open threads in one profile.Combines contracts, stakeholders, and key metrics into a single reference point for every client.",
       },
       {
         n: 2,
-        title: "Engagement history",
-        body: "Meetings, emails, and platform usage without digging through inboxes.",
+        title: "Continuous engagement tracking",
+        body: "Captures meetings, queries, and platform activity to reflect the full interaction history over time.",
       },
       {
         n: 3,
-        title: "Insight attachments",
-        body: "Link relevant reports and benchmarks to the account record.",
+        title: "Insight-linked workflows",
+        body: "Relevant reports, benchmarks, and outputs are attached directly to the account for easy access and reuse.",
       },
       {
         n: 4,
-        title: "Status clarity",
-        body: "Know what is proposed, approved, or waiting on the client.",
+        title: "Clear status visibility",
+        body: "Surfaces current state across engagements—what is active, pending, or completed, reducing ambiguity.",
       },
       {
         n: 5,
-        title: "Handoff-ready",
-        body: "Support picks up context without a long briefing loop.",
+        title: "Cross-team continuity",
+        body: "Shared context allows teams to collaborate and transition ownership without repeated briefings.",
+      },
+      {
+        n: 6,
+        title: "Relationship health indicators",
+        body: "Usage patterns and engagement signals help identify active, at-risk, or high-potential accounts.",
       },
     ],
   },
   {
     heading: "Profile Usage",
-    description:
-      "User activity tracking with usage analytics and engagement patterns for internal visibility.",
+    description:(
+      <>
+      The profile usage view captures how individuals and teams interact with the platform
+      over time, translating activity into <Highlight color="#E6F0AA">meaningful behavioral patterns.</Highlight> By connecting
+      queries, content consumption, and engagement signals, it enables internal teams to
+      understand user intent, identify opportunities for intervention, and support more
+      informed decision-making.
+      </>
+    ),
     imageSrc: "/design/usage.png",
     imageAlt: "Admin profile usage analytics UI",
     annotations: [
       {
         n: 1,
-        title: "Activity timeline",
-        body: "See recent sessions, searches, and saves for a user or team.",
+        title: "Chronological activity visibility",
+        body: "Tracks user actions across queries, reports, and events to provide a continuous view of engagement over time.",
       },
       {
         n: 2,
-        title: "Engagement patterns",
-        body: "Spot heavy vs. light usage to tailor outreach and training.",
+        title: "Multi-channel engagement mapping",
+        body: "Captures interactions across reports, videos, podcasts, and events to reflect how users consume and respond to content.",
       },
       {
         n: 3,
-        title: "Content affinity",
-        body: "Understand which topics and formats drive follow-through.",
+        title: "Behavioral pattern recognition",
+        body: "Surfaces trends such as frequency, depth, and type of engagement to distinguish active, passive, or disengaged users.",
       },
       {
         n: 4,
-        title: "Operational signals",
-        body: "Feed product and support with real behavior, not anecdotes.",
+        title: "Content affinity signals",
+        body: "Highlights which topics, formats, and themes drive interaction, informing personalization and outreach strategies.",
       },
       {
         n: 5,
-        title: "Privacy-aware",
-        body: "Aggregate views that respect internal data policies.",
+        title: "Actionable engagement insights",
+        body: "Transforms raw activity into signals that support follow-ups, recommendations, and targeted interventions.",
+      },
+      {
+        n: 6,
+        title: "Context for relationship management",
+        body: "Provides internal teams with a clear understanding of user interests and journey without relying on manual notes.",
+      },
+      {
+        n: 7,
+        title: "Structured access and permissions view",
+        body: "Displays tool access and usage alignment, helping teams identify gaps between availability and actual adoption.",
       },
     ],
   },
   {
     heading: "Task Management",
-    description:
-      "Task assignment, ownership, and workflow visibility across internal handoffs.",
+    description:(
+      <>
+    The task management system brings structure and visibility to internal workflows,
+    ensuring that work moves clearly across teams without fragmentation. By <Highlight color="#E6F0AA">defining
+    ownership, mapping </Highlight> <Highlight color="#E6F0AA">dependencies, and surfacing timelines,</Highlight> it enables teams to
+    coordinate effectively, track progress in real time, and reduce delays caused by
+    unclear handoffs or missing context.
+    </>
+    ),
     imageSrc: "/design/task.png",
     imageAlt: "Admin task management UI",
     annotations: [
       {
         n: 1,
-        title: "Clear ownership",
-        body: "Assignees, reviewers, and watchers on every task.",
+        title: "Defined ownership at every step",
+        body: "Assigns clear roles across contributors, reviewers, and stakeholders to eliminate ambiguity.",
       },
       {
         n: 2,
-        title: "Workflow stages",
-        body: "Move work from intake through resolution with shared language.",
+        title: "Standardized workflow progression",
+        body: "Tasks move through clearly defined stages, creating a shared understanding of progress and status.",
       },
       {
         n: 3,
-        title: "Dependencies",
-        body: "Link tasks to clients, queries, or reports for traceability.",
+        title: "Linked system dependencies",
+        body: "Connects tasks to clients, queries, and reports, ensuring traceability across the ecosystem.",
       },
       {
         n: 4,
-        title: "Due dates and SLAs",
-        body: "Make deadlines visible to the whole chain.",
+        title: "Time-bound execution visibility",
+        body: "Deadlines, SLAs, and timelines are surfaced to keep teams aligned and accountable.",
       },
       {
         n: 5,
-        title: "Less coordination overhead",
-        body: "Fewer status meetings when the board tells the truth.",
+        title: "Real-time activity tracking",
+        body: "Logs actions and updates to provide a transparent view of task movement and history.",
+      },
+      {
+        n: 6,
+        title: "Reduced coordination friction",
+        body: "Centralized visibility minimizes reliance on meetings, emails, and manual follow-ups.",
+      },
+      {
+        n: 7,
+        title: "Context-rich task environment",
+        body: "Each task is embedded within its broader business and account context, improving decision-making during execution.",
       },
     ],
   },
   {
     heading: "Queries Inner Page",
-    description:
-      "Centralized query handling with context-rich responses and full history.",
+    description:(
+      <>
+    The queries interface centralizes inbound questions and transforms them
+    into <Highlight color="#E6F0AA"> structured, trackable conversations. </Highlight> By combining full history, <Highlight color="#E6F0AA">contextual metadata,</Highlight> and reusable responses, it enables teams to resolve
+    contextual metadata, and reusable responses, it enables teams to resolve
+    queries faster, maintain continuity across handoffs, and ensure that every
+    interaction is informed by past context rather than repeated discovery.
+    </>
+    ),
     imageSrc: "/design/query.png",
     imageAlt: "Admin queries detail UI",
     annotations: [
       {
         n: 1,
-        title: "Single queue",
-        body: "Inbound questions land in one place with categorization.",
+        title: "Centralized query intake",
+        body: "All incoming questions are routed into a single system, creating a unified queue for tracking and action.",
       },
       {
         n: 2,
-        title: "Context-rich threads",
-        body: "Attach account, product area, and prior replies automatically.",
+        title: "Contextual conversation threads",
+        body: "Each query carries associated account details, prior interactions, and metadata to provide complete context.",
       },
       {
         n: 3,
-        title: "Response templates",
-        body: "Reuse vetted answers while still personalizing.",
+        title: "Structured response workflows",
+        body: "Teams can respond using templates and references, balancing efficiency with personalization.",
       },
       {
         n: 4,
-        title: "History that sticks",
-        body: "Anyone can see what was promised and delivered.",
+        title: "Persistent interaction history",
+        body: "Every update, response, and action is recorded, ensuring transparency across teams and time.",
       },
       {
         n: 5,
-        title: "Faster resolution",
-        body: "Less back-and-forth when the full story is on the page.",
+        title: "Ownership and status visibility",
+        body: "Clear assignment and progress indicators help track who is responsible and where resolution stands.",
+      },
+      {
+        n: 6,
+        title: "Connected system actions",
+        body: "Queries can trigger downstream actions such as task creation, events, or report sharing, linking conversations to execution.",
       },
     ],
   },
@@ -3359,8 +3450,8 @@ function AdminPlatformCaseStudySection() {
 
           <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
             Imagine you are part of the business development or customer support
-            team, handling multiple client requests, tracking ongoing engagements,
-            and responding to queries that require quick, contextual insights.
+            team, <Highlight color="#E6F0AA">handling multiple client requests, tracking ongoing engagements,
+            and responding </Highlight>  <Highlight color="#E6F0AA">to queries </Highlight> that require quick, contextual insights.
             <br />
             <br />
             You rely on internal dashboards, reports, and communication loops to
@@ -3446,7 +3537,7 @@ function AdminPlatformCaseStudySection() {
             <p
               className={`${bodyFont.className} text-lg md:text-xl leading-relaxed text-gray-700`}
             >
-              The internal platform reimagines how teams handle workflows —
+              The internal platform reimagines how teams handle workflows,
               bringing together{" "}
               <span className={editorialHighlightClass}>visibility</span>,{" "}
               <span className={editorialHighlightClass}>context</span>, and{" "}
