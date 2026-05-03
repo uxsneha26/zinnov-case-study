@@ -49,16 +49,16 @@ const impactMetricToneClasses = [
 
 const cards = [
   {
-    title: "35%",
-    text: "reduction in manual coordination across tools",
+    title: "60%",
+    text: "of field actions now logged digitally in real time",
   },
   {
     title: "2x",
-    text: "faster response time to client queries",
+    text: "faster lead approval with structured digital handoffs",
   },
   {
-    title: "50%",
-    text: "improvement in visibility across workflows and requests",
+    title: "3x",
+    text: "reduction in order coordination time for dealers",
   },
 ];
 
@@ -235,7 +235,7 @@ const insightCards = [
   // persona data
   const personaData = {
     name: "Karan",
-    role: "Customer Technical Services Officer",
+    role: "Customer Technical Services (CTS) Officer",
     description:
       "Manages field leads, influencer onboarding, site visits, service requests, and lead-to-conversion tracking. Mapped to 50+ leads and influencers simultaneously.",
     quote:
@@ -365,7 +365,7 @@ type EditorialPageBreakerSectionProps = {
 type DesignDirectionBlockProps = {
     sectionLabel: string;
     title: string;
-    description: string;
+    description: React.ReactNode;
     userFlowSrc: string;
     userFlowAlt: string;
     imageSrc: string;
@@ -385,8 +385,15 @@ type DesignDirectionBlockProps = {
     {
       sectionLabel: "Customer Engagement & Technical Services",
       title: "Staying on Top of Lead Lifecycle",
-      description:
-        "CTS officers operate at the very start of the supply chain, where speed and clarity directly impact conversion. The experience was designed to help them capture, track, and act on leads without losing momentum — ensuring that no opportunity falls through gaps between systems or stakeholders.",
+      description: (
+        <>
+          CTS officers operate at the very start of the supply chain, where{" "}
+          <Highlight>speed and clarity</Highlight> directly impact conversion.  
+          The experience was designed to help them{" "}
+          <Highlight color="#F0D3D3">capture, track, and act on leads</Highlight> without losing momentum,  
+          ensuring that no opportunity falls through gaps between systems or stakeholders.
+        </>
+      ),
       userFlowSrc: "/jkc/theme/cts.png",
       userFlowAlt: "Home experience design direction",
       imageSrc: "/jkc/design/cts.png",
@@ -395,22 +402,22 @@ type DesignDirectionBlockProps = {
         {
           n: 1,
           title: "Structured lead capture",
-          body: "Standardized inputs for site details, requirements, and location to reduce ambiguity.",
+          body: "Standardized inputs ensure leads are captured with clarity and consistency, reducing ambiguity at the source.",
         },
         {
           n: 2,
           title: "Clear assignment visibility",
-          body: "Real-time status of dealer allocation and ownership of each lead.",
+          body: "Ownership and allocation are made immediately visible, eliminating confusion and delays in lead handling.",
         },
         {
           n: 3,
           title: "Conversion-focused tracking",
-          body: "Lead stages mapped clearly from creation to fulfillment.",
+          body: "Lead progression is structured around clear stages, enabling teams to track movement and identify drop-offs.",
         },
         {
           n: 4,
           title: "Actionable next steps",
-          body: "Prompts and nudges to move leads forward instead of passive tracking.",
+          body: "Contextual prompts guide users toward the next best action, shifting the experience from passive tracking to active progression.",
         },
       ],
     },
@@ -418,8 +425,14 @@ type DesignDirectionBlockProps = {
     {
       sectionLabel: "Sales Operation Management",
       title: "Enabling the System Behind the Scenes",
-      description:
-        "SFA acts as the backbone of the ecosystem — configuring how different stakeholders interact with the system. The focus was to simplify complex administrative workflows like onboarding, role management, and incentive structuring, ensuring that the system remains scalable and adaptable.",
+      description:(
+        <>
+        SFA acts as the backbone of the ecosystem, configuring how different stakeholders
+        interact with the system. The focus was to <Highlight>simplify complex administrative workflows</Highlight>
+        like onboarding, role management, and incentive structuring, ensuring that the system
+        remains <Highlight color="#E6F0AA">scalable and adaptable.</Highlight>
+        </>
+        ),
       userFlowSrc: "/jkc/theme/sfa.png",
       userFlowAlt: "Community experience design direction",
       imageSrc: "/jkc/design/sfa.png",
@@ -427,23 +440,23 @@ type DesignDirectionBlockProps = {
       annotations: [
         {
           n: 1,
-          title: "Role-based access control",
-          body: "Clear mapping of permissions across CTS, dealers, and retailers.",
+          title: "Role-based access clarity",
+          body: "Clear mapping of users (Dealer, ARS, Non-ARS) ensures that data, actions, and visibility align with responsibilities.",
         },
         {
           n: 2,
-          title: "Streamlined onboarding flows",
-          body: "Faster setup for new users with guided configurations.",
+          title: "At-a-glance performance visibility",
+          body: "Key metrics like MTD achievement, targets, and gaps are surfaced upfront to reduce dependency on multiple reports.",
         },
         {
           n: 3,
-          title: "Incentive configuration made flexible",
-          body: "Easy creation and management of schemes across regions and roles.",
+          title: "Unified account intelligence (360 view)",
+          body: "Consolidated dealer profiles bring together performance, credit, and interaction history in a single view.",
         },
         {
           n: 4,
-          title: "Centralized system governance",
-          body: "A single source to manage users, rules, and performance structures.",
+          title: "Actionable operational touchpoints",
+          body: "Embedded actions (calls, follow-ups, nudges) enable quick decisions without navigating across systems.",
         },
       ],
     },
@@ -452,8 +465,13 @@ type DesignDirectionBlockProps = {
     {
       sectionLabel: "Orders and Business Management",
       title: "Managing Orders, Performance & Relationships",
-      description:
-        "Dealers sit at the center of execution — balancing incoming demand with supply, logistics, and relationships. The experience was designed to give them better control and visibility across orders, retailer activity, and performance metrics.",
+      description:(
+        <>
+        Dealers sit at the center of execution, balancing incoming demand with supply,
+        logistics, and relationships. The experience was designed to give them <Highlight>better control
+        and visibility</Highlight> across orders, retailer activity, and performance metrics.
+        </>
+        ),
       userFlowSrc: "/jkc/theme/dealer.png",
       userFlowAlt: "Reports experience design direction",
       imageSrc: "/jkc/design/dealer.png",
@@ -461,23 +479,23 @@ type DesignDirectionBlockProps = {
       annotations: [
         {
           n: 1,
-          title: "Unified order management",
-          body: "All incoming requests consolidated into a single actionable view.",
+          title: "Centralized order control",
+          body: "All order requests, updates, and pending actions surfaced in one operational view.",
         },
         {
           n: 2,
-          title: "Retailer activity visibility",
-          body: "Insights into who is ordering, how frequently, and at what scale.",
+          title: "Real-time order status tracking",
+          body: "Clear visibility into every stage, from placement to delivery, reducing follow-ups and uncertainty.",
         },
         {
           n: 3,
-          title: "Performance tracking",
-          body: "Clear metrics on fulfillment, volume, and growth over time.",
+          title: "Embedded financial context",
+          body: "Outstanding balance, credit limits, and eligibility integrated into daily decision-making.",
         },
         {
           n: 4,
-          title: "Relationship strengthening tools",
-          body: "Better visibility enables proactive engagement with retailers and contractors.",
+          title: "Action-ready workflows",
+          body: "Quick actions (new order, tracking, follow-ups) reduce friction between intent and execution.",
         },
       ],
     },
@@ -495,23 +513,23 @@ type DesignDirectionBlockProps = {
       annotations: [
         {
           n: 1,
-          title: "Unified order management",
-          body: "All incoming requests consolidated into a single actionable view.",
+          title: "Goal-oriented performance visibility",
+          body: "Targets, achievements, and gaps clearly surfaced to guide daily and monthly actions.",
         },
         {
           n: 2,
-          title: "Retailer activity visibility",
-          body: "Insights into who is ordering, how frequently, and at what scale.",
+          title: "Trend-based decision support",
+          body: "Sales patterns and comparisons enable proactive planning instead of reactive tracking.",
         },
         {
           n: 3,
-          title: "Performance tracking",
-          body: "Clear metrics on fulfillment, volume, and growth over time.",
+          title: "Network intelligence at a glance",
+          body: "Retailer-level performance, activity, and contribution made visible for better prioritization.",
         },
         {
           n: 4,
-          title: "Relationship strengthening tools",
-          body: "Better visibility enables proactive engagement with retailers and contractors.",
+          title: "Relationship-driven growth",
+          body: "Insights into individual partners support targeted engagement and stronger business outcomes.",
         },
       ],
     },
@@ -520,8 +538,13 @@ type DesignDirectionBlockProps = {
     {
         sectionLabel: "Retails Sales Management",
         title: "Simplifying Ordering & Incentive Awareness",
-        description:
-          "Retailers operate in high-frequency, low-margin environments where ease and speed matter most. The experience focused on making ordering seamless while ensuring they clearly understand the benefits and incentives tied to their actions.",
+        description:(
+          <>
+          "Retailers operate in high-frequency, low-margin environments where ease and
+          speed matter most. The experience focused on <Highlight>making ordering seamless</Highlight> while
+          ensuring they <Highlight color="#E6F0AA">clearly understand the benefits and incentives</Highlight> tied to their actions.
+          </>
+          ),
         userFlowSrc: "/jkc/theme/retailer.png",
         userFlowAlt: "Reports experience design direction",
         imageSrc: "/jkc/design/retailer.png",
@@ -529,23 +552,23 @@ type DesignDirectionBlockProps = {
         annotations: [
           {
             n: 1,
-            title: "Quick order placement",
-            body: "Reduced friction in placing and repeating orders.",
+            title: "Frictionless order initiation",
+            body: "Quick access to order actions and saved drafts reduces effort in repeat ordering.",
           },
           {
             n: 2,
-            title: "Transparent delivery expectations",
-            body: "Better clarity on timelines and fulfillment status.",
+            title: "Clear order status visibility",
+            body: "Structured status indicators make it easy to track progress without follow-ups.",
           },
           {
             n: 3,
-            title: "Incentive visibility",
-            body: "Clear understanding of schemes, rewards, and earnings.",
+            title: "Incentives made tangible",
+            body: "Loyalty progress, rewards, and benefits are surfaced clearly to drive engagement.",
           },
           {
             n: 5,
-            title: "Decision confidence",
-            body: "Improved experience reduces dependency on external follow-ups or guesswork.",
+            title: "Confidence through clarity",
+            body: "Transparent information across orders, timelines, and benefits reduces guesswork in decision-making.",
           },
         ],
       },
@@ -723,8 +746,8 @@ function AdminImpactSection() {
           <p
             className={`${bodyFont.className} text-lg text-gray-700 leading-relaxed`}
           >
-            The internal platform equips teams with better visibility, reduced
-            coordination overhead, and faster execution across workflows.
+            The platform reduced coordination overhead, brought field operations online, 
+            and gave every stakeholder, <Highlight color="#E6F0AA"> from dealer to field officer, the visibility to act faster.</Highlight>
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -767,8 +790,15 @@ function AdminImpactSection() {
         <p
             className={`${bodyFont.className} text-lg my-20 text-gray-700 leading-relaxed`}
           >
-            The internal platform equips teams with better visibility, reduced
-            coordination overhead, and faster execution across workflows.
+            Across 7 applications and 8 user types, the system replaced calls,
+            spreadsheets, and manual handoffs with a single connected workflow.
+            <br />
+            <br />
+            The work was validated where it mattered most, in the room. Senior
+            leadership across sales, marketing, and digital, alongside active dealers,
+            reviewed and signed off on the flows in a live presentation. Shortly after
+            launch, the client's product lead shared a note recognising the design team by
+            name for their contribution to the transformation.
           </p>
 
         </div>
@@ -1094,7 +1124,9 @@ export default function JKCCaseStudyPage() {
             From interviews to prioritized features
           </h2>
           <p className= {`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}>
-            We captured verbatim signals, modeled priorities, and surfaced what should ship first.
+          With clarity on the system and its flows, we focused on the <Highlight>people driving it.</Highlight>
+          Personas helped distill <Highlight color="#F0D3D3">recurring behaviors, decision triggers, and operational
+          constraints,</Highlight> turning abstract workflows into <Highlight color="#E6F0AA">actionable design anchors.</Highlight>  
           </p>
         </div>
 
@@ -1143,7 +1175,7 @@ export default function JKCCaseStudyPage() {
           <p
             className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed`}
           >
-            We mapped end-to-end user flows across stakeholders — tracing how leads are generated, 
+            We mapped <Highlight color="#E6F0AA">end-to-end user flows across stakeholders, </Highlight> tracing how leads are generated, 
             orders are processed, and decisions are made across the system.
             This revealed critical gaps and overlaps, allowing us to restructure workflows into a 
             <Highlight color="#FFFAB8">cohesive, scalable experience</Highlight> that supports real-world operations.
@@ -1210,36 +1242,23 @@ export default function JKCCaseStudyPage() {
             className={`${bodyFont.className} text-lg md:text-xl text-gray-700 leading-relaxed space-y-5`}
           >
             <p>
-              Working on this project shifted how I think about design, from{" "}
-              <span className="bg-[] px-1.5 py-0.5 rounded">
-                assembling screens
-              </span>{" "}
-              to{" "}
+            This project didn't just add to my portfolio, {" "}
               <span className="bg-[#E6F0AA] px-1.5 py-0.5 rounded">
-                shaping systems that support real decisions
+              it recalibrated how I think.
               </span>.
             </p>
             <p>
-              It made me more conscious of{" "}
-              <span className="bg-[] px-1.5 py-0.5 rounded">
-                clarity, structure
-              </span>, and the role of{" "}
-              <span className="bg-[] px-1.5 py-0.5 rounded">
-                context in reducing effort
-              </span>{" "}
-              for users. More importantly, it reinforced that{" "}
+            Designing for one user is hard. Designing for eight,{" "}
               <span className="bg-[#F0D3D3] px-1.5 py-0.5 rounded">
-                good design isn&apos;t about adding more
-              </span>, but about{" "}
-              <span className="bg-[rgba(219, 238, 192, 0.8)] px-1.5 py-0.5 rounded">
-                making the right things easier to see, understand, and act on
-              </span>.
+              each with different goals, different contexts, and different relationships to technology
+              </span>, requires you to hold the whole system in your head while solving for one screen at a time.{" "}
             </p>
             <p>
-              These are{" "}
+            The biggest lesson: {" "}
               <span className="bg-[#C7F2F0] px-1.5 py-0.5 rounded">
-                principles I now carry into every problem I approach
-              </span>.
+              design earns trust quietly.
+              </span>
+              Not through visual polish, but through getting the details right for people who have real work to do.
             </p>
           </div>
         </div>
